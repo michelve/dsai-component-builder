@@ -9,6 +9,8 @@ export interface ComponentSet {
   name: string;
   key: string;
   type: string;
+  description?: string; // Plain-text annotation for the component set
+  documentationLink?: string; // Single documentation URL (will be converted to documentationLinks array)
 }
 
 /**
@@ -30,11 +32,21 @@ export interface FontName {
 }
 
 /**
+ * Text layout configuration
+ * Controls text node dimensions and auto-resize behavior
+ */
+export interface TextLayout {
+  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE"; // Figma's textAutoResize
+  width?: number; // Required when textAutoResize is "NONE" (must be number, not string)
+  height?: number; // Required when textAutoResize is "NONE" (must be number, not string)
+}
+
+/**
  * Typography properties for text styling
  * All dimension properties support token references (e.g., "{Typography/Base/fontSize/base}")
  */
 export interface Typography {
-  fontName?: FontName;
+  fontName?: FontName | string; // Object format OR token reference string (e.g., "{Typography/Base/fontFamily/base}")
   fontWeight?: string; // Bindable token reference (FLOAT variable 100-900)
   fontSize?: string; // Bindable token reference (px)
   lineHeight?: string; // Bindable token reference (unitless multiplier or AUTO)
@@ -44,6 +56,9 @@ export interface Typography {
   paragraphSpacing?: string; // Bindable token reference (px)
   textDecoration?: "NONE" | "UNDERLINE" | "STRIKETHROUGH";
   textCase?: "ORIGINAL" | "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS";
+  textLayout?: TextLayout; // Nested text layout configuration
+  // Deprecated: use textLayout instead
+  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE";
 }
 
 /**
@@ -73,6 +88,7 @@ export interface Variant {
   state: string; // e.g., "default", "hover", "active", "disabled"
   size: string; // e.g., "small", "medium", "large"
   styles?: Style; // Optional style overrides for this variant
+  description?: string; // Plain-text annotation for this specific variant
 }
 
 /**

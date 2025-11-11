@@ -8,7 +8,7 @@ import {
   applyGapToken,
   applyTextFillToken,
   applyNodeOpacity,
-  applyFontName,
+  applyFontNameToken,
   applyFontSizeToken,
   applyFontWeightToken,
   applyLineHeightToken,
@@ -16,7 +16,8 @@ import {
   applyParagraphSpacingToken,
   applyTextAlignment,
   applyTextDecoration,
-  applyTextCase
+  applyTextCase,
+  applyTextAutoResize,
 } from './tokenResolver';
 
 /**
@@ -239,6 +240,18 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
     try {
       componentSet = figma.combineAsVariants(componentNodes, figma.currentPage);
       componentSet.name = componentSetInfo.name;
+      
+      // Set description if provided
+      if (componentSetInfo.description) {
+        componentSet.description = componentSetInfo.description;
+      }
+      
+      // Set documentation links if provided
+      if (componentSetInfo.documentationLink) {
+        componentSet.documentationLinks = [{
+          uri: componentSetInfo.documentationLink
+        }];
+      }
     } catch (error) {
       throw new Error(`Failed to combine components into variant set: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
@@ -405,6 +418,11 @@ function createBaseComponent(variantConfig: Variant): ComponentNode {
   const component = figma.createComponent();
   component.name = `Variant=${variantConfig.variant}, State=${variantConfig.state}, Size=${variantConfig.size}`;
   
+  // Set description if provided
+  if (variantConfig.description) {
+    component.description = variantConfig.description;
+  }
+  
   // Set up auto-layout for flexible sizing
   component.layoutMode = 'HORIZONTAL';
   component.primaryAxisAlignItems = 'CENTER';
@@ -499,6 +517,15 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
+    // Node opacity: Overall component transparency (recommended for disabled states)
+    if (styles.opacity) {
+      try {
+        await applyNodeOpacity(component, styles.opacity);
+      } catch (error) {
+        console.warn('Failed to apply node opacity:', error);
+      }
+    }
+
     // === DIMENSION PROPERTIES ===
     
     // Stroke weight: Border thickness
@@ -536,10 +563,11 @@ async function createStyledTextNode(styles: Style, size: string): Promise<TextNo
     // Must load font before setting other properties to avoid Figma API errors
     if (styles.fontName) {
       try {
-        await applyFontName(textNode, styles.fontName.family, styles.fontName.style);
-        console.log(`✅ Font loaded and applied: ${styles.fontName.family} ${styles.fontName.style}`);
+        // Use new applyFontNameToken that supports both object and string token formats
+        await applyFontNameToken(textNode, styles.fontName);
+        console.log(`✅ Font loaded and applied from token/object`);
       } catch (error) {
-        console.error('Failed to apply custom font, using Inter Regular fallback:', error);
+        console.error('Failed to apply font, using Inter Regular fallback:', error);
         await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
         textNode.fontName = { family: 'Inter', style: 'Regular' };
       }
@@ -555,7 +583,65 @@ async function createStyledTextNode(styles: Style, size: string): Promise<TextNo
       }
     }
     
-    // Set text content AFTER font is loaded
+    // CRITICAL: Font MUST be loaded before setting textAutoResize, textAlignHorizontal, textAlignVertical
+    // Apply text layout configuration (auto-resize and dimensions) AFTER loading font, BEFORE setting text
+    // Supports both nested textLayout object and legacy flat structure with smart defaults
+    try {
+      // Get layout config from nested object or legacy flat structure
+      const layoutConfig = styles.textLayout || {
+        textAutoResize: styles.textAutoResize,
+        width: undefined,
+        height: undefined
+      };
+      
+      // Get textAutoResize with fallback to default
+      const autoResizeMode = layoutConfig.textAutoResize || "WIDTH_AND_HEIGHT"; // Default for buttons
+      
+      // Step 1: Set textAutoResize AFTER font is loaded but BEFORE setting characters
+      textNode.textAutoResize = autoResizeMode;
+      console.log(`📏 Text auto-resize: ${autoResizeMode}`);
+      
+      // Step 2: Handle NONE mode - MUST call resize() with valid numbers
+      if (autoResizeMode === "NONE") {
+        const width = layoutConfig.width;
+        const height = layoutConfig.height;
+        
+        // Strict type validation: must be numbers, not strings or undefined
+        if (typeof width === "number" && typeof height === "number" && width > 0 && height > 0) {
+          textNode.resize(width, height);
+          console.log(`📐 Text fixed dimensions: ${width}x${height}`);
+        } else {
+          // Fallback: warn and switch to auto-resize if dimensions invalid
+          console.warn(`⚠️ textAutoResize is "NONE" but dimensions invalid (width: ${width}, height: ${height}). Must be positive numbers. Falling back to WIDTH_AND_HEIGHT.`);
+          textNode.textAutoResize = "WIDTH_AND_HEIGHT";
+        }
+      } else if (autoResizeMode === "HEIGHT" && layoutConfig.width) {
+        // HEIGHT mode: optionally set width if provided (height auto-grows)
+        if (typeof layoutConfig.width === "number" && layoutConfig.width > 0) {
+          textNode.resize(layoutConfig.width, textNode.height);
+          console.log(`📐 Text width for auto-height: ${layoutConfig.width}`);
+        }
+      } else if (autoResizeMode === "WIDTH" && layoutConfig.height) {
+        // WIDTH mode: optionally set height if provided (width auto-grows)
+        if (typeof layoutConfig.height === "number" && layoutConfig.height > 0) {
+          textNode.resize(textNode.width, layoutConfig.height);
+          console.log(`📐 Text height for auto-width: ${layoutConfig.height}`);
+        }
+      }
+      // WIDTH_AND_HEIGHT or TRUNCATE: no dimensions needed, text auto-sizes
+    } catch (error) {
+      console.warn('Failed to apply text layout:', error);
+    }
+    
+    // IMPORTANT: Apply text alignment AFTER textAutoResize but BEFORE setting text content
+    // Font must be loaded for this property as well
+    try {
+      applyTextAlignment(textNode, styles.textAlignHorizontal, styles.textAlignVertical);
+    } catch (error) {
+      console.warn('Failed to apply text alignment:', error);
+    }
+    
+    // Set text content AFTER font, layout, and alignment are configured
     textNode.characters = styles.label || 'Button';
 
     // Apply typography properties (size, weight, spacing, etc.)
@@ -622,12 +708,8 @@ async function applyTypography(textNode: TextNode, styles: Style, size: string):
       }
     }
 
-    // Apply text alignment (not bindable)
-    try {
-      applyTextAlignment(textNode, styles.textAlignHorizontal, styles.textAlignVertical);
-    } catch (error) {
-      console.warn('Failed to apply text alignment:', error);
-    }
+    // NOTE: Text alignment is now applied in createStyledTextNode BEFORE setting text content
+    // This ensures proper alignment when text is added to the node
 
     // Apply text decoration and case (not bindable)
     try {

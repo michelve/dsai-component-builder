@@ -828,6 +828,110 @@ export async function applyGapToken(
 // ============================================
 
 /**
+ * Resolve fontName token reference to font family name
+ * Supports variable binding for font family (STRING variable)
+ * 
+ * @param tokenRef - Token reference string (e.g., "{Typography/Base/fontFamily/base}")
+ * @param fallbackFamily - Fallback font family if token not found (default: "Inter")
+ * @returns Object with font family name and optional variable for binding
+ */
+export async function resolveFontNameToken(
+  tokenRef: TokenReference,
+  fallbackFamily: string = 'Inter'
+): Promise<{ family: string; variableId?: string }> {
+  console.log(`🔍 Resolving fontName token: ${tokenRef}`);
+  
+  // Extract token name from brackets
+  const tokenName = extractTokenName(tokenRef);
+  if (!tokenName) {
+    console.warn(`⚠️ Invalid fontName token format: ${tokenRef}`);
+    return { family: fallbackFamily };
+  }
+  
+  // Try to find the variable
+  const variableId = await resolveVariableId(tokenName);
+  
+  if (variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(variableId);
+    if (variable && variable.resolvedType === 'STRING') {
+      // Get the value from the variable
+      const modeId = Object.keys(variable.valuesByMode)[0];
+      const value = variable.valuesByMode[modeId];
+      
+      if (typeof value === 'string') {
+        console.log(`✅ Resolved fontName variable: ${variable.name} = ${value}`);
+        return { family: value, variableId };
+      }
+    }
+  }
+  
+  console.warn(`⚠️ Could not resolve fontName token: ${tokenRef}, using fallback: ${fallbackFamily}`);
+  return { family: fallbackFamily };
+}
+
+/**
+ * Apply font name with support for token references and variable binding
+ * Supports both object format and token reference string
+ * 
+ * @param node - Text node to apply font to
+ * @param fontNameValue - FontName object OR token reference string
+ * @param defaultStyle - Default font style if not specified (default: "Regular")
+ */
+export async function applyFontNameToken(
+  node: TextNode,
+  fontNameValue: { family: string; style: string } | string,
+  defaultStyle: string = 'Regular'
+): Promise<void> {
+  try {
+    let fontFamily: string;
+    let fontStyle: string = defaultStyle;
+    let variableId: string | undefined;
+    
+    // Check if it's a token reference string
+    if (typeof fontNameValue === 'string' && fontNameValue.startsWith('{') && fontNameValue.endsWith('}')) {
+      console.log(`🔍 Processing fontName token reference: ${fontNameValue}`);
+      const resolved = await resolveFontNameToken(fontNameValue, 'Inter');
+      fontFamily = resolved.family;
+      variableId = resolved.variableId;
+    } 
+    // Check if it's an object with family and style
+    else if (typeof fontNameValue === 'object' && 'family' in fontNameValue) {
+      fontFamily = fontNameValue.family;
+      fontStyle = fontNameValue.style || defaultStyle;
+      console.log(`🔍 Using object fontName: ${fontFamily} ${fontStyle}`);
+    }
+    // Fallback: treat as direct family name string
+    else if (typeof fontNameValue === 'string') {
+      fontFamily = fontNameValue;
+      console.log(`🔍 Using direct fontFamily string: ${fontFamily}`);
+    } else {
+      throw new Error('Invalid fontName format');
+    }
+    
+    // Apply the font using existing applyFontName function (handles loading & fallbacks)
+    await applyFontName(node, fontFamily, fontStyle);
+    
+    // If we have a variable, bind it to fontFamily property
+    if (variableId) {
+      try {
+        const variable = await figma.variables.getVariableByIdAsync(variableId);
+        if (variable) {
+          node.setBoundVariable('fontFamily', variable);
+          console.log(`🔗 Bound fontFamily variable: ${variable.name}`);
+        }
+      } catch (bindError) {
+        console.warn(`⚠️ Could not bind fontFamily variable:`, bindError);
+      }
+    }
+    
+  } catch (error) {
+    console.error(`❌ Error in applyFontNameToken:`, error);
+    // Final fallback to Inter Regular
+    await applyFontName(node, 'Inter', 'Regular');
+  }
+}
+
+/**
  * Apply font family to a text node (without weight)
  * Must load font before setting
  */
@@ -1043,5 +1147,37 @@ export function applyTextCase(
     console.log(`🔤 Text case: ${textCase}`);
   }
 }
+
+
+
+/**
+ * Apply text auto-resize to a text node
+ * Controls how text node dimensions behave using Figma's textAutoResize property
+ * 
+ * Values:
+ * - "WIDTH_AND_HEIGHT": Auto-both dimensions (hug contents)
+ * - "HEIGHT": Auto-height only (hug height, width fixed)
+ * - "WIDTH": Auto-width only (hug width, height fixed)
+ * - "NONE": Fixed dimensions (both width and height must be set manually via resize)
+ * - "TRUNCATE": Truncate with ellipsis when text overflows
+ * 
+ * IMPORTANT: Font must be loaded before calling this function
+ */
+export function applyTextAutoResize(
+  node: TextNode,
+  mode?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE"
+): void {
+  if (!mode) {
+    // Default to WIDTH_AND_HEIGHT for button/label text
+    node.textAutoResize = "WIDTH_AND_HEIGHT";
+    console.log(`📏 Text auto-resize: WIDTH_AND_HEIGHT (default)`);
+    return;
+  }
+
+  node.textAutoResize = mode;
+  console.log(`📏 Text auto-resize: ${mode}`);
+}
+
+
 
 

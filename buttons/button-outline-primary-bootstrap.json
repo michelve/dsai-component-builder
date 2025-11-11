@@ -1,0 +1,251 @@
+{
+  "componentSet": {
+    "name": "Button Outline Primary",
+    "key": "btn-outline-primary",
+    "type": "COMPONENT_SET"
+  },
+  "defaultStyles": {
+    "label": "Button",
+    "fills": "{Foundation/colors/transparent}",
+    "strokes": "{Foundation/colors/brand/blue/500}",
+    "strokeWeight": "{Foundation/borders/width/1}",
+    "text": "{Foundation/colors/brand/blue/500}",
+    "radius": "{Radius/Base/radius/default}",
+    "padding": {
+      "top": "{Spacing/Base/spacing/2}",
+      "bottom": "{Spacing/Base/spacing/2}",
+      "left": "{Spacing/Base/spacing/3}",
+      "right": "{Spacing/Base/spacing/3}"
+    },
+    "gap": "{Spacing/Base/spacing/2}",
+    "fontName": "{Typography/Base/fontFamily/base}",
+    "fontWeight": "{Typography/Base/fontWeight/normal}",
+    "fontSize": "{Typography/Base/fontSize/base}",
+    "lineHeight": "{Typography/Base/lineHeight/base}",
+    "letterSpacing": "{Typography/Base/letterSpacing/normal}",
+    "textAlignHorizontal": "CENTER",
+    "textAlignVertical": "CENTER",
+    "textLayout": {
+      "textAutoResize": "WIDTH"
+    }
+  },
+  "variants": [
+    {
+      "variant": "outline-primary",
+      "state": "default",
+      "size": "small",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/1}",
+          "bottom": "{Spacing/Base/spacing/1}",
+          "left": "{Spacing/Base/spacing/2}",
+          "right": "{Spacing/Base/spacing/2}"
+        },
+        "fontSize": "{Typography/Base/fontSize/sm}",
+        "radius": "{Radius/Base/radius/sm}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "hover",
+      "size": "small",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/500}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/neutral/white}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/1}",
+          "bottom": "{Spacing/Base/spacing/1}",
+          "left": "{Spacing/Base/spacing/2}",
+          "right": "{Spacing/Base/spacing/2}"
+        },
+        "fontSize": "{Typography/Base/fontSize/sm}",
+        "radius": "{Radius/Base/radius/sm}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "active",
+      "size": "small",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/600}",
+        "strokes": "{Foundation/colors/brand/blue/600}",
+        "text": "{Foundation/colors/neutral/white}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/1}",
+          "bottom": "{Spacing/Base/spacing/1}",
+          "left": "{Spacing/Base/spacing/2}",
+          "right": "{Spacing/Base/spacing/2}"
+        },
+        "fontSize": "{Typography/Base/fontSize/sm}",
+        "radius": "{Radius/Base/radius/sm}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "focus",
+      "size": "small",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/1}",
+          "bottom": "{Spacing/Base/spacing/1}",
+          "left": "{Spacing/Base/spacing/2}",
+          "right": "{Spacing/Base/spacing/2}"
+        },
+        "fontSize": "{Typography/Base/fontSize/sm}",
+        "radius": "{Radius/Base/radius/sm}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "disabled",
+      "size": "small",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "opacity": "{Foundation/colors/opacity/50}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "default",
+      "size": "medium",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "hover",
+      "size": "medium",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/500}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/neutral/white}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "active",
+      "size": "medium",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/600}",
+        "strokes": "{Foundation/colors/brand/blue/600}",
+        "text": "{Foundation/colors/neutral/white}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "focus",
+      "size": "medium",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "disabled",
+      "size": "medium",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "opacity": "{Foundation/colors/opacity/50}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "default",
+      "size": "large",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/3}",
+          "bottom": "{Spacing/Base/spacing/3}",
+          "left": "{Spacing/Base/spacing/4}",
+          "right": "{Spacing/Base/spacing/4}"
+        },
+        "fontSize": "{Typography/Base/fontSize/lg}",
+        "radius": "{Radius/Base/radius/lg}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "hover",
+      "size": "large",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/500}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/neutral/white}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/3}",
+          "bottom": "{Spacing/Base/spacing/3}",
+          "left": "{Spacing/Base/spacing/4}",
+          "right": "{Spacing/Base/spacing/4}"
+        },
+        "fontSize": "{Typography/Base/fontSize/lg}",
+        "radius": "{Radius/Base/radius/lg}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "active",
+      "size": "large",
+      "styles": {
+        "fills": "{Foundation/colors/brand/blue/600}",
+        "strokes": "{Foundation/colors/brand/blue/600}",
+        "text": "{Foundation/colors/neutral/white}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/3}",
+          "bottom": "{Spacing/Base/spacing/3}",
+          "left": "{Spacing/Base/spacing/4}",
+          "right": "{Spacing/Base/spacing/4}"
+        },
+        "fontSize": "{Typography/Base/fontSize/lg}",
+        "radius": "{Radius/Base/radius/lg}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "focus",
+      "size": "large",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "padding": {
+          "top": "{Spacing/Base/spacing/3}",
+          "bottom": "{Spacing/Base/spacing/3}",
+          "left": "{Spacing/Base/spacing/4}",
+          "right": "{Spacing/Base/spacing/4}"
+        },
+        "fontSize": "{Typography/Base/fontSize/lg}",
+        "radius": "{Radius/Base/radius/lg}"
+      }
+    },
+    {
+      "variant": "outline-primary",
+      "state": "disabled",
+      "size": "large",
+      "styles": {
+        "fills": "{Foundation/colors/transparent}",
+        "strokes": "{Foundation/colors/brand/blue/500}",
+        "text": "{Foundation/colors/brand/blue/500}",
+        "opacity": "{Foundation/colors/opacity/50}"
+      }
+    }
+  ]
+}
