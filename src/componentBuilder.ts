@@ -30,6 +30,40 @@ import {
  */
 
 /**
+ * Finds an existing page by name or creates a new one
+ * 
+ * This function ensures idempotent page creation - multiple runs will not create
+ * duplicate pages with the same name. It searches through all pages in the document
+ * and returns the first match, or creates a new page if none exists.
+ * 
+ * @param pageName - The name of the page to find or create
+ * @returns The existing or newly created PageNode
+ * 
+ * @example
+ * ```typescript
+ * const buttonsPage = findOrCreatePage("Buttons");
+ * figma.currentPage = buttonsPage;
+ * ```
+ */
+function findOrCreatePage(pageName: string): PageNode {
+  // Search for existing page with matching name
+  const existingPage = figma.root.children.find(
+    (node): node is PageNode => node.type === 'PAGE' && node.name === pageName
+  );
+
+  if (existingPage) {
+    console.log(`Found existing page: ${pageName}`);
+    return existingPage;
+  }
+
+  // Create new page if none exists
+  const newPage = figma.createPage();
+  newPage.name = pageName;
+  console.log(`Created new page: ${pageName}`);
+  return newPage;
+}
+
+/**
  * Result object returned by component creation operations
  */
 interface BuildResult {
@@ -99,14 +133,14 @@ export async function loadJSONAndCreateComponents(
 
     console.log(`Creating component set "${componentName}" with ${variants.length} variants...`);
 
-    // Create a new page for this component
-    let newPage: PageNode;
+    // Find or create the target page
+    let targetPage: PageNode;
     try {
-      newPage = figma.createPage();
-      newPage.name = componentName;
-      await figma.setCurrentPageAsync(newPage);
+      const pageName = componentSetInfo.pageName || componentName;
+      targetPage = findOrCreatePage(pageName);
+      await figma.setCurrentPageAsync(targetPage);
     } catch (error) {
-      throw new Error(`Failed to create page: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to set page: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 
     // Create the component set with all variants
@@ -122,7 +156,7 @@ export async function loadJSONAndCreateComponents(
     try {
       containerFrame = createContainerFrame(componentName);
       containerFrame.appendChild(componentSet);
-      newPage.appendChild(containerFrame);
+      targetPage.appendChild(containerFrame);
     } catch (error) {
       throw new Error(`Failed to create container: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }

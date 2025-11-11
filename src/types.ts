@@ -7,6 +7,7 @@
  */
 export interface ComponentSet {
   name: string;
+  pageName?: string; // Optional page name - if provided, component will be placed on this page
   key: string;
   type: string;
   description?: string; // Plain-text annotation for the component set

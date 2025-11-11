@@ -1,6 +1,7 @@
 {
   "componentSet": {
     "name": "Button Primary",
+    "pageName": "Buttons",
     "key": "primary-button-001",
     "type": "COMPONENT_SET",
     "description": "Bootstrap is primary button. Use for the main call-to-action on a page. Matches Bootstrap 5 styles and variables for .btn-primary.",
