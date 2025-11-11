@@ -25,6 +25,7 @@
     "fontWeight": "{Typography/Base/fontWeight/medium}",
     "fontSize": "{Typography/Base/fontSize/base}",
     "lineHeight": "{Typography/Base/lineHeight/base}",
+    "letterSpacing": "{Typography/Base/letterSpacing/normal}",
     "textAlignHorizontal": "CENTER",
     "textAlignVertical": "CENTER"
   },

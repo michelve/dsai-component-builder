@@ -10,7 +10,23 @@ import { TokenReference, VariableMapping, ResolvedColor } from './types';
  * Example: "{Foundation/colors/brand/blue/600}" -> "Foundation/colors/brand/blue/600"
  */
 function extractTokenName(tokenRef: TokenReference): string {
-  return tokenRef.replace(/[{}]/g, '');
+  try {
+    if (!tokenRef || typeof tokenRef !== 'string') {
+      console.warn('Invalid token reference: must be a non-empty string');
+      return '';
+    }
+    
+    const cleaned = tokenRef.replace(/[{}]/g, '').trim();
+    
+    if (cleaned.length === 0) {
+      console.warn(`Empty token name after extraction from: "${tokenRef}"`);
+    }
+    
+    return cleaned;
+  } catch (error) {
+    console.error(`Error extracting token name from "${tokenRef}":`, error);
+    return '';
+  }
 }
 
 /**
@@ -77,22 +93,31 @@ export async function resolveColorToken(
   tokenRef: TokenReference,
   fallbackHex?: string
 ): Promise<VariableMapping> {
-  const tokenName = extractTokenName(tokenRef);
-  const variable = await findVariableByName(tokenName);
+  try {
+    const tokenName = extractTokenName(tokenRef);
+    const variable = await findVariableByName(tokenName);
 
-  if (variable && variable.resolvedType === 'COLOR') {
+    if (variable && variable.resolvedType === 'COLOR') {
+      return {
+        found: true,
+        variableId: variable.id
+      };
+    }
+
+    // Fallback to default color if variable not found
+    const fallbackColor = parseCSSColor(fallbackHex || '#3B82F6');
     return {
-      found: true,
-      variableId: variable.id
+      found: false,
+      fallbackValue: fallbackColor
+    };
+  } catch (error) {
+    console.error(`Error resolving color token "${tokenRef}":`, error);
+    const fallbackColor = parseCSSColor(fallbackHex || '#3B82F6');
+    return {
+      found: false,
+      fallbackValue: fallbackColor
     };
   }
-
-  // Fallback to default color if variable not found
-  const fallbackColor = parseCSSColor(fallbackHex || '#3B82F6');
-  return {
-    found: false,
-    fallbackValue: fallbackColor
-  };
 }
 
 /**
@@ -102,21 +127,29 @@ export async function resolveDimensionToken(
   tokenRef: TokenReference,
   fallbackValue: number = 8
 ): Promise<VariableMapping> {
-  const tokenName = extractTokenName(tokenRef);
-  const variable = await findVariableByName(tokenName);
+  try {
+    const tokenName = extractTokenName(tokenRef);
+    const variable = await findVariableByName(tokenName);
 
-  if (variable && variable.resolvedType === 'FLOAT') {
+    if (variable && variable.resolvedType === 'FLOAT') {
+      return {
+        found: true,
+        variableId: variable.id
+      };
+    }
+
+    // Fallback to default dimension
     return {
-      found: true,
-      variableId: variable.id
+      found: false,
+      fallbackValue: fallbackValue
+    };
+  } catch (error) {
+    console.error(`Error resolving dimension token "${tokenRef}":`, error);
+    return {
+      found: false,
+      fallbackValue: fallbackValue
     };
   }
-
-  // Fallback to default dimension
-  return {
-    found: false,
-    fallbackValue: fallbackValue
-  };
 }
 
 /**
@@ -124,19 +157,25 @@ export async function resolveDimensionToken(
  * Supports: #RGB, #RRGGBB, #RRGGBBAA
  */
 function parseCSSColor(colorString: string): ResolvedColor {
-  let hex = colorString.replace('#', '');
+  try {
+    let hex = colorString.replace('#', '');
 
-  // Convert 3-digit hex to 6-digit
-  if (hex.length === 3) {
-    hex = hex.split('').map(char => char + char).join('');
+    // Convert 3-digit hex to 6-digit
+    if (hex.length === 3) {
+      hex = hex.split('').map(char => char + char).join('');
+    }
+
+    const r = parseInt(hex.substring(0, 2), 16) / 255;
+    const g = parseInt(hex.substring(2, 4), 16) / 255;
+    const b = parseInt(hex.substring(4, 6), 16) / 255;
+    const a = hex.length === 8 ? parseInt(hex.substring(6, 8), 16) / 255 : 1;
+
+    return { r, g, b, a };
+  } catch (error) {
+    console.error(`Error parsing color "${colorString}":`, error);
+    // Return blue as fallback
+    return { r: 0.23, g: 0.51, b: 0.96, a: 1 };
   }
-
-  const r = parseInt(hex.substring(0, 2), 16) / 255;
-  const g = parseInt(hex.substring(2, 4), 16) / 255;
-  const b = parseInt(hex.substring(4, 6), 16) / 255;
-  const a = hex.length === 8 ? parseInt(hex.substring(6, 8), 16) / 255 : 1;
-
-  return { r, g, b, a };
 }
 
 /**
@@ -169,22 +208,46 @@ export async function resolveCSSVariable(
  * 
  * @param variablePath - Token reference like "{Foundation/colors/brand/blue/600}"
  * @returns Variable ID string or empty string if not found
+/**
+ * Resolve a variable path to its Figma variable ID
+ * Public API function for direct variable ID access
+ * 
+ * @param variablePath - Token reference like "{Foundation/colors/brand/blue/600}"
+ * @returns Variable ID string or empty string if not found
  * 
  * @example
  * const varId = await resolveVariableId("{Foundation/colors/brand/blue/600}");
  * node.setBoundVariable('fills', varId);
  */
 export async function resolveVariableId(variablePath: string): Promise<string> {
-  const tokenName = extractTokenName(variablePath);
-  const variable = await findVariableByName(tokenName);
-  
-  if (variable) {
-    console.log(`✅ Resolved variable ID for "${tokenName}": ${variable.id}`);
-    return variable.id;
+  try {
+    // Validate input
+    if (!variablePath || typeof variablePath !== 'string') {
+      console.error('Invalid variable path: must be a non-empty string');
+      return '';
+    }
+
+    const tokenName = extractTokenName(variablePath);
+    
+    // Check if token name is valid after extraction
+    if (!tokenName || tokenName.trim().length === 0) {
+      console.error(`Invalid token name extracted from: "${variablePath}"`);
+      return '';
+    }
+
+    const variable = await findVariableByName(tokenName);
+    
+    if (variable) {
+      console.log(`✅ Resolved variable ID for "${tokenName}": ${variable.id}`);
+      return variable.id;
+    }
+    
+    console.warn(`⚠️ Could not resolve variable ID for: "${tokenName}"`);
+    return '';
+  } catch (error) {
+    console.error(`Error resolving variable ID for "${variablePath}":`, error);
+    return '';
   }
-  
-  console.warn(`⚠️ Could not resolve variable ID for: "${tokenName}"`);
-  return '';
 }
 
 /**
@@ -203,22 +266,53 @@ export async function resolveVariableValue(
   variablePath: string,
   fallback: number = 0
 ): Promise<number> {
-  const tokenName = extractTokenName(variablePath);
-  const variable = await findVariableByName(tokenName);
-  
-  if (variable && variable.resolvedType === 'FLOAT') {
-    // Get the first mode's value
-    const modeId = Object.keys(variable.valuesByMode)[0];
-    const value = variable.valuesByMode[modeId];
-    
-    if (typeof value === 'number') {
-      console.log(`✅ Resolved variable value for "${tokenName}": ${value}`);
-      return value;
+  try {
+    // Validate input
+    if (!variablePath || typeof variablePath !== 'string') {
+      console.error('Invalid variable path: must be a non-empty string');
+      return fallback;
     }
+
+    if (typeof fallback !== 'number' || Number.isNaN(fallback)) {
+      console.warn(`Invalid fallback value: ${fallback}, using 0 instead`);
+      fallback = 0;
+    }
+
+    const tokenName = extractTokenName(variablePath);
+    
+    if (!tokenName || tokenName.trim().length === 0) {
+      console.error(`Invalid token name extracted from: "${variablePath}"`);
+      return fallback;
+    }
+
+    const variable = await findVariableByName(tokenName);
+    
+    if (variable && variable.resolvedType === 'FLOAT') {
+      // Get the first mode's value
+      const modeId = Object.keys(variable.valuesByMode)[0];
+      
+      if (!modeId) {
+        console.warn(`⚠️ No modes found for variable "${tokenName}"`);
+        return fallback;
+      }
+
+      const value = variable.valuesByMode[modeId];
+      
+      if (typeof value === 'number' && !Number.isNaN(value)) {
+        console.log(`✅ Resolved variable value for "${tokenName}": ${value}`);
+        return value;
+      } else {
+        console.warn(`⚠️ Variable "${tokenName}" has non-numeric value: ${value}`);
+        return fallback;
+      }
+    }
+    
+    console.warn(`⚠️ Could not resolve variable value for: "${tokenName}", using fallback: ${fallback}`);
+    return fallback;
+  } catch (error) {
+    console.error(`Error resolving variable value for "${variablePath}":`, error);
+    return fallback;
   }
-  
-  console.warn(`⚠️ Could not resolve variable value for: "${tokenName}", using fallback: ${fallback}`);
-  return fallback;
 }
 
 /**
@@ -237,21 +331,59 @@ export async function resolveColorVariableValue(
   variablePath: string,
   fallbackHex: string = '#3B82F6'
 ): Promise<ResolvedColor> {
-  const tokenName = extractTokenName(variablePath);
-  const variable = await findVariableByName(tokenName);
-  
-  if (variable && variable.resolvedType === 'COLOR') {
-    const modeId = Object.keys(variable.valuesByMode)[0];
-    const value = variable.valuesByMode[modeId];
-    
-    if (typeof value === 'object' && 'r' in value && 'g' in value && 'b' in value) {
-      console.log(`✅ Resolved color value for "${tokenName}":`, value);
-      return value as ResolvedColor;
+  try {
+    // Validate input
+    if (!variablePath || typeof variablePath !== 'string') {
+      console.error('Invalid variable path: must be a non-empty string');
+      return parseCSSColor(fallbackHex);
     }
+
+    if (!fallbackHex || typeof fallbackHex !== 'string') {
+      console.warn(`Invalid fallback hex: ${fallbackHex}, using default`);
+      fallbackHex = '#3B82F6';
+    }
+
+    const tokenName = extractTokenName(variablePath);
+    
+    if (!tokenName || tokenName.trim().length === 0) {
+      console.error(`Invalid token name extracted from: "${variablePath}"`);
+      return parseCSSColor(fallbackHex);
+    }
+
+    const variable = await findVariableByName(tokenName);
+    
+    if (variable && variable.resolvedType === 'COLOR') {
+      const modeId = Object.keys(variable.valuesByMode)[0];
+      
+      if (!modeId) {
+        console.warn(`⚠️ No modes found for color variable "${tokenName}"`);
+        return parseCSSColor(fallbackHex);
+      }
+
+      const value = variable.valuesByMode[modeId];
+      
+      if (typeof value === 'object' && value !== null && 'r' in value && 'g' in value && 'b' in value) {
+        // Validate color values are in correct range
+        const color = value as ResolvedColor;
+        if (typeof color.r === 'number' && typeof color.g === 'number' && typeof color.b === 'number') {
+          console.log(`✅ Resolved color value for "${tokenName}":`, color);
+          return color;
+        } else {
+          console.warn(`⚠️ Invalid color value types for "${tokenName}"`);
+          return parseCSSColor(fallbackHex);
+        }
+      } else {
+        console.warn(`⚠️ Color variable "${tokenName}" has invalid value structure`);
+        return parseCSSColor(fallbackHex);
+      }
+    }
+    
+    console.warn(`⚠️ Could not resolve color variable: "${tokenName}", using fallback: ${fallbackHex}`);
+    return parseCSSColor(fallbackHex);
+  } catch (error) {
+    console.error(`Error resolving color variable for "${variablePath}":`, error);
+    return parseCSSColor(fallbackHex);
   }
-  
-  console.warn(`⚠️ Could not resolve color variable: "${tokenName}", using fallback: ${fallbackHex}`);
-  return parseCSSColor(fallbackHex);
 }
 
 /**
@@ -268,9 +400,34 @@ export async function resolveColorVariableValue(
  * }
  */
 export async function variableExists(variablePath: string): Promise<boolean> {
-  const tokenName = extractTokenName(variablePath);
-  const variable = await findVariableByName(tokenName);
-  return variable !== null;
+  try {
+    // Validate input
+    if (!variablePath || typeof variablePath !== 'string') {
+      console.error('Invalid variable path: must be a non-empty string');
+      return false;
+    }
+
+    const tokenName = extractTokenName(variablePath);
+    
+    if (!tokenName || tokenName.trim().length === 0) {
+      console.error(`Invalid token name extracted from: "${variablePath}"`);
+      return false;
+    }
+
+    const variable = await findVariableByName(tokenName);
+    const exists = variable !== null;
+    
+    if (exists) {
+      console.log(`✅ Variable exists: "${tokenName}"`);
+    } else {
+      console.log(`❌ Variable does not exist: "${tokenName}"`);
+    }
+    
+    return exists;
+  } catch (error) {
+    console.error(`Error checking if variable exists for "${variablePath}":`, error);
+    return false;
+  }
 }
 
 // ============================================
@@ -684,7 +841,7 @@ export async function applyFontName(
   const fontName = { family: fontFamily, style: fontStyle };
   
   try {
-    // Load the font before applying
+    // Load the font before applying - CRITICAL for Figma API
     await figma.loadFontAsync(fontName);
     node.fontName = fontName;
     console.log(`✅ Font applied: ${fontName.family} ${fontName.style}`);
@@ -697,7 +854,17 @@ export async function applyFontName(
       node.fontName = fallbackFont;
       console.log(`✅ Fallback font applied: ${fallbackFont.family} ${fallbackFont.style}`);
     } catch (fallbackError) {
-      console.error(`❌ Could not load font ${fontFamily}:`, fallbackError);
+      console.warn(`⚠️ Could not load font ${fontFamily} Regular, trying Inter Regular:`, fallbackError);
+      try {
+        // Final fallback to Inter Regular (default system font)
+        const systemFont = { family: 'Inter', style: 'Regular' };
+        await figma.loadFontAsync(systemFont);
+        node.fontName = systemFont;
+        console.log(`✅ System font applied: ${systemFont.family} ${systemFont.style}`);
+      } catch (systemError) {
+        console.error(`❌ CRITICAL: Could not load any font. Text may not display correctly:`, systemError);
+        throw new Error(`Failed to load any font. Original: ${fontFamily} ${fontStyle}`);
+      }
     }
   }
 }
