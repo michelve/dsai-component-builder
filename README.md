@@ -1,5 +1,7 @@
 # JSON to Component Builder - Figma Plugin
 
+**⚠️ PROPRIETARY SOFTWARE - All Rights Reserved**
+
 A Figma plugin that automatically creates components from JSON specifications with design tokens. Upload a JSON file containing component properties and design tokens, and the plugin will generate fully-styled Figma components with variable bindings.
 
 ## 🎯 Features
@@ -256,16 +258,26 @@ See `sampel.json` for a complete working example of the JSON structure.
 
 ## 📄 License
 
-MIT
+**Proprietary - All Rights Reserved**
+
+Copyright (c) 2025 michelve. All rights reserved.
+
+This software is proprietary and confidential. Unauthorized copying, modification, distribution, or use of this software is strictly prohibited without express written permission from the copyright holder.
+
+See the [LICENSE](LICENSE) file for full terms and conditions.
+
+For licensing inquiries, please contact: @michelve
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This is a proprietary project. External contributions are not accepted at this time.
+
+If you have suggestions or would like to discuss collaboration opportunities, please contact the project owner.
 
 ## 📧 Support
 
-For issues or questions, please open an issue on the repository.
+For authorized users: If you have issues or questions, please contact the project maintainer.
 
 ---
 
-**Made with ❤️ for Design Systems**
+**DSAi Component Builder** - © 2025 All rights reserved.

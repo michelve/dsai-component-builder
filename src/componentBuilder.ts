@@ -20,19 +20,57 @@ import {
 } from './tokenResolver';
 
 /**
- * Component Builder
- * Creates Figma components from JSON configuration
+ * Component Builder Module
+ * 
+ * This module handles the creation of Figma components from JSON configuration.
+ * It supports design token binding, variant generation, and complete style application.
+ * 
+ * @module componentBuilder
  */
 
+/**
+ * Result object returned by component creation operations
+ */
 interface BuildResult {
+  /** Whether the operation completed successfully */
   success: boolean;
+  /** Number of component variants created (if successful) */
   componentsCreated?: number;
+  /** Error message (if failed) */
   error?: string;
+  /** Success or status message */
   message?: string;
 }
 
 /**
- * Main function to load JSON and create components
+ * Main entry point for creating Figma components from JSON configuration
+ * 
+ * This function orchestrates the entire component creation process:
+ * 1. Validates the configuration structure
+ * 2. Creates a new Figma page for the component
+ * 3. Generates all component variants
+ * 4. Combines variants into a component set
+ * 5. Positions and selects the result
+ * 
+ * @param config - The component configuration object containing componentSet metadata, defaultStyles, and variants
+ * @returns Promise resolving to BuildResult with success status and details
+ * 
+ * @example
+ * ```typescript
+ * const result = await loadJSONAndCreateComponents({
+ *   componentSet: { name: "Button", key: "btn-001", type: "COMPONENT_SET" },
+ *   defaultStyles: { fills: "{colors/blue}", radius: "8" },
+ *   variants: [
+ *     { variant: "primary", state: "default", size: "medium" }
+ *   ]
+ * });
+ * 
+ * if (result.success) {
+ *   console.log(`Created ${result.componentsCreated} variants`);
+ * }
+ * ```
+ * 
+ * @throws {Error} If config is invalid or component creation fails
  */
 export async function loadJSONAndCreateComponents(
   config: ComponentConfig
@@ -114,7 +152,13 @@ export async function loadJSONAndCreateComponents(
 }
 
 /**
- * Create a container frame for the component set
+ * Creates a container frame to hold the component set
+ * 
+ * The container is set up with auto-layout for easy positioning and provides
+ * visual organization on the Figma canvas.
+ * 
+ * @param name - Display name for the container frame
+ * @returns A configured FrameNode with auto-layout and padding
  */
 function createContainerFrame(name: string): FrameNode {
   const containerFrame = figma.createFrame();
@@ -135,7 +179,28 @@ function createContainerFrame(name: string): FrameNode {
 }
 
 /**
- * Create a component set from configuration
+ * Creates a component set by generating and combining all variants
+ * 
+ * This function iterates through all variant configurations, creates individual
+ * components for each, and combines them into a Figma component set. Each variant
+ * is positioned vertically with consistent spacing.
+ * 
+ * @param config - Complete component configuration including componentSet metadata, defaultStyles, and variants array
+ * @returns Promise resolving to a ComponentSetNode containing all variants
+ * 
+ * @throws {Error} If any variant creation fails or if components cannot be combined
+ * 
+ * @example
+ * ```typescript
+ * const componentSet = await createComponentSet({
+ *   componentSet: { name: "Button", key: "btn", type: "COMPONENT_SET" },
+ *   defaultStyles: { fills: "{colors/blue}" },
+ *   variants: [
+ *     { variant: "primary", state: "default", size: "medium" },
+ *     { variant: "primary", state: "hover", size: "medium" }
+ *   ]
+ * });
+ * ```
  */
 async function createComponentSet(config: ComponentConfig): Promise<ComponentSetNode> {
   try {
@@ -187,7 +252,36 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
 }
 
 /**
- * Create a single component variant
+ * Creates a single component variant with merged styles
+ * 
+ * This function orchestrates the creation of one variant by:
+ * 1. Merging default styles with variant-specific overrides
+ * 2. Creating the base component structure
+ * 3. Applying all visual styles (fills, strokes, spacing, etc.)
+ * 4. Creating and styling the text content
+ * 5. Setting up auto-resize behavior
+ * 
+ * @param variantConfig - Variant-specific configuration (variant, state, size, and style overrides)
+ * @param defaultStyles - Default styles to be applied to all variants
+ * @returns Promise resolving to a fully styled ComponentNode
+ * 
+ * @throws {Error} If variant config is invalid or style application fails
+ * 
+ * @example
+ * ```typescript
+ * const component = await createComponentVariant(
+ *   { 
+ *     variant: "primary", 
+ *     state: "hover", 
+ *     size: "medium",
+ *     styles: { fills: "{colors/blue-dark}" }
+ *   },
+ *   { 
+ *     fills: "{colors/blue}", 
+ *     radius: "8" 
+ *   }
+ * );
+ * ```
  */
 async function createComponentVariant(
   variantConfig: Variant,
@@ -233,7 +327,32 @@ async function createComponentVariant(
 }
 
 /**
- * Merge variant styles with default styles
+ * Merges variant-specific styles with default styles
+ * 
+ * Creates a complete Style object by combining default styles with variant overrides.
+ * Variant styles take precedence over defaults. For padding, properties are spread
+ * to allow partial overrides (e.g., only override top padding).
+ * 
+ * @param variantConfig - Variant configuration with optional style overrides
+ * @param defaultStyles - Default styles to apply to all variants
+ * @returns Complete Style object with merged properties
+ * 
+ * @example
+ * ```typescript
+ * const merged = mergeStyles(
+ *   { 
+ *     variant: "primary", 
+ *     state: "hover", 
+ *     size: "medium",
+ *     styles: { fills: "{colors/blue-dark}", padding: { top: "12" } }
+ *   },
+ *   { 
+ *     fills: "{colors/blue}", 
+ *     padding: { top: "8", bottom: "8", left: "16", right: "16" } 
+ *   }
+ * );
+ * // Result: fills is blue-dark, padding top is 12, other padding values from default
+ * ```
  */
 function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
   return {
@@ -264,17 +383,33 @@ function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
 }
 
 /**
- * Create base component with layout settings
+ * Creates the base component structure with layout configuration
+ * 
+ * Initializes a ComponentNode with auto-layout enabled and sets the component
+ * name following Figma's variant naming convention (Variant=X, State=Y, Size=Z).
+ * 
+ * @param variantConfig - Variant configuration with property values for naming
+ * @returns ComponentNode configured with auto-layout and initial dimensions
+ * 
+ * @example
+ * ```typescript
+ * const component = createBaseComponent({
+ *   variant: "primary",
+ *   state: "hover",
+ *   size: "medium"
+ * });
+ * // Creates component named: "Variant=primary, State=hover, Size=medium"
+ * ```
  */
 function createBaseComponent(variantConfig: Variant): ComponentNode {
   const component = figma.createComponent();
   component.name = `Variant=${variantConfig.variant}, State=${variantConfig.state}, Size=${variantConfig.size}`;
   
-  // Set up auto-layout
+  // Set up auto-layout for flexible sizing
   component.layoutMode = 'HORIZONTAL';
   component.primaryAxisAlignItems = 'CENTER';
   component.counterAxisAlignItems = 'CENTER';
-  component.resize(120, 40); // Initial size
+  component.resize(120, 40); // Initial size (will auto-resize based on content)
 
   return component;
 }
@@ -282,9 +417,28 @@ function createBaseComponent(variantConfig: Variant): ComponentNode {
 /**
  * Apply all visual styles to component (fills, strokes, spacing, etc.)
  */
+/**
+ * Applies all visual styles to a component
+ * 
+ * This function handles the application of all visual properties including:
+ * - Layout: padding and gap (spacing between items)
+ * - Colors: fills (background) and strokes (borders) with opacity support
+ * - Dimensions: stroke weight and corner radius
+ * 
+ * Each property attempts variable binding first, falling back to literal values if needed.
+ * Individual try-catch blocks ensure one failing property doesn't block others.
+ * 
+ * @param component - The ComponentNode to style
+ * @param styles - Complete Style object with all visual properties
+ * @returns Promise that resolves when all styles are applied
+ * 
+ * @throws {Error} If critical styling operation fails
+ */
 async function applyComponentStyles(component: ComponentNode, styles: Style): Promise<void> {
   try {
-    // Apply padding from tokens using variable binding
+    // === LAYOUT PROPERTIES ===
+    
+    // Padding: Internal spacing from edges to content
     if (styles.padding) {
       try {
         await applyPaddingTokens(component, {
@@ -298,7 +452,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply gap from tokens
+    // Gap: Spacing between child elements in auto-layout
     if (styles.gap) {
       try {
         await applyGapToken(component, styles.gap);
@@ -307,7 +461,9 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply fills with token binding
+    // === COLOR PROPERTIES ===
+    
+    // Fills: Background color with variable binding support
     if (styles.fills) {
       try {
         await applyFillToken(component, styles.fills, 0);
@@ -316,7 +472,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply fill opacity
+    // Fill opacity: Transparency for background (paint-level)
     if (styles.fillsOpacity) {
       try {
         await applyNodeOpacity(component, styles.fillsOpacity, 'fills', 0);
@@ -325,7 +481,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply strokes with token binding
+    // Strokes: Border color with variable binding support
     if (styles.strokes) {
       try {
         await applyStrokeToken(component, styles.strokes, 0);
@@ -334,7 +490,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply stroke opacity
+    // Stroke opacity: Transparency for borders (paint-level)
     if (styles.strokesOpacity) {
       try {
         await applyNodeOpacity(component, styles.strokesOpacity, 'strokes', 0);
@@ -343,7 +499,9 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply stroke weight with token binding
+    // === DIMENSION PROPERTIES ===
+    
+    // Stroke weight: Border thickness
     if (styles.strokeWeight) {
       try {
         await applyStrokeWeightToken(component, styles.strokeWeight);
@@ -352,7 +510,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       }
     }
 
-    // Apply radius with token binding
+    // Radius: Corner rounding
     if (styles.radius) {
       try {
         await applyRadiusToken(component, styles.radius);

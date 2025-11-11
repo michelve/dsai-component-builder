@@ -7,8 +7,9 @@
     "build": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017",
     "watch": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017 --watch"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "michelve",
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
   "devDependencies": {
     "@figma/eslint-plugin-figma-plugins": "^0.15.0",
     "@figma/plugin-typings": "^1.99.0",
