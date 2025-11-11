@@ -1,0 +1,43 @@
+{
+  "name": "json-to-component-builder",
+  "version": "1.0.0",
+  "description": "Figma plugin that creates components from JSON token specifications",
+  "main": "code.js",
+  "scripts": {
+    "build": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017",
+    "watch": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017 --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/eslint-plugin-figma-plugins": "^0.15.0",
+    "@figma/plugin-typings": "^1.99.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "esbuild": "^0.27.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@figma/figma-plugins/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ]
+    }
+  }
+}
