@@ -1,6 +1,6 @@
 # DSAi Component Builder
 
-**⚠️ PROPRIETARY SOFTWARE - All Rights Reserved**
+## ⚠️ PROPRIETARY SOFTWARE - All Rights Reserved
 
 ## Transform Design Tokens Into Living Components
 
@@ -12,13 +12,13 @@ Introducing the next evolution in design system automation. DSAi Component Build
 
 DSAi Component Builder redefines what's possible when technology meets creativity. Powered by advanced variable binding intelligence, it interprets your design system's DNA and brings it to life with surgical precision.
 
-**Intelligent Token Recognition** — Your design tokens aren't just mapped; they're understood. The system intelligently resolves complex variable relationships, maintaining design system integrity across every component instance.
+**Your tokens, understood.** Complex variable relationships resolve automatically, maintaining design system integrity across every instance.
 
-**Variant Generation Mastery** — From pristine primary states to nuanced secondary variations, from hover interactions to focus states—every variant emerges with pixel-perfect accuracy and contextual awareness.
+**Every variant, perfected.** Primary, secondary, hover, focus—each state crafted with pixel-perfect precision.
 
-**Effortless Integration** — A refined interface that respects your workflow. Import your specifications, witness the transformation, and deploy components that embody your design philosophy.
+A refined interface that respects your workflow. Import, transform, deploy.
 
-**Auto-Layout Precision** — Components that breathe with your content. Dynamic sizing, intelligent spacing, and responsive behavior—engineered into every element.
+Components that breathe with your content—dynamic sizing, intelligent spacing, responsive behavior.
 
 This is design system automation, reimagined.
 
@@ -31,23 +31,9 @@ This is design system automation, reimagined.
 - **Intelligent Fallback Systems**: Graceful resolution of complex token relationships
 - **Native Auto-Layout Harmony**: Components that adapt and respond with natural fluidity
 
-## 📋 Requirements
-
-- Figma Desktop App (latest version)
-- Node.js (v16 or higher)
-- npm or yarn
-
-## 🔮 Future Enhancements
-
-- [ ] Support for icon components
-- [ ] Custom variant property definitions
-- [ ] Batch component creation from multiple JSON files
-- [ ] Export existing components to JSON format
-- [ ] Enhanced token resolution with token studio support
-
 ## 📄 License
 
-**Proprietary - All Rights Reserved**
+### Proprietary - All Rights Reserved
 
 Copyright (c) 2025 michelve. All rights reserved.
 
