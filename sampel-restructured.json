@@ -17,7 +17,16 @@
       "left": "{Spacing/Base/spacing/3}",
       "right": "{Spacing/Base/spacing/3}"
     },
-    "gap": "{Spacing/Base/spacing/2}"
+    "gap": "{Spacing/Base/spacing/2}",
+    "fontName": {
+      "family": "Inter",
+      "style": "Medium"
+    },
+    "fontWeight": "{Typography/Base/fontWeight/medium}",
+    "fontSize": "{Typography/Base/fontSize/base}",
+    "lineHeight": "{Typography/Base/lineHeight/base}",
+    "textAlignHorizontal": "CENTER",
+    "textAlignVertical": "CENTER"
   },
   "variants": [
     {

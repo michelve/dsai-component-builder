@@ -159,6 +159,124 @@ export async function resolveCSSVariable(
   };
 }
 
+// ============================================
+// PUBLIC HELPER FUNCTIONS FOR DIRECT ACCESS
+// ============================================
+
+/**
+ * Resolve a variable path to a Figma variable ID
+ * Can be used directly when you need the variable ID
+ * 
+ * @param variablePath - Token reference like "{Foundation/colors/brand/blue/600}"
+ * @returns Variable ID string or empty string if not found
+ * 
+ * @example
+ * const varId = await resolveVariableId("{Foundation/colors/brand/blue/600}");
+ * node.setBoundVariable('fills', varId);
+ */
+export async function resolveVariableId(variablePath: string): Promise<string> {
+  const tokenName = extractTokenName(variablePath);
+  const variable = await findVariableByName(tokenName);
+  
+  if (variable) {
+    console.log(`✅ Resolved variable ID for "${tokenName}": ${variable.id}`);
+    return variable.id;
+  }
+  
+  console.warn(`⚠️ Could not resolve variable ID for: "${tokenName}"`);
+  return '';
+}
+
+/**
+ * Resolve a variable path to its numeric value
+ * Useful for dimension tokens (spacing, radius, font size, etc.)
+ * 
+ * @param variablePath - Token reference like "{Spacing/Base/spacing/2}"
+ * @param fallback - Default value if variable not found (default: 0)
+ * @returns Numeric value or fallback
+ * 
+ * @example
+ * const spacing = await resolveVariableValue("{Spacing/Base/spacing/2}", 8);
+ * node.paddingTop = spacing;
+ */
+export async function resolveVariableValue(
+  variablePath: string,
+  fallback: number = 0
+): Promise<number> {
+  const tokenName = extractTokenName(variablePath);
+  const variable = await findVariableByName(tokenName);
+  
+  if (variable && variable.resolvedType === 'FLOAT') {
+    // Get the first mode's value
+    const modeId = Object.keys(variable.valuesByMode)[0];
+    const value = variable.valuesByMode[modeId];
+    
+    if (typeof value === 'number') {
+      console.log(`✅ Resolved variable value for "${tokenName}": ${value}`);
+      return value;
+    }
+  }
+  
+  console.warn(`⚠️ Could not resolve variable value for: "${tokenName}", using fallback: ${fallback}`);
+  return fallback;
+}
+
+/**
+ * Resolve a color variable path to RGB values
+ * Returns the color value from the variable or a fallback color
+ * 
+ * @param variablePath - Token reference like "{Foundation/colors/brand/blue/600}"
+ * @param fallbackHex - Hex color string (default: "#3B82F6")
+ * @returns ResolvedColor object with r, g, b, a values (0-1 range)
+ * 
+ * @example
+ * const color = await resolveColorVariableValue("{Foundation/colors/brand/blue/600}");
+ * node.fills = [{ type: 'SOLID', color: { r: color.r, g: color.g, b: color.b } }];
+ */
+export async function resolveColorVariableValue(
+  variablePath: string,
+  fallbackHex: string = '#3B82F6'
+): Promise<ResolvedColor> {
+  const tokenName = extractTokenName(variablePath);
+  const variable = await findVariableByName(tokenName);
+  
+  if (variable && variable.resolvedType === 'COLOR') {
+    const modeId = Object.keys(variable.valuesByMode)[0];
+    const value = variable.valuesByMode[modeId];
+    
+    if (typeof value === 'object' && 'r' in value && 'g' in value && 'b' in value) {
+      console.log(`✅ Resolved color value for "${tokenName}":`, value);
+      return value as ResolvedColor;
+    }
+  }
+  
+  console.warn(`⚠️ Could not resolve color variable: "${tokenName}", using fallback: ${fallbackHex}`);
+  return parseCSSColor(fallbackHex);
+}
+
+/**
+ * Check if a variable exists in the current document
+ * 
+ * @param variablePath - Token reference like "{Foundation/colors/brand/blue/600}"
+ * @returns true if variable exists, false otherwise
+ * 
+ * @example
+ * if (await variableExists("{Foundation/colors/brand/blue/600}")) {
+ *   // Apply variable binding
+ * } else {
+ *   // Use fallback value
+ * }
+ */
+export async function variableExists(variablePath: string): Promise<boolean> {
+  const tokenName = extractTokenName(variablePath);
+  const variable = await findVariableByName(tokenName);
+  return variable !== null;
+}
+
+// ============================================
+// STYLE APPLICATION FUNCTIONS
+// ============================================
+
 /**
  * Apply node-level opacity token
  * This controls the entire node's opacity (recommended approach)
@@ -547,4 +665,216 @@ export async function applyGapToken(
     node.itemSpacing = mapping.fallbackValue as number || 8;
   }
 }
+
+// ============================================
+// TYPOGRAPHY FUNCTIONS
+// ============================================
+
+/**
+ * Apply font family to a text node (without weight)
+ * Must load font before setting
+ */
+export async function applyFontName(
+  node: TextNode,
+  fontFamily: string,
+  fontStyle: string = 'Regular'
+): Promise<void> {
+  console.log(`🔤 Applying font: ${fontFamily} ${fontStyle}`);
+  
+  const fontName = { family: fontFamily, style: fontStyle };
+  
+  try {
+    // Load the font before applying
+    await figma.loadFontAsync(fontName);
+    node.fontName = fontName;
+    console.log(`✅ Font applied: ${fontName.family} ${fontName.style}`);
+  } catch (error) {
+    console.warn(`⚠️ Could not load font ${fontFamily} ${fontStyle}, trying Regular:`, error);
+    try {
+      // Fallback to Regular if the style doesn't exist
+      const fallbackFont = { family: fontFamily, style: 'Regular' };
+      await figma.loadFontAsync(fallbackFont);
+      node.fontName = fallbackFont;
+      console.log(`✅ Fallback font applied: ${fallbackFont.family} ${fallbackFont.style}`);
+    } catch (fallbackError) {
+      console.error(`❌ Could not load font ${fontFamily}:`, fallbackError);
+    }
+  }
+}
+
+/**
+ * Apply font weight token to a text node (bindable as FLOAT variable 100-900)
+ */
+export async function applyFontWeightToken(
+  node: TextNode,
+  tokenRef: TokenReference | number
+): Promise<void> {
+  // If it's a direct number value, use it as fallback
+  if (typeof tokenRef === 'number') {
+    console.log(`⚠️ Direct font weight value: ${tokenRef}`);
+    // Note: fontWeight property requires variable binding, fallback to fontName style mapping
+    return;
+  }
+  
+  console.log(`🔍 Font weight token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 400);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      node.setBoundVariable('fontWeight', variable);
+      console.log(`🔗 Bound fontWeight variable: ${variable.name}`);
+    }
+  } else {
+    // Fallback: fontWeight requires variable binding, so we can't set a direct value
+    // User should use fontName.style instead for non-variable weights
+    console.warn(`⚠️ Font weight requires variable binding. Fallback value: ${mapping.fallbackValue}`);
+  }
+}
+
+/**
+ * Apply font size token to a text node (bindable)
+ */
+export async function applyFontSizeToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Font size token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 16);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      node.setBoundVariable('fontSize', variable);
+      console.log(`🔗 Bound fontSize variable: ${variable.name}`);
+    }
+  } else {
+    node.fontSize = mapping.fallbackValue as number || 16;
+    console.log(`⚠️ Using fallback fontSize: ${mapping.fallbackValue}`);
+  }
+}
+
+/**
+ * Apply line height token to a text node (bindable)
+ * Supports AUTO or {value, unit} format
+ */
+export async function applyLineHeightToken(
+  node: TextNode,
+  tokenRef: TokenReference | 'AUTO'
+): Promise<void> {
+  console.log(`🔍 Line height token: ${tokenRef}`);
+  
+  // Handle AUTO case
+  if (tokenRef === 'AUTO') {
+    node.lineHeight = { unit: 'AUTO' };
+    console.log(`⚠️ Using AUTO line height`);
+    return;
+  }
+  
+  const mapping = await resolveDimensionToken(tokenRef, 140);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      node.setBoundVariable('lineHeight', variable);
+      console.log(`🔗 Bound lineHeight variable: ${variable.name}`);
+    }
+  } else {
+    // Fallback: interpret as percentage (e.g., 140 = 140%)
+    const value = mapping.fallbackValue as number || 140;
+    node.lineHeight = { value, unit: 'PERCENT' };
+    console.log(`⚠️ Using fallback lineHeight: ${value}%`);
+  }
+}
+
+/**
+ * Apply letter spacing token to a text node (bindable)
+ */
+export async function applyLetterSpacingToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Letter spacing token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 0);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      node.setBoundVariable('letterSpacing', variable);
+      console.log(`🔗 Bound letterSpacing variable: ${variable.name}`);
+    }
+  } else {
+    // Fallback: assume percentage value
+    const value = mapping.fallbackValue as number || 0;
+    node.letterSpacing = { value, unit: 'PERCENT' };
+    console.log(`⚠️ Using fallback letterSpacing: ${value}%`);
+  }
+}
+
+/**
+ * Apply paragraph spacing token to a text node (bindable)
+ */
+export async function applyParagraphSpacingToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Paragraph spacing token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 0);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      node.setBoundVariable('paragraphSpacing', variable);
+      console.log(`🔗 Bound paragraphSpacing variable: ${variable.name}`);
+    }
+  } else {
+    node.paragraphSpacing = mapping.fallbackValue as number || 0;
+    console.log(`⚠️ Using fallback paragraphSpacing: ${mapping.fallbackValue}`);
+  }
+}
+
+/**
+ * Apply text alignment (horizontal and vertical)
+ */
+export function applyTextAlignment(
+  node: TextNode,
+  horizontal?: "LEFT" | "CENTER" | "RIGHT" | "JUSTIFIED",
+  vertical?: "TOP" | "CENTER" | "BOTTOM"
+): void {
+  if (horizontal) {
+    node.textAlignHorizontal = horizontal;
+    console.log(`↔️ Text align horizontal: ${horizontal}`);
+  }
+  if (vertical) {
+    node.textAlignVertical = vertical;
+    console.log(`↕️ Text align vertical: ${vertical}`);
+  }
+}
+
+/**
+ * Apply text decoration (underline, strikethrough)
+ */
+export function applyTextDecoration(
+  node: TextNode,
+  decoration?: "NONE" | "UNDERLINE" | "STRIKETHROUGH"
+): void {
+  if (decoration) {
+    node.textDecoration = decoration;
+    console.log(`🎨 Text decoration: ${decoration}`);
+  }
+}
+
+/**
+ * Apply text case transformation
+ */
+export function applyTextCase(
+  node: TextNode,
+  textCase?: "ORIGINAL" | "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS"
+): void {
+  if (textCase) {
+    node.textCase = textCase;
+    console.log(`🔤 Text case: ${textCase}`);
+  }
+}
+
 

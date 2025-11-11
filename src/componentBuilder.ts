@@ -1,4 +1,4 @@
-import type { ComponentConfig, VariantConfig } from './types';
+import type { ComponentConfig, Variant, Style } from './types';
 import {
   applyFillToken,
   applyStrokeToken,
@@ -7,7 +7,16 @@ import {
   applyPaddingTokens,
   applyGapToken,
   applyTextFillToken,
-  applyNodeOpacity
+  applyNodeOpacity,
+  applyFontName,
+  applyFontSizeToken,
+  applyFontWeightToken,
+  applyLineHeightToken,
+  applyLetterSpacingToken,
+  applyParagraphSpacingToken,
+  applyTextAlignment,
+  applyTextDecoration,
+  applyTextCase
 } from './tokenResolver';
 
 /**
@@ -37,60 +46,24 @@ export async function loadJSONAndCreateComponents(
     newPage.name = componentName;
     await figma.setCurrentPageAsync(newPage);
 
-    // Create a container frame with the component name
-    const containerFrame = figma.createFrame();
-    containerFrame.name = componentName;
-    containerFrame.layoutMode = 'HORIZONTAL';
-    containerFrame.primaryAxisSizingMode = 'AUTO';
-    containerFrame.counterAxisSizingMode = 'AUTO';
-    containerFrame.itemSpacing = 20;
-    containerFrame.paddingLeft = 20;
-    containerFrame.paddingRight = 20;
-    containerFrame.paddingTop = 20;
-    containerFrame.paddingBottom = 20;
-    containerFrame.x = 100;
-    containerFrame.y = 100;
-    containerFrame.fills = []; // Transparent background
+    console.log(`Creating component set "${componentName}" with ${variants.length} variants...`);
+
+    // Create the component set with all variants
+    const componentSet = await createComponentSet(config);
     
-    // Add container to page
+    // Create a container frame
+    const containerFrame = createContainerFrame(componentName);
+    containerFrame.appendChild(componentSet);
     newPage.appendChild(containerFrame);
-    
-    console.log(`Creating ${variants.length} component variants...`);
 
-    let createdCount = 0;
-    const componentNodes: ComponentNode[] = [];
-    let yPosition = 0;
-    const spacing = 24;
-
-    // Create each variant as a COMPONENT first (they need to be on the page)
-    for (const variantConfig of variants) {
-      const component = await createComponentVariant(variantConfig, defaultStyles);
-      
-      // Position components vertically with spacing
-      component.x = 0;
-      component.y = yPosition;
-      yPosition += component.height + spacing;
-      
-      componentNodes.push(component);
-      newPage.appendChild(component);
-      createdCount++;
-    }
-
-    // Combine all components into a component set
-    const finalComponentSet = figma.combineAsVariants(componentNodes, newPage);
-    finalComponentSet.name = componentName;
-    
-    // Move the component set into the container
-    containerFrame.appendChild(finalComponentSet);
-
-    // Select the container
+    // Select and focus on the container
     figma.currentPage.selection = [containerFrame];
     figma.viewport.scrollAndZoomIntoView([containerFrame]);
 
     return {
       success: true,
-      componentsCreated: createdCount,
-      message: `Created component set "${componentName}" with ${createdCount} variants`
+      componentsCreated: variants.length,
+      message: `Created component set "${componentName}" with ${variants.length} variants`
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -103,14 +76,88 @@ export async function loadJSONAndCreateComponents(
 }
 
 /**
+ * Create a container frame for the component set
+ */
+function createContainerFrame(name: string): FrameNode {
+  const containerFrame = figma.createFrame();
+  containerFrame.name = name;
+  containerFrame.layoutMode = 'HORIZONTAL';
+  containerFrame.primaryAxisSizingMode = 'AUTO';
+  containerFrame.counterAxisSizingMode = 'AUTO';
+  containerFrame.itemSpacing = 20;
+  containerFrame.paddingLeft = 20;
+  containerFrame.paddingRight = 20;
+  containerFrame.paddingTop = 20;
+  containerFrame.paddingBottom = 20;
+  containerFrame.x = 100;
+  containerFrame.y = 100;
+  containerFrame.fills = []; // Transparent background
+  
+  return containerFrame;
+}
+
+/**
+ * Create a component set from configuration
+ */
+async function createComponentSet(config: ComponentConfig): Promise<ComponentSetNode> {
+  const { componentSet: componentSetInfo, defaultStyles, variants } = config;
+  const componentNodes: ComponentNode[] = [];
+  let yPosition = 0;
+  const spacing = 24;
+
+  // Create each variant as a component
+  for (const variant of variants) {
+    const component = await createComponentVariant(variant, defaultStyles);
+    
+    // Position components vertically with spacing
+    component.x = 0;
+    component.y = yPosition;
+    yPosition += component.height + spacing;
+    
+    componentNodes.push(component);
+    figma.currentPage.appendChild(component);
+  }
+
+  // Combine all components into a component set
+  const componentSet = figma.combineAsVariants(componentNodes, figma.currentPage);
+  componentSet.name = componentSetInfo.name;
+  
+  return componentSet;
+}
+
+/**
  * Create a single component variant
  */
 async function createComponentVariant(
-  variantConfig: VariantConfig,
-  defaultStyles: ComponentConfig['defaultStyles']
+  variantConfig: Variant,
+  defaultStyles: Style
 ): Promise<ComponentNode> {
   // Merge default styles with variant-specific overrides
-  const styles = {
+  const styles = mergeStyles(variantConfig, defaultStyles);
+
+  // Create the component with basic setup
+  const component = createBaseComponent(variantConfig);
+  
+  // Apply all styles to the component
+  await applyComponentStyles(component, styles);
+  
+  // Create and style the text node
+  const textNode = await createStyledTextNode(styles, variantConfig.size);
+  component.appendChild(textNode);
+
+  // Set resize constraints
+  component.primaryAxisSizingMode = 'AUTO';
+  component.counterAxisSizingMode = 'AUTO';
+
+  return component;
+}
+
+/**
+ * Merge variant styles with default styles
+ */
+function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
+  return {
+    label: defaultStyles.label,
     fills: variantConfig.styles?.fills || defaultStyles.fills,
     fillsOpacity: variantConfig.styles?.fillsOpacity || defaultStyles.fillsOpacity,
     strokes: variantConfig.styles?.strokes || defaultStyles.strokes,
@@ -121,10 +168,25 @@ async function createComponentVariant(
     radius: variantConfig.styles?.radius || defaultStyles.radius,
     padding: { ...defaultStyles.padding, ...variantConfig.styles?.padding },
     gap: variantConfig.styles?.gap || defaultStyles.gap,
-    opacity: variantConfig.styles?.opacity || defaultStyles.opacity
+    opacity: variantConfig.styles?.opacity || defaultStyles.opacity,
+    // Typography styles
+    fontName: variantConfig.styles?.fontName || defaultStyles.fontName,
+    fontWeight: variantConfig.styles?.fontWeight || defaultStyles.fontWeight,
+    fontSize: variantConfig.styles?.fontSize || defaultStyles.fontSize,
+    lineHeight: variantConfig.styles?.lineHeight || defaultStyles.lineHeight,
+    letterSpacing: variantConfig.styles?.letterSpacing || defaultStyles.letterSpacing,
+    textAlignHorizontal: variantConfig.styles?.textAlignHorizontal || defaultStyles.textAlignHorizontal,
+    textAlignVertical: variantConfig.styles?.textAlignVertical || defaultStyles.textAlignVertical,
+    paragraphSpacing: variantConfig.styles?.paragraphSpacing || defaultStyles.paragraphSpacing,
+    textDecoration: variantConfig.styles?.textDecoration || defaultStyles.textDecoration,
+    textCase: variantConfig.styles?.textCase || defaultStyles.textCase
   };
+}
 
-  // Create the component
+/**
+ * Create base component with layout settings
+ */
+function createBaseComponent(variantConfig: Variant): ComponentNode {
   const component = figma.createComponent();
   component.name = `Variant=${variantConfig.variant}, State=${variantConfig.state}, Size=${variantConfig.size}`;
   
@@ -132,10 +194,15 @@ async function createComponentVariant(
   component.layoutMode = 'HORIZONTAL';
   component.primaryAxisAlignItems = 'CENTER';
   component.counterAxisAlignItems = 'CENTER';
+  component.resize(120, 40); // Initial size
 
-  // Set default size
-  component.resize(120, 40);
-  
+  return component;
+}
+
+/**
+ * Apply all visual styles to component (fills, strokes, spacing, etc.)
+ */
+async function applyComponentStyles(component: ComponentNode, styles: Style): Promise<void> {
   // Apply padding from tokens using variable binding
   if (styles.padding) {
     await applyPaddingTokens(component, {
@@ -175,26 +242,70 @@ async function createComponentVariant(
   if (styles.opacity) {
     await applyNodeOpacity(component, styles.opacity);
   }
+}
 
-  // Create text label
+/**
+ * Create and style a text node with typography properties
+ */
+async function createStyledTextNode(styles: Style, size: string): Promise<TextNode> {
   const textNode = figma.createText();
-  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
-  textNode.characters = defaultStyles.label || 'Button';
-  textNode.fontSize = getSizeValue(variantConfig.size);
+  
+  // Apply font family first (must load font before setting other properties)
+  if (styles.fontName) {
+    await applyFontName(textNode, styles.fontName.family, styles.fontName.style);
+  } else {
+    // Default font
+    await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+    textNode.fontName = { family: 'Inter', style: 'Regular' };
+  }
+  
+  textNode.characters = styles.label || 'Button';
+
+  // Apply typography properties
+  await applyTypography(textNode, styles, size);
+
+  return textNode;
+}
+
+/**
+ * Apply all typography properties to a text node
+ */
+async function applyTypography(textNode: TextNode, styles: Style, size: string): Promise<void> {
+  // Apply typography tokens (bindable)
+  if (styles.fontSize) {
+    await applyFontSizeToken(textNode, styles.fontSize);
+  } else {
+    textNode.fontSize = getSizeValue(size);
+  }
+
+  // Apply font weight variable binding
+  if (styles.fontWeight) {
+    await applyFontWeightToken(textNode, styles.fontWeight);
+  }
+
+  if (styles.lineHeight) {
+    await applyLineHeightToken(textNode, styles.lineHeight);
+  }
+
+  if (styles.letterSpacing) {
+    await applyLetterSpacingToken(textNode, styles.letterSpacing);
+  }
+
+  if (styles.paragraphSpacing) {
+    await applyParagraphSpacingToken(textNode, styles.paragraphSpacing);
+  }
+
+  // Apply text alignment (not bindable)
+  applyTextAlignment(textNode, styles.textAlignHorizontal, styles.textAlignVertical);
+
+  // Apply text decoration and case (not bindable)
+  applyTextDecoration(textNode, styles.textDecoration);
+  applyTextCase(textNode, styles.textCase);
 
   // Apply text color from tokens using variable binding with optional opacity
   if (styles.text) {
     await applyTextFillToken(textNode, styles.text, styles.textOpacity);
   }
-
-  // Add text to component
-  component.appendChild(textNode);
-
-  // Set resize constraints
-  component.primaryAxisSizingMode = 'AUTO';
-  component.counterAxisSizingMode = 'AUTO';
-
-  return component;
 }
 
 /**

@@ -3,62 +3,91 @@
  */
 
 /**
- * New restructured component configuration
+ * Component Set metadata
  */
-export interface ComponentConfig {
-  componentSet: {
-    name: string;
-    key: string;
-    type: string;
-  };
-  defaultStyles: {
-    label: string;
-    fills?: string;
-    fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
-    strokes?: string;
-    strokesOpacity?: string; // Paint-level stroke opacity (for individual layers)
-    strokeWeight?: string;
-    text?: string;
-    textOpacity?: string; // Paint-level text opacity (for individual layers)
-    radius?: string;
-    padding?: {
-      top?: string;
-      bottom?: string;
-      left?: string;
-      right?: string;
-    };
-    gap?: string;
-    opacity?: string; // NEW: Node-level opacity (entire component)
-  };
-  variants: VariantConfig[];
+export interface ComponentSet {
+  name: string;
+  key: string;
+  type: string;
 }
 
 /**
- * Variant configuration with optional style overrides
+ * Padding configuration for all sides
  */
-export interface VariantConfig {
-  variant: string;
-  state: string;
-  size: string;
-  styles?: {
-    fills?: string;
-    fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
-    strokes?: string;
-    strokesOpacity?: string; // Paint-level stroke opacity (for individual layers)
-    strokeWeight?: string;
-    text?: string;
-    textOpacity?: string; // Paint-level text opacity (for individual layers)
-    radius?: string;
-    padding?: {
-      top?: string;
-      bottom?: string;
-      left?: string;
-      right?: string;
-    };
-    gap?: string;
-    opacity?: string; // NEW: Node-level opacity (entire component)
-  };
+export interface Padding {
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
 }
+
+/**
+ * Font name configuration (family + style)
+ */
+export interface FontName {
+  family: string;
+  style: string; // e.g., "Regular", "Medium", "Semi Bold", "Bold"
+}
+
+/**
+ * Typography properties for text styling
+ * All dimension properties support token references (e.g., "{Typography/Base/fontSize/base}")
+ */
+export interface Typography {
+  fontName?: FontName;
+  fontWeight?: string; // Bindable token reference (FLOAT variable 100-900)
+  fontSize?: string; // Bindable token reference (px)
+  lineHeight?: string; // Bindable token reference (unitless multiplier or AUTO)
+  letterSpacing?: string; // Bindable token reference (% or px)
+  textAlignHorizontal?: "LEFT" | "CENTER" | "RIGHT" | "JUSTIFIED";
+  textAlignVertical?: "TOP" | "CENTER" | "BOTTOM";
+  paragraphSpacing?: string; // Bindable token reference (px)
+  textDecoration?: "NONE" | "UNDERLINE" | "STRIKETHROUGH";
+  textCase?: "ORIGINAL" | "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS";
+}
+
+/**
+ * Complete style configuration for component appearance
+ * All color/dimension properties support token references
+ */
+export interface Style extends Typography {
+  label?: string; // Text content for the component
+  fills?: string; // Background color token reference
+  fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
+  strokes?: string; // Border color token reference
+  strokesOpacity?: string; // Paint-level stroke opacity
+  strokeWeight?: string; // Border width token reference
+  text?: string; // Text color token reference
+  textOpacity?: string; // Paint-level text opacity
+  radius?: string; // Corner radius token reference
+  padding?: Padding; // Padding on all sides
+  gap?: string; // Gap between elements (auto-layout)
+  opacity?: string; // Node-level opacity (entire component, 0-1)
+}
+
+/**
+ * Variant configuration with property values and optional style overrides
+ */
+export interface Variant {
+  variant: string; // e.g., "primary", "secondary"
+  state: string; // e.g., "default", "hover", "active", "disabled"
+  size: string; // e.g., "small", "medium", "large"
+  styles?: Style; // Optional style overrides for this variant
+}
+
+/**
+ * Main component configuration structure
+ */
+export interface ComponentConfig {
+  componentSet: ComponentSet;
+  defaultStyles: Style;
+  variants: Variant[];
+}
+
+/**
+ * Legacy type alias for backward compatibility
+ */
+export type VariantConfig = Variant;
 
 /**
  * Legacy component parameters (keeping for backward compatibility)
