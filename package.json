@@ -1,7 +1,7 @@
 {
   "name": "dsai-component-builder",
   "version": "1.0.0",
-  "description": "Figma plugin that creates components from token specifications",
+  "description": "Transform design tokens into living components with unprecedented precision. Advanced design system automation for Figma.",
   "main": "code.js",
   "scripts": {
     "build": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017",
