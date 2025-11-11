@@ -22,7 +22,7 @@ Components that breathe with your content—dynamic sizing, intelligent spacing,
 
 This is design system automation, reimagined.
 
-## 🎯 Capabilities
+## Capabilities
 
 - **Specification-Driven Architecture**: Define your component universe through elegant JSON structures
 - **Advanced Token Intelligence**: Deep integration with Figma's variable ecosystem
@@ -31,7 +31,7 @@ This is design system automation, reimagined.
 - **Intelligent Fallback Systems**: Graceful resolution of complex token relationships
 - **Native Auto-Layout Harmony**: Components that adapt and respond with natural fluidity
 
-## 📄 License
+## License
 
 ### Proprietary - All Rights Reserved
 
@@ -43,13 +43,13 @@ See the [LICENSE](LICENSE) file for full terms and conditions.
 
 For licensing inquiries, please contact: @michelve
 
-## 🤝 Contributing
+## Contributing
 
 This is a proprietary project. External contributions are not accepted at this time.
 
 If you have suggestions or would like to discuss collaboration opportunities, please contact the project owner.
 
-## 📧 Support
+## Support
 
 For authorized users: If you have issues or questions, please contact the project maintainer.
 
