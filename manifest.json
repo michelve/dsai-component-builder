@@ -3,20 +3,31 @@
   "id": "dsai-component-builder",
   "api": "1.0.0",
   "main": "code.js",
-  "capabilities": [
-    "file",
-    "ui",
-    "variables",
-    "network"
-  ],
+  "capabilities": [],
   "enableProposedApi": false,
   "editorType": [
     "figma"
   ],
   "ui": "ui.html",
+  "documentAccess": "dynamic-page",
   "networkAccess": {
     "allowedDomains": [
-      "none"
+      "https://*.figma.com",
+      "https://*.google.com",
+      "https://*.github.com",
+      "https://github.com",
+      "https://*.epikly.com",
+      "https://epikly.com",
+      "wss://socket.io",
+      "https://*.cdn.com",
+      "https://cdn.com"
+    ],
+    "devAllowedDomains": [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "http://localhost:5173",
+      "http://localhost:5879",
+      "http://localhost:8080"
     ]
   }
 }
