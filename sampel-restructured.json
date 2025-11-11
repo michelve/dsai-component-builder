@@ -52,9 +52,10 @@
       "state": "disabled",
       "size": "medium",
       "styles": {
-        "fills": "{Foundation/colors/neutral/gray/300}",
-        "strokes": "{Foundation/colors/neutral/gray/400}",
-        "text": "{Foundation/colors/neutral/gray/700}"
+        "fills": "{Foundation/colors/neutral/gray/600}",
+        "strokes": "{Foundation/colors/neutral/gray/700}",
+        "text": "{Foundation/colors/neutral/white}",
+        "opacity": "{Foundation/colors/opacity/50}"
       }
     },
     {

@@ -14,12 +14,12 @@ export interface ComponentConfig {
   defaultStyles: {
     label: string;
     fills?: string;
-    fillsOpacity?: string; // NEW: fill opacity
+    fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
     strokes?: string;
-    strokesOpacity?: string; // NEW: stroke opacity
+    strokesOpacity?: string; // Paint-level stroke opacity (for individual layers)
     strokeWeight?: string;
     text?: string;
-    textOpacity?: string; // NEW: text opacity
+    textOpacity?: string; // Paint-level text opacity (for individual layers)
     radius?: string;
     padding?: {
       top?: string;
@@ -28,6 +28,7 @@ export interface ComponentConfig {
       right?: string;
     };
     gap?: string;
+    opacity?: string; // NEW: Node-level opacity (entire component)
   };
   variants: VariantConfig[];
 }
@@ -41,12 +42,12 @@ export interface VariantConfig {
   size: string;
   styles?: {
     fills?: string;
-    fillsOpacity?: string; // NEW: fill opacity
+    fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
     strokes?: string;
-    strokesOpacity?: string; // NEW: stroke opacity
+    strokesOpacity?: string; // Paint-level stroke opacity (for individual layers)
     strokeWeight?: string;
     text?: string;
-    textOpacity?: string; // NEW: text opacity
+    textOpacity?: string; // Paint-level text opacity (for individual layers)
     radius?: string;
     padding?: {
       top?: string;
@@ -55,6 +56,7 @@ export interface VariantConfig {
       right?: string;
     };
     gap?: string;
+    opacity?: string; // NEW: Node-level opacity (entire component)
   };
 }
 

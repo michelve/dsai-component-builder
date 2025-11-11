@@ -1,7 +1,7 @@
 {
-  "name": "json-to-component-builder",
+  "name": "dsai-component-builder",
   "version": "1.0.0",
-  "description": "Figma plugin that creates components from JSON token specifications",
+  "description": "Figma plugin that creates components from token specifications",
   "main": "code.js",
   "scripts": {
     "build": "esbuild src/code.ts --bundle --outfile=code.js --target=es2017",

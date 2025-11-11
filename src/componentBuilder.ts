@@ -6,7 +6,8 @@ import {
   applyRadiusToken,
   applyPaddingTokens,
   applyGapToken,
-  applyTextFillToken
+  applyTextFillToken,
+  applyNodeOpacity
 } from './tokenResolver';
 
 /**
@@ -111,12 +112,16 @@ async function createComponentVariant(
   // Merge default styles with variant-specific overrides
   const styles = {
     fills: variantConfig.styles?.fills || defaultStyles.fills,
+    fillsOpacity: variantConfig.styles?.fillsOpacity || defaultStyles.fillsOpacity,
     strokes: variantConfig.styles?.strokes || defaultStyles.strokes,
+    strokesOpacity: variantConfig.styles?.strokesOpacity || defaultStyles.strokesOpacity,
     strokeWeight: variantConfig.styles?.strokeWeight || defaultStyles.strokeWeight,
     text: variantConfig.styles?.text || defaultStyles.text,
+    textOpacity: variantConfig.styles?.textOpacity || defaultStyles.textOpacity,
     radius: variantConfig.styles?.radius || defaultStyles.radius,
     padding: { ...defaultStyles.padding, ...variantConfig.styles?.padding },
-    gap: variantConfig.styles?.gap || defaultStyles.gap
+    gap: variantConfig.styles?.gap || defaultStyles.gap,
+    opacity: variantConfig.styles?.opacity || defaultStyles.opacity
   };
 
   // Create the component
@@ -146,14 +151,14 @@ async function createComponentVariant(
     await applyGapToken(component, styles.gap);
   }
 
-  // Apply fills (background color) from tokens
+  // Apply fills (background color) from tokens with optional opacity
   if (styles.fills) {
-    await applyFillToken(component, styles.fills);
+    await applyFillToken(component, styles.fills, styles.fillsOpacity);
   }
 
-  // Apply strokes (border) from tokens
+  // Apply strokes (border) from tokens with optional opacity
   if (styles.strokes) {
-    await applyStrokeToken(component, styles.strokes);
+    await applyStrokeToken(component, styles.strokes, styles.strokesOpacity);
   }
 
   // Apply stroke weight from tokens
@@ -166,15 +171,20 @@ async function createComponentVariant(
     await applyRadiusToken(component, styles.radius);
   }
 
+  // Apply node-level opacity (affects entire component)
+  if (styles.opacity) {
+    await applyNodeOpacity(component, styles.opacity);
+  }
+
   // Create text label
   const textNode = figma.createText();
   await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
   textNode.characters = defaultStyles.label || 'Button';
   textNode.fontSize = getSizeValue(variantConfig.size);
 
-  // Apply text color from tokens using variable binding
+  // Apply text color from tokens using variable binding with optional opacity
   if (styles.text) {
-    await applyTextFillToken(textNode, styles.text);
+    await applyTextFillToken(textNode, styles.text, styles.textOpacity);
   }
 
   // Add text to component

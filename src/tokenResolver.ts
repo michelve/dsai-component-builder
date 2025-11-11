@@ -24,19 +24,43 @@ async function findVariableByName(tokenName: string): Promise<Variable | null> {
     console.log(`🔍 Looking for variable: "${tokenName}"`);
     console.log(`📊 Total local variables: ${localVariables.length}`);
     
+    // Extract the last part of the token path for matching
+    const tokenParts = tokenName.split('/');
+    const lastPart = tokenParts[tokenParts.length - 1]; // e.g., "50" from "Foundation/colors/opacity-decimal/50"
+    const lastTwoParts = tokenParts.slice(-2).join('/'); // e.g., "opacity-decimal/50"
+    
+    console.log(`🔎 Searching for: full="${tokenName}", last="${lastPart}", lastTwo="${lastTwoParts}"`);
+    
     for (const variable of localVariables) {
-      // Match by name or by collection path
-      if (variable.name === tokenName || 
-          variable.name.includes(tokenName) ||
-          tokenName.includes(variable.name)) {
-        console.log(`✅ Found variable: "${variable.name}" (ID: ${variable.id})`);
+      // Try multiple matching strategies:
+      // 1. Exact match on full path
+      if (variable.name === tokenName) {
+        console.log(`✅ Found exact match: "${variable.name}" (ID: ${variable.id})`);
+        return variable;
+      }
+      
+      // 2. Match on last segment only (most common in Figma)
+      if (variable.name === lastPart) {
+        console.log(`✅ Found by last segment: "${variable.name}" (ID: ${variable.id})`);
+        return variable;
+      }
+      
+      // 3. Match if variable name ends with our token path
+      if (variable.name.endsWith(tokenName)) {
+        console.log(`✅ Found by suffix: "${variable.name}" (ID: ${variable.id})`);
+        return variable;
+      }
+      
+      // 4. Match on last two segments
+      if (variable.name.endsWith(lastTwoParts)) {
+        console.log(`✅ Found by last two segments: "${variable.name}" (ID: ${variable.id})`);
         return variable;
       }
     }
     
     console.log(`❌ Variable not found: "${tokenName}"`);
     if (localVariables.length > 0) {
-      console.log(`📝 Sample variable names:`, localVariables.slice(0, 5).map(v => v.name));
+      console.log(`📝 Sample variable names:`, localVariables.slice(0, 10).map(v => v.name));
     }
     
     return null;
@@ -136,6 +160,43 @@ export async function resolveCSSVariable(
 }
 
 /**
+ * Apply node-level opacity token
+ * This controls the entire node's opacity (recommended approach)
+ * Expects opacity values in 0-1 range (e.g., 0.5 for 50%)
+ */
+export async function applyNodeOpacity(
+  node: SceneNode,
+  opacityRef: TokenReference
+): Promise<void> {
+  const mapping = await resolveDimensionToken(opacityRef, 1);
+  
+  console.log(`🔍 Opacity token: ${opacityRef}`);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable && 'opacity' in node) {
+      console.log(`✅ Found opacity variable: ${variable.name}`);
+      
+      // Get the variable's value to check the range
+      const modeId = Object.keys(variable.valuesByMode)[0];
+      const value = variable.valuesByMode[modeId];
+      console.log(`📊 Variable value: ${value} (type: ${typeof value})`);
+      
+      // Bind the variable to the node's opacity property
+      node.setBoundVariable('opacity', variable);
+      console.log(`🔗 Bound opacity variable to node`);
+    }
+  } else {
+    // Use fallback opacity value (already in 0-1 range)
+    if ('opacity' in node) {
+      const opacity = mapping.fallbackValue as number;
+      node.opacity = opacity;
+      console.log(`⚠️ Using fallback opacity: ${opacity}`);
+    }
+  }
+}
+
+/**
  * Apply color variable or fallback to a node's fills with optional opacity
  */
 export async function applyFillToken(
@@ -164,7 +225,7 @@ export async function applyFillToken(
         
         // Apply opacity if provided
         if (opacityRef) {
-          const opacityMapping = await resolveDimensionToken(opacityRef, 100);
+          const opacityMapping = await resolveDimensionToken(opacityRef, 1);
           if (opacityMapping.found && opacityMapping.variableId) {
             const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
             if (opacityVariable) {
@@ -172,12 +233,12 @@ export async function applyFillToken(
               figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'opacity', opacityVariable);
             }
           } else {
-            // Use fallback opacity value (convert from 0-100 to 0-1)
+            // Use fallback opacity value (already in 0-1 range)
             const fills = node.fills as SolidPaint[];
             if (fills[0] && fills[0].type === 'SOLID') {
               node.fills = [{
                 ...fills[0],
-                opacity: (opacityMapping.fallbackValue as number) / 100
+                opacity: opacityMapping.fallbackValue as number
               }];
             }
           }
@@ -204,8 +265,8 @@ export async function applyFillToken(
     
     // Apply opacity if provided
     if (opacityRef) {
-      const opacityMapping = await resolveDimensionToken(opacityRef, 100);
-      opacity = (opacityMapping.fallbackValue as number) / 100;
+      const opacityMapping = await resolveDimensionToken(opacityRef, 1);
+      opacity = opacityMapping.fallbackValue as number;
     }
     
     node.fills = [{
@@ -244,7 +305,7 @@ export async function applyTextFillToken(
         
         // Apply opacity if provided
         if (opacityRef) {
-          const opacityMapping = await resolveDimensionToken(opacityRef, 100);
+          const opacityMapping = await resolveDimensionToken(opacityRef, 1);
           if (opacityMapping.found && opacityMapping.variableId) {
             const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
             if (opacityVariable) {
@@ -252,12 +313,12 @@ export async function applyTextFillToken(
               figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'opacity', opacityVariable);
             }
           } else {
-            // Use fallback opacity value (convert from 0-100 to 0-1)
+            // Use fallback opacity value (already in 0-1 range)
             const fills = node.fills as SolidPaint[];
             if (fills[0] && fills[0].type === 'SOLID') {
               node.fills = [{
                 ...fills[0],
-                opacity: (opacityMapping.fallbackValue as number) / 100
+                opacity: opacityMapping.fallbackValue as number
               }];
             }
           }
@@ -280,20 +341,29 @@ export async function applyTextFillToken(
   } else if (mapping.fallbackValue) {
     // Use fallback color
     const color = mapping.fallbackValue as ResolvedColor;
+    let opacity = color.a || 1;
+    
+    // Apply opacity if provided
+    if (opacityRef) {
+      const opacityMapping = await resolveDimensionToken(opacityRef, 1);
+      opacity = opacityMapping.fallbackValue as number;
+    }
+    
     node.fills = [{
       type: 'SOLID',
       color: { r: color.r, g: color.g, b: color.b },
-      opacity: color.a || 1
+      opacity: opacity
     }];
   }
 }
 
 /**
- * Apply stroke token to a node
+ * Apply stroke token to a node with optional opacity
  */
 export async function applyStrokeToken(
   node: SceneNode & MinimalStrokesMixin,
-  tokenRef: TokenReference
+  tokenRef: TokenReference,
+  opacityRef?: TokenReference
 ): Promise<void> {
   const mapping = await resolveColorToken(tokenRef);
 
@@ -310,6 +380,27 @@ export async function applyStrokeToken(
       try {
         // @ts-expect-error - setBoundVariableForPaint may not be in types yet
         figma.variables.setBoundVariableForPaint(node, 'strokes', 0, 'color', variable);
+        
+        // Apply opacity if provided
+        if (opacityRef) {
+          const opacityMapping = await resolveDimensionToken(opacityRef, 1);
+          if (opacityMapping.found && opacityMapping.variableId) {
+            const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
+            if (opacityVariable) {
+              // @ts-expect-error - setBoundVariableForPaint may not be in types yet
+              figma.variables.setBoundVariableForPaint(node, 'strokes', 0, 'opacity', opacityVariable);
+            }
+          } else {
+            // Use fallback opacity value (already in 0-1 range)
+            const strokes = node.strokes as SolidPaint[];
+            if (strokes[0] && strokes[0].type === 'SOLID') {
+              node.strokes = [{
+                ...strokes[0],
+                opacity: opacityMapping.fallbackValue as number
+              }];
+            }
+          }
+        }
       } catch (_error) {
         console.log('⚠️ setBoundVariableForPaint not available for strokes, using fallback');
         // Fallback: use the old boundVariables syntax
@@ -327,9 +418,18 @@ export async function applyStrokeToken(
     }
   } else if (mapping.fallbackValue) {
     const color = mapping.fallbackValue as ResolvedColor;
+    let opacity = 1;
+    
+    // Apply opacity if provided
+    if (opacityRef) {
+      const opacityMapping = await resolveDimensionToken(opacityRef, 1);
+      opacity = opacityMapping.fallbackValue as number;
+    }
+    
     node.strokes = [{
       type: 'SOLID',
-      color: { r: color.r, g: color.g, b: color.b }
+      color: { r: color.r, g: color.g, b: color.b },
+      opacity: opacity
     }];
   }
 
@@ -447,3 +547,4 @@ export async function applyGapToken(
     node.itemSpacing = mapping.fallbackValue as number || 8;
   }
 }
+
