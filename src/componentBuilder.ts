@@ -64,6 +64,51 @@ function findOrCreatePage(pageName: string): PageNode {
 }
 
 /**
+ * Calculates the next available position for a new component on the page
+ * to avoid overlapping with existing components
+ * 
+ * This function finds the rightmost component/component set on the page
+ * and returns coordinates for placing the new component with proper spacing.
+ * 
+ * @param page - The target page to analyze
+ * @param offset - Horizontal spacing between components (default: 100px)
+ * @returns Object with x and y coordinates for the new component
+ * 
+ * @example
+ * ```typescript
+ * const position = calculateNextComponentPosition(targetPage, 100);
+ * newComponent.x = position.x;
+ * newComponent.y = position.y;
+ * ```
+ */
+function calculateNextComponentPosition(page: PageNode, offset: number = 100): { x: number; y: number } {
+  // Filter for components and component sets on the page
+  const existingComponents = page.children.filter(
+    (node): node is ComponentNode | ComponentSetNode | FrameNode => 
+      node.type === 'COMPONENT_SET' || 
+      node.type === 'COMPONENT' || 
+      node.type === 'FRAME'
+  );
+
+  // If no components exist, start at origin
+  if (existingComponents.length === 0) {
+    console.log('No existing components found, placing at (0, 0)');
+    return { x: 0, y: 0 };
+  }
+
+  // Find the rightmost component
+  const rightMostComponent = existingComponents.reduce((prev, curr) => 
+    (curr.x + curr.width > prev.x + prev.width) ? curr : prev
+  );
+
+  const nextX = rightMostComponent.x + rightMostComponent.width + offset;
+  const nextY = rightMostComponent.y; // Keep same vertical alignment
+
+  console.log(`Placing component at (${nextX}, ${nextY}) - offset from previous component`);
+  return { x: nextX, y: nextY };
+}
+
+/**
  * Result object returned by component creation operations
  */
 interface BuildResult {
@@ -156,6 +201,12 @@ export async function loadJSONAndCreateComponents(
     try {
       containerFrame = createContainerFrame(componentName);
       containerFrame.appendChild(componentSet);
+      
+      // Calculate position to avoid overlapping with existing components
+      const position = calculateNextComponentPosition(targetPage, 100);
+      containerFrame.x = position.x;
+      containerFrame.y = position.y;
+      
       targetPage.appendChild(containerFrame);
     } catch (error) {
       throw new Error(`Failed to create container: ${error instanceof Error ? error.message : 'Unknown error'}`);
