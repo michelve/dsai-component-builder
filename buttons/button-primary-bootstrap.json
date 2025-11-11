@@ -1,6 +1,7 @@
 {
   "componentSet": {
-    "name": "Button Primary",
+    "name": "Button Primary Set",
+    "pageName": "Buttons",
     "key": "btn-primary",
     "type": "COMPONENT_SET"
   },

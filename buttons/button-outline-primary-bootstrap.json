@@ -1,6 +1,7 @@
 {
   "componentSet": {
     "name": "Button Outline Primary",
+    "pageName": "Buttons",
     "key": "btn-outline-primary",
     "type": "COMPONENT_SET"
   },

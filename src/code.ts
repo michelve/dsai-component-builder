@@ -37,8 +37,9 @@ figma.showUI(__html__, {
  * Supported message types:
  * - 'upload-json': Parses JSON string and creates components
  * - 'create-component': Creates components from config object
+ * - 'duplicate-action': Handles user's choice when duplicate is detected
  */
-figma.ui.onmessage = async (msg: PluginMessage) => {
+figma.ui.onmessage = async (msg: PluginMessage & { type: string; action?: string; existingNodeId?: string }) => {
   console.log('=== PLUGIN MESSAGE RECEIVED ===');
   console.log('Message type:', msg.type);
   console.log('Message data length:', typeof msg.data === 'string' ? msg.data.length : 'not a string');
@@ -56,6 +57,8 @@ figma.ui.onmessage = async (msg: PluginMessage) => {
       // Debug logging for validation
       console.log('Parsed config keys:', Object.keys(config));
       console.log('Has componentSet?', !!config.componentSet);
+      console.log('ComponentSet name:', config.componentSet?.name);
+      console.log('ComponentSet pageName:', config.componentSet?.pageName);
       console.log('Has defaultStyles?', !!config.defaultStyles);
       console.log('Has variants?', !!config.variants);
 
@@ -87,10 +90,13 @@ figma.ui.onmessage = async (msg: PluginMessage) => {
         // figma.closePlugin();
       } else {
         // Handle creation failure
-        figma.notify(`❌ Error: ${result.error}`, {
-          error: true,
-          timeout: 5000
-        });
+        // Don't show error notification if it's a duplicate detection (modal handles it)
+        if (!result.error?.includes('Duplicate component detected')) {
+          figma.notify(`❌ Error: ${result.error}`, {
+            error: true,
+            timeout: 5000
+          });
+        }
       }
     } else if (msg.type === 'create-component') {
       // Alternative message type for direct config object (not JSON string)
@@ -101,6 +107,65 @@ figma.ui.onmessage = async (msg: PluginMessage) => {
         figma.notify(`✅ Component created successfully!`);
       } else {
         figma.notify(`❌ ${result.error}`, { error: true });
+      }
+    } else if (msg.type === 'duplicate-action') {
+      // Handle user's choice when duplicate component is detected
+      const action = msg.action;
+      
+      if (action === 'skip') {
+        // User chose to skip - do nothing
+        figma.ui.postMessage({
+          type: 'creation-complete',
+          message: 'Component creation cancelled'
+        });
+      } else if (action === 'replace' && msg.data) {
+        // User chose to replace - delete existing and create new
+        try {
+          // Get the existing node by ID and delete it
+          if (msg.existingNodeId) {
+            const nodeToDelete = await figma.getNodeByIdAsync(msg.existingNodeId);
+            if (nodeToDelete) {
+              nodeToDelete.remove();
+              console.log('Removed existing component for replacement:', msg.existingNodeId);
+            }
+          }
+        } catch (error) {
+          console.error('Error deleting existing component:', error);
+        }
+        
+        const config = msg.data as ComponentConfig;
+        const result = await loadJSONAndCreateComponents(config, true); // Skip duplicate check
+        
+        if (result.success) {
+          figma.ui.postMessage({
+            type: 'creation-complete',
+            message: `✅ Successfully replaced component with ${result.componentsCreated} variant(s)!`
+          });
+        } else {
+          figma.ui.postMessage({
+            type: 'creation-error',
+            message: `❌ Error: ${result.error}`
+          });
+        }
+      } else if (action === 'duplicate' && msg.data) {
+        // User chose to create duplicate - create without checking for existing
+        const config = msg.data as ComponentConfig;
+        // Modify the component name to make it unique
+        config.componentSet.name = `${config.componentSet.name} (Copy)`;
+        
+        const result = await loadJSONAndCreateComponents(config, true); // Skip duplicate check
+        
+        if (result.success) {
+          figma.ui.postMessage({
+            type: 'creation-complete',
+            message: `✅ Successfully created duplicate with ${result.componentsCreated} variant(s)!`
+          });
+        } else {
+          figma.ui.postMessage({
+            type: 'creation-error',
+            message: `❌ Error: ${result.error}`
+          });
+        }
       }
     }
   } catch (error) {

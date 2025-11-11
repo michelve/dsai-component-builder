@@ -17,7 +17,6 @@ import {
   applyTextAlignment,
   applyTextDecoration,
   applyTextCase,
-  applyTextAutoResize,
 } from './tokenResolver';
 
 /**
@@ -28,6 +27,18 @@ import {
  * 
  * @module componentBuilder
  */
+
+/**
+ * Delay helper function to add wait time between operations
+ * @param ms - Milliseconds to wait
+ */
+function delay(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Configuration constants
+const VARIANT_CREATION_DELAY_MS = 200; // Delay between variant creation
+const PAGE_SWITCH_DELAY_MS = 100; // Delay after switching pages
 
 /**
  * Finds an existing page by name or creates a new one
@@ -109,6 +120,53 @@ function calculateNextComponentPosition(page: PageNode, offset: number = 100): {
 }
 
 /**
+ * Finds an existing component or component set on a page by name or key
+ * 
+ * This function searches for duplicate components to prevent accidental recreation.
+ * It checks both the component name and unique key (if provided) to identify matches.
+ * 
+ * @param page - The target page to search
+ * @param componentName - The name of the component to find
+ * @param componentKey - Optional unique key for more reliable matching
+ * @returns The existing component/set node if found, null otherwise
+ * 
+ * @example
+ * ```typescript
+ * const existing = findExistingComponent(targetPage, "Button Primary", "primary-button-001");
+ * if (existing) {
+ *   console.log("Component already exists!");
+ * }
+ * ```
+ */
+function findExistingComponent(
+  page: PageNode, 
+  componentName: string, 
+  componentKey?: string
+): ComponentNode | ComponentSetNode | FrameNode | null {
+  // Search through all children on the page
+  const existingComponent = page.children.find(node => {
+    // Check if it's a component-related node type
+    if (node.type !== 'COMPONENT_SET' && node.type !== 'COMPONENT' && node.type !== 'FRAME') {
+      return false;
+    }
+    
+    // Match by key first (most reliable if provided)
+    if (componentKey && 'key' in node && node.key === componentKey) {
+      return true;
+    }
+    
+    // Fall back to name matching
+    if (node.name === componentName) {
+      return true;
+    }
+    
+    return false;
+  });
+
+  return (existingComponent as ComponentNode | ComponentSetNode | FrameNode) || null;
+}
+
+/**
  * Result object returned by component creation operations
  */
 interface BuildResult {
@@ -133,6 +191,7 @@ interface BuildResult {
  * 5. Positions and selects the result
  * 
  * @param config - The component configuration object containing componentSet metadata, defaultStyles, and variants
+ * @param skipDuplicateCheck - If true, skips the duplicate detection (used when user explicitly chooses to replace/duplicate)
  * @returns Promise resolving to BuildResult with success status and details
  * 
  * @example
@@ -153,7 +212,8 @@ interface BuildResult {
  * @throws {Error} If config is invalid or component creation fails
  */
 export async function loadJSONAndCreateComponents(
-  config: ComponentConfig
+  config: ComponentConfig,
+  skipDuplicateCheck: boolean = false
 ): Promise<BuildResult> {
   try {
     // Validate config structure
@@ -175,6 +235,7 @@ export async function loadJSONAndCreateComponents(
     }
 
     const componentName = componentSetInfo.name || 'Button Component';
+    const componentKey = componentSetInfo.key;
 
     console.log(`Creating component set "${componentName}" with ${variants.length} variants...`);
 
@@ -184,8 +245,35 @@ export async function loadJSONAndCreateComponents(
       const pageName = componentSetInfo.pageName || componentName;
       targetPage = findOrCreatePage(pageName);
       await figma.setCurrentPageAsync(targetPage);
+      
+      // Wait for page switch to complete
+      await delay(PAGE_SWITCH_DELAY_MS);
     } catch (error) {
       throw new Error(`Failed to set page: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+
+    // Check for existing component to prevent duplicates
+    if (!skipDuplicateCheck) {
+      const existingComponent = findExistingComponent(targetPage, componentName, componentKey);
+      
+      if (existingComponent) {
+        console.warn(`Component "${componentName}" already exists on page "${targetPage.name}"`);
+        
+        // Ask user what they want to do via UI
+        figma.ui.postMessage({
+          type: 'duplicate-detected',
+          componentName: componentName,
+          componentKey: componentKey,
+          existingNodeId: existingComponent.id // Send the node ID so we can delete it later
+        });
+        
+        // Return early - wait for user's decision
+        return {
+          success: false,
+          error: 'Duplicate component detected - waiting for user action',
+          message: 'Please choose an action in the UI'
+        };
+      }
     }
 
     // Create the component set with all variants
@@ -309,6 +397,11 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
         
         componentNodes.push(component);
         figma.currentPage.appendChild(component);
+        
+        // Wait before creating next variant to allow Figma to update
+        if (i < variants.length - 1) { // Don't delay after the last variant
+          await delay(VARIANT_CREATION_DELAY_MS);
+        }
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : 'Unknown error';
         console.error(`Failed to create variant ${i + 1}:`, errorMsg);

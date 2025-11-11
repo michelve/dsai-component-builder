@@ -98,6 +98,111 @@
       cursor: not-allowed;
     }
 
+    /* Modal styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.visible {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--figma-color-bg);
+      border-radius: 8px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--figma-color-text);
+    }
+
+    .modal-message {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: var(--figma-color-text-secondary);
+    }
+
+    .modal-component-name {
+      background: var(--figma-color-bg-secondary);
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--figma-color-text);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
+
+    .modal-button {
+      padding: 10px 16px;
+      border: 1px solid var(--figma-color-border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      background: var(--figma-color-bg);
+      color: var(--figma-color-text);
+      text-align: left;
+    }
+
+    .modal-button:hover {
+      background: var(--figma-color-bg-hover);
+      border-color: var(--figma-color-border-brand);
+    }
+
+    .modal-button-primary {
+      background: var(--figma-color-bg-brand);
+      color: var(--figma-color-text-onbrand);
+      border-color: var(--figma-color-bg-brand);
+    }
+
+    .modal-button-primary:hover {
+      background: var(--figma-color-bg-brand-hover);
+    }
+
+    .modal-button-danger {
+      background: var(--figma-color-bg-danger);
+      color: white;
+      border-color: var(--figma-color-bg-danger);
+    }
+
+    .modal-button-danger:hover {
+      background: var(--figma-color-bg-danger-hover);
+    }
+
+    .modal-button-description {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+
     .update-mode {
       background: var(--figma-color-bg-secondary);
       border-radius: 6px;
@@ -206,7 +311,6 @@
   <div class="upload-area" id="uploadArea">
     <div class="upload-icon">📁</div>
     <div class="upload-text">Drop a component here or click to browse</div>
-    <div class="upload-hint">Accepts .json files</div>
   </div>
 
   <input type="file" id="fileInput" accept=".json">
@@ -220,6 +324,31 @@
     Create Components
   </button>
 
+  <!-- Duplicate Detection Modal -->
+  <div class="modal-overlay" id="duplicateModal">
+    <div class="modal">
+      <div class="modal-title">⚠️ Component Already Exists</div>
+      <div class="modal-message">
+        A component with this name already exists on the target page:
+      </div>
+      <div class="modal-component-name" id="duplicateComponentName"></div>
+      <div class="modal-buttons">
+        <button class="modal-button modal-button-primary" id="replaceBtn">
+          <div>🔄 Replace Existing</div>
+          <span class="modal-button-description">Delete the old component and create a new one</span>
+        </button>
+        <button class="modal-button" id="skipBtn">
+          <div>⏭️ Skip Creation</div>
+          <span class="modal-button-description">Keep the existing component, cancel this operation</span>
+        </button>
+        <button class="modal-button" id="duplicateBtn">
+          <div>➕ Create Duplicate</div>
+          <span class="modal-button-description">Create a new component next to the existing one</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const uploadArea = document.getElementById('uploadArea');
     const fileInput = document.getElementById('fileInput');
@@ -229,8 +358,69 @@
     const createBtn = document.getElementById('createBtn');
     const status = document.getElementById('status');
     const updateMode = document.getElementById('updateMode');
+    const duplicateModal = document.getElementById('duplicateModal');
+    const duplicateComponentName = document.getElementById('duplicateComponentName');
+    const replaceBtn = document.getElementById('replaceBtn');
+    const skipBtn = document.getElementById('skipBtn');
+    const duplicateBtn = document.getElementById('duplicateBtn');
 
     let uploadedJSON = null;
+    let duplicateAction = null;
+    let existingNodeId = null; // Store the node ID of the existing component
+
+    // Handle messages from plugin
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      
+      if (msg.type === 'duplicate-detected') {
+        // Show duplicate modal
+        duplicateComponentName.textContent = msg.componentName;
+        existingNodeId = msg.existingNodeId; // Store the node ID
+        duplicateModal.classList.add('visible');
+      } else if (msg.type === 'creation-complete') {
+        showStatus(msg.message, 'success');
+        createBtn.disabled = false;
+      } else if (msg.type === 'creation-error') {
+        showStatus(msg.message, 'error');
+        createBtn.disabled = false;
+      }
+    };
+
+    // Modal button handlers
+    replaceBtn.addEventListener('click', () => {
+      duplicateModal.classList.remove('visible');
+      parent.postMessage({
+        pluginMessage: {
+          type: 'duplicate-action',
+          action: 'replace',
+          existingNodeId: existingNodeId, // Send the node ID to delete
+          data: uploadedJSON
+        }
+      }, '*');
+    });
+
+    skipBtn.addEventListener('click', () => {
+      duplicateModal.classList.remove('visible');
+      parent.postMessage({
+        pluginMessage: {
+          type: 'duplicate-action',
+          action: 'skip'
+        }
+      }, '*');
+      showStatus('Component creation cancelled', 'success');
+      createBtn.disabled = false;
+    });
+
+    duplicateBtn.addEventListener('click', () => {
+      duplicateModal.classList.remove('visible');
+      parent.postMessage({
+        pluginMessage: {
+          type: 'duplicate-action',
+          action: 'duplicate',
+          data: uploadedJSON
+        }
+      }, '*');
+    });
 
     // Click to browse
     uploadArea.addEventListener('click', () => {
