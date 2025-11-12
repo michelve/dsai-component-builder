@@ -25,3 +25,13 @@ dist/
 build/
 *.js.map
 typography.json
+checkbox-sample.json
+component-sample copy.json
+tokens/foundation.json
+tokens/layout.json
+tokens/radius.json
+tokens/shadows.json
+tokens/spacing.json
+typography-bootstrap.json
+checkbox-sample.json
+component-sample copy.json
