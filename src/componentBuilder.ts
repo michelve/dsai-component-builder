@@ -547,7 +547,7 @@ async function createComponentVariant(
  */
 function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
   return {
-    label: defaultStyles.label,
+    label: variantConfig.styles?.label || defaultStyles.label,
     fills: variantConfig.styles?.fills || defaultStyles.fills,
     fillsOpacity: variantConfig.styles?.fillsOpacity || defaultStyles.fillsOpacity,
     strokes: variantConfig.styles?.strokes || defaultStyles.strokes,
@@ -599,6 +599,13 @@ function createBaseComponent(variantConfig: Variant): ComponentNode {
   // Set description if provided
   if (variantConfig.description) {
     component.description = variantConfig.description;
+  }
+  
+  // Set documentation link if provided
+  if (variantConfig.documentationLink) {
+    component.documentationLinks = [{
+      uri: variantConfig.documentationLink
+    }];
   }
   
   // Set up auto-layout for flexible sizing

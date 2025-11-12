@@ -61,6 +61,11 @@ figma.ui.onmessage = async (msg: PluginMessage & { type: string; action?: string
       console.log('ComponentSet pageName:', config.componentSet?.pageName);
       console.log('Has defaultStyles?', !!config.defaultStyles);
       console.log('Has variants?', !!config.variants);
+      console.log('Variants array length:', config.variants?.length);
+      console.log('First variant full object:', JSON.stringify(config.variants?.[0], null, 2));
+      console.log('First variant.variant:', config.variants?.[0]?.variant);
+      console.log('First variant.state:', config.variants?.[0]?.state);
+      console.log('First variant.size:', config.variants?.[0]?.size);
 
       // Validate JSON structure matches expected schema
       if (!config.componentSet || !config.defaultStyles || !config.variants) {

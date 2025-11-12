@@ -90,6 +90,7 @@ export interface Variant {
   size: string; // e.g., "small", "medium", "large"
   styles?: Style; // Optional style overrides for this variant
   description?: string; // Plain-text annotation for this specific variant
+  documentationLink?: string; // Single documentation URL (will be converted to documentationLinks array)
 }
 
 /**
