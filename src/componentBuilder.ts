@@ -37,8 +37,8 @@ function delay(ms: number): Promise<void> {
 }
 
 // Configuration constants
-const VARIANT_CREATION_DELAY_MS = 200; // Delay between variant creation
-const PAGE_SWITCH_DELAY_MS = 100; // Delay after switching pages
+const VARIANT_CREATION_DELAY_MS = 500; // Delay between variant creation
+const PAGE_SWITCH_DELAY_MS = 500; // Delay after switching pages
 
 /**
  * Finds an existing page by name or creates a new one

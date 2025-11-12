@@ -368,6 +368,53 @@
     let duplicateAction = null;
     let existingNodeId = null; // Store the node ID of the existing component
 
+    // Function to clear/reset the form after successful creation
+    function clearForm() {
+      // Clear the file input and reset its value to break cache
+      fileInput.value = '';
+      
+      // Force re-render by cloning and replacing the input element (clears browser cache)
+      const newFileInput = fileInput.cloneNode(true);
+      fileInput.parentNode.replaceChild(newFileInput, fileInput);
+      
+      // Update reference to the new input element
+      const refreshedFileInput = document.getElementById('fileInput');
+      
+      // Re-attach event listeners to the new input
+      refreshedFileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+      
+      // Clear uploaded JSON and all cached data
+      uploadedJSON = null;
+      
+      // Hide file info
+      fileInfo.classList.remove('visible');
+      
+      // Hide update mode banner
+      updateMode.classList.remove('visible');
+      
+      // Reset file name and details display
+      fileName.textContent = '';
+      fileDetails.textContent = '';
+      
+      // Disable create button
+      createBtn.disabled = true;
+      
+      // Reset duplicate modal state
+      existingNodeId = null;
+      duplicateAction = null;
+      
+      // Hide any visible status messages after a delay
+      setTimeout(() => {
+        status.classList.remove('visible');
+      }, 3000);
+      
+      console.log('✅ Form cleared, cache purged, and reset complete');
+    }
+
     // Handle messages from plugin
     window.onmessage = (event) => {
       const msg = event.data.pluginMessage;
@@ -380,6 +427,9 @@
       } else if (msg.type === 'creation-complete') {
         showStatus(msg.message, 'success');
         createBtn.disabled = false;
+        
+        // Clear the form after successful creation
+        clearForm();
       } else if (msg.type === 'creation-error') {
         showStatus(msg.message, 'error');
         createBtn.disabled = false;
