@@ -128,6 +128,17 @@ export async function resolveDimensionToken(
   fallbackValue: number = 8
 ): Promise<VariableMapping> {
   try {
+    // Validate fallback value
+    if (typeof fallbackValue !== 'number' || !Number.isFinite(fallbackValue)) {
+      console.warn(`Invalid fallback value: ${fallbackValue}, using 0 instead`);
+      fallbackValue = 0;
+    }
+    
+    // Warn about potentially problematic values
+    if (fallbackValue < 0) {
+      console.warn(`Negative fallback value (${fallbackValue}) may cause unexpected results`);
+    }
+    
     const tokenName = extractTokenName(tokenRef);
     const variable = await findVariableByName(tokenName);
 
@@ -145,9 +156,11 @@ export async function resolveDimensionToken(
     };
   } catch (error) {
     console.error(`Error resolving dimension token "${tokenRef}":`, error);
+    // Ensure fallback is valid even in error case
+    const safeFallback = (typeof fallbackValue === 'number' && Number.isFinite(fallbackValue)) ? fallbackValue : 0;
     return {
       found: false,
-      fallbackValue: fallbackValue
+      fallbackValue: safeFallback
     };
   }
 }
@@ -462,9 +475,22 @@ export async function applyNodeOpacity(
       console.log(`🔗 Bound opacity variable to node`);
     }
   } else {
-    // Use fallback opacity value (already in 0-1 range)
+    // Use fallback opacity value and validate range (must be 0-1)
     if ('opacity' in node) {
-      const opacity = mapping.fallbackValue as number;
+      let opacity = mapping.fallbackValue as number;
+      
+      // Validate opacity range
+      if (typeof opacity !== 'number' || !Number.isFinite(opacity)) {
+        console.warn(`Invalid opacity value: ${opacity}, using 1`);
+        opacity = 1;
+      } else if (opacity < 0) {
+        console.warn(`Opacity ${opacity} is negative, clamping to 0`);
+        opacity = 0;
+      } else if (opacity > 1) {
+        console.warn(`Opacity ${opacity} > 1, clamping to 1`);
+        opacity = 1;
+      }
+      
       node.opacity = opacity;
       console.log(`⚠️ Using fallback opacity: ${opacity}`);
     }
@@ -486,38 +512,24 @@ export async function applyFillToken(
     const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
     
     if (variable) {
-      // Create a solid paint first
-      node.fills = [{
-        type: 'SOLID',
-        color: { r: 0, g: 0, b: 0 } // Placeholder
-      }];
-      
-      // Use the helper method: setBoundVariableForPaint(node, field, paintIndex, property, variable)
-      // Based on Figma docs: figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'color', variable)
+      // Create a solid paint and bind the color variable to it
       try {
-        // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-        figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'color', variable);
+        let paint: SolidPaint = {
+          type: 'SOLID',
+          color: { r: 0, g: 0, b: 0 } // Placeholder color
+        };
         
-        // Apply opacity if provided
+        // Bind color variable to the paint
+        paint = figma.variables.setBoundVariableForPaint(paint, 'color', variable);
+        
+        // Apply opacity if provided (opacity must be set directly on paint, not via variable binding for fills)
         if (opacityRef) {
           const opacityMapping = await resolveDimensionToken(opacityRef, 1);
-          if (opacityMapping.found && opacityMapping.variableId) {
-            const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
-            if (opacityVariable) {
-              // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-              figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'opacity', opacityVariable);
-            }
-          } else {
-            // Use fallback opacity value (already in 0-1 range)
-            const fills = node.fills as SolidPaint[];
-            if (fills[0] && fills[0].type === 'SOLID') {
-              node.fills = [{
-                ...fills[0],
-                opacity: opacityMapping.fallbackValue as number
-              }];
-            }
-          }
+          const opacityValue = typeof opacityMapping.fallbackValue === 'number' ? opacityMapping.fallbackValue : 1;
+          paint = { ...paint, opacity: opacityValue };
         }
+        
+        node.fills = [paint];
       } catch (_error) {
         console.log('⚠️ setBoundVariableForPaint not available, using fallback');
         // Fallback: use the old boundVariables syntax
@@ -567,37 +579,24 @@ export async function applyTextFillToken(
     const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
     
     if (variable) {
-      // Create a solid paint first
-      node.fills = [{
-        type: 'SOLID',
-        color: { r: 0, g: 0, b: 0 } // Placeholder
-      }];
-      
-      // Use the helper method to bind the variable
+      // Create a solid paint and bind the color variable to it
       try {
-        // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-        figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'color', variable);
+        let paint: SolidPaint = {
+          type: 'SOLID',
+          color: { r: 0, g: 0, b: 0 } // Placeholder color
+        };
         
-        // Apply opacity if provided
+        // Bind color variable to the paint
+        paint = figma.variables.setBoundVariableForPaint(paint, 'color', variable);
+        
+        // Apply opacity if provided (opacity must be set directly on paint, not via variable binding for text)
         if (opacityRef) {
           const opacityMapping = await resolveDimensionToken(opacityRef, 1);
-          if (opacityMapping.found && opacityMapping.variableId) {
-            const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
-            if (opacityVariable) {
-              // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-              figma.variables.setBoundVariableForPaint(node, 'fills', 0, 'opacity', opacityVariable);
-            }
-          } else {
-            // Use fallback opacity value (already in 0-1 range)
-            const fills = node.fills as SolidPaint[];
-            if (fills[0] && fills[0].type === 'SOLID') {
-              node.fills = [{
-                ...fills[0],
-                opacity: opacityMapping.fallbackValue as number
-              }];
-            }
-          }
+          const opacityValue = typeof opacityMapping.fallbackValue === 'number' ? opacityMapping.fallbackValue : 1;
+          paint = { ...paint, opacity: opacityValue };
         }
+        
+        node.fills = [paint];
       } catch (_error) {
         console.log('⚠️ setBoundVariableForPaint not available for text, using fallback');
         // Fallback: use the old boundVariables syntax
@@ -646,36 +645,24 @@ export async function applyStrokeToken(
     const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
     
     if (variable) {
-      // Create a solid stroke first
-      node.strokes = [{
-        type: 'SOLID',
-        color: { r: 0, g: 0, b: 0 } // Placeholder
-      }];
-      
+      // Create a solid paint and bind the color variable to it
       try {
-        // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-        figma.variables.setBoundVariableForPaint(node, 'strokes', 0, 'color', variable);
+        let paint: SolidPaint = {
+          type: 'SOLID',
+          color: { r: 0, g: 0, b: 0 } // Placeholder color
+        };
         
-        // Apply opacity if provided
+        // Bind color variable to the paint
+        paint = figma.variables.setBoundVariableForPaint(paint, 'color', variable);
+        
+        // Apply opacity if provided (opacity must be set directly on paint, not via variable binding for strokes)
         if (opacityRef) {
           const opacityMapping = await resolveDimensionToken(opacityRef, 1);
-          if (opacityMapping.found && opacityMapping.variableId) {
-            const opacityVariable = await figma.variables.getVariableByIdAsync(opacityMapping.variableId);
-            if (opacityVariable) {
-              // @ts-expect-error - setBoundVariableForPaint may not be in types yet
-              figma.variables.setBoundVariableForPaint(node, 'strokes', 0, 'opacity', opacityVariable);
-            }
-          } else {
-            // Use fallback opacity value (already in 0-1 range)
-            const strokes = node.strokes as SolidPaint[];
-            if (strokes[0] && strokes[0].type === 'SOLID') {
-              node.strokes = [{
-                ...strokes[0],
-                opacity: opacityMapping.fallbackValue as number
-              }];
-            }
-          }
+          const opacityValue = typeof opacityMapping.fallbackValue === 'number' ? opacityMapping.fallbackValue : 1;
+          paint = { ...paint, opacity: opacityValue };
         }
+        
+        node.strokes = [paint];
       } catch (_error) {
         console.log('⚠️ setBoundVariableForPaint not available for strokes, using fallback');
         // Fallback: use the old boundVariables syntax
@@ -976,6 +963,31 @@ export async function applyFontName(
 /**
  * Apply font weight token to a text node (bindable as FLOAT variable 100-900)
  */
+/**
+ * Map font weight number to Inter font style name
+ */
+function getFontStyleForWeight(weight: number, family: string = 'Inter'): string {
+  // Inter font weight mappings
+  if (family === 'Inter') {
+    if (weight <= 100) return 'Thin';
+    if (weight <= 200) return 'ExtraLight';
+    if (weight <= 300) return 'Light';
+    if (weight <= 400) return 'Regular';
+    if (weight <= 500) return 'Medium';
+    if (weight <= 600) return 'SemiBold';
+    if (weight <= 700) return 'Bold';
+    if (weight <= 800) return 'ExtraBold';
+    return 'Black';
+  }
+  // Default fallback for other fonts
+  if (weight <= 300) return 'Light';
+  if (weight <= 400) return 'Regular';
+  if (weight <= 500) return 'Medium';
+  if (weight <= 600) return 'SemiBold';
+  if (weight <= 700) return 'Bold';
+  return 'Black';
+}
+
 export async function applyFontWeightToken(
   node: TextNode,
   tokenRef: TokenReference | number
@@ -993,8 +1005,34 @@ export async function applyFontWeightToken(
   if (mapping.found && mapping.variableId) {
     const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
     if (variable) {
+      // Get the current font info before binding
+      const currentFont = node.fontName;
+      const fontFamily = currentFont !== figma.mixed ? currentFont.family : 'Inter';
+      
+      // Get the font weight value from the variable to determine the style
+      const weightValue = typeof mapping.fallbackValue === 'number' ? mapping.fallbackValue : 400;
+      const fontStyle = getFontStyleForWeight(weightValue, fontFamily);
+      
+      console.log(`🔗 Binding fontWeight variable: ${variable.name} (value: ${weightValue} -> style: ${fontStyle})`);
+      
+      // CRITICAL: Load the font with the new weight BEFORE binding the variable
+      // This prevents "Cannot write to node with unloaded font" errors
+      try {
+        const fontToLoad = { family: fontFamily, style: fontStyle };
+        await figma.loadFontAsync(fontToLoad);
+        console.log(`✅ Pre-loaded font for weight binding: ${fontToLoad.family} ${fontToLoad.style}`);
+      } catch (error) {
+        console.warn(`⚠️ Could not pre-load font ${fontFamily} ${fontStyle}, trying Regular fallback:`, error);
+        try {
+          await figma.loadFontAsync({ family: fontFamily, style: 'Regular' });
+        } catch (fallbackError) {
+          console.warn(`⚠️ Could not load Regular fallback either:`, fallbackError);
+        }
+      }
+      
+      // Now bind the variable
       node.setBoundVariable('fontWeight', variable);
-      console.log(`🔗 Bound fontWeight variable: ${variable.name}`);
+      console.log(`✅ Font weight variable bound successfully`);
     }
   } else {
     // Fallback: fontWeight requires variable binding, so we can't set a direct value
@@ -1157,15 +1195,16 @@ export function applyTextCase(
  * Values:
  * - "WIDTH_AND_HEIGHT": Auto-both dimensions (hug contents)
  * - "HEIGHT": Auto-height only (hug height, width fixed)
- * - "WIDTH": Auto-width only (hug width, height fixed)
  * - "NONE": Fixed dimensions (both width and height must be set manually via resize)
  * - "TRUNCATE": Truncate with ellipsis when text overflows
+ * 
+ * Note: Figma does not support "WIDTH" mode (auto-width only). Use "WIDTH_AND_HEIGHT" or "HEIGHT" instead.
  * 
  * IMPORTANT: Font must be loaded before calling this function
  */
 export function applyTextAutoResize(
   node: TextNode,
-  mode?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE"
+  mode?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "NONE" | "TRUNCATE"
 ): void {
   if (!mode) {
     // Default to WIDTH_AND_HEIGHT for button/label text

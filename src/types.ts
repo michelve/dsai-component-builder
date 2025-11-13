@@ -37,7 +37,7 @@ export interface FontName {
  * Controls text node dimensions and auto-resize behavior
  */
 export interface TextLayout {
-  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE"; // Figma's textAutoResize
+  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "NONE" | "TRUNCATE"; // Figma's textAutoResize (note: "WIDTH" mode is not supported by Figma)
   width?: number; // Required when textAutoResize is "NONE" (must be number, not string)
   height?: number; // Required when textAutoResize is "NONE" (must be number, not string)
 }
@@ -58,8 +58,37 @@ export interface Typography {
   textDecoration?: "NONE" | "UNDERLINE" | "STRIKETHROUGH";
   textCase?: "ORIGINAL" | "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS";
   textLayout?: TextLayout; // Nested text layout configuration
-  // Deprecated: use textLayout instead
-  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "WIDTH" | "NONE" | "TRUNCATE";
+  
+  /**
+   * @deprecated Use `textLayout.textAutoResize` instead. This property will be removed in v2.0.0.
+   * 
+   * Migration example:
+   * ```typescript
+   * // Old way (deprecated):
+   * {
+   *   textAutoResize: "WIDTH_AND_HEIGHT"
+   * }
+   * 
+   * // New way (recommended):
+   * {
+   *   textLayout: {
+   *     textAutoResize: "WIDTH_AND_HEIGHT"
+   *   }
+   * }
+   * ```
+   * 
+   * For fixed dimensions, use:
+   * ```typescript
+   * {
+   *   textLayout: {
+   *     textAutoResize: "NONE",
+   *     width: 200,
+   *     height: 100
+   *   }
+   * }
+   * ```
+   */
+  textAutoResize?: "WIDTH_AND_HEIGHT" | "HEIGHT" | "NONE" | "TRUNCATE";
 }
 
 /**

@@ -1,0 +1,147 @@
+{
+  "Radius": {
+    "modes": {
+      "Base": {
+        "radius": {
+          "0": {
+            "$value": 0,
+            "$type": "number",
+            "$description": "Border radius: 0 - No rounding. Used for completely square corners. Equivalent to Bootstrap's 'rounded-0' utility class.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius: 0"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#radius"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius (0 override)",
+                "cssClass": "rounded-0"
+              }
+            }
+          },
+          "sm": {
+            "$value": 4,
+            "$type": "number",
+            "$description": "Border radius: Small - .25rem (4px). Used for subtle rounding on small components. Equivalent to Bootstrap's 'rounded-1' utility class and $border-radius-sm variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius-sm"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius-sm",
+                "cssClass": "rounded-1"
+              }
+            }
+          },
+          "default": {
+            "$value": 6,
+            "$type": "number",
+            "$description": "Border radius: Default - .375rem (6px). The standard rounding used throughout Bootstrap for most components. Equivalent to Bootstrap's 'rounded' or 'rounded-2' utility classes and $border-radius variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#radius"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius",
+                "cssClass": "rounded, rounded-2"
+              }
+            }
+          },
+          "lg": {
+            "$value": 8,
+            "$type": "number",
+            "$description": "Border radius: Large - .5rem (8px). Used for larger, more prominent rounded corners. Equivalent to Bootstrap's 'rounded-3' utility class and $border-radius-lg variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius-lg"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius-lg",
+                "cssClass": "rounded-3"
+              }
+            }
+          },
+          "xl": {
+            "$value": 16,
+            "$type": "number",
+            "$description": "Border radius: Extra Large - 1rem (16px). Used for very prominent rounded corners on large components. Equivalent to Bootstrap's 'rounded-4' utility class and $border-radius-xl variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius-xl"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius-xl",
+                "cssClass": "rounded-4"
+              }
+            }
+          },
+          "xxl": {
+            "$value": 32,
+            "$type": "number",
+            "$description": "Border radius: 2X Extra Large - 2rem (32px). Used for dramatically rounded corners creating a softer, more modern appearance. Equivalent to Bootstrap's 'rounded-5' utility class and $border-radius-xxl variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius-xxl"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius-xxl",
+                "cssClass": "rounded-5"
+              }
+            }
+          },
+          "circle": {
+            "$value": 50,
+            "$type": "number",
+            "$description": "Border radius: Circle - 50%. Creates perfectly circular shapes when applied to square elements. Equivalent to Bootstrap's 'rounded-circle' utility class. Note: This is a percentage value (50%), not pixel-based.",
+            "$codeSyntax": {
+              "WEB": "50%"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "50% (calculated)",
+                "cssClass": "rounded-circle",
+                "unit": "%"
+              }
+            }
+          },
+          "pill": {
+            "$value": 800,
+            "$type": "number",
+            "$description": "Border radius: Pill - 50rem (800px). Creates pill-shaped elements with fully rounded ends on rectangular shapes. Equivalent to Bootstrap's 'rounded-pill' utility class and $border-radius-pill variable.",
+            "$codeSyntax": {
+              "WEB": "--bs-border-radius-pill"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#sizes"
+              },
+              "platform": {
+                "scssVariableName": "$border-radius-pill",
+                "cssClass": "rounded-pill"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

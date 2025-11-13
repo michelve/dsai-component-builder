@@ -1,0 +1,698 @@
+{
+  "componentSet": {
+    "name": "Typography / Headings",
+    "pageName": "Typography",
+    "key": "typography-headings-001",
+    "type": "COMPONENT_SET",
+    "description": "Heading typography components (H1-H6 and Display headings) with Bootstrap semantic text colors. All HTML headings, <h1> through <h6>, are available with default, primary, and secondary color variants. Display headings provide larger, more opinionated heading styles for hero sections. Based on Bootstrap 5.3 typography system.",
+    "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+  },
+  "defaultStyles": {
+    "label": "Heading 1",
+    "text": "{Foundation/Light/semantic/emphasis-color}",
+    "fontName": "{Typography/Base/fontFamily/base}",
+    "fontWeight": "{Typography/Base/headings/fontWeight}",
+    "fontSize": "{Typography/Base/headings/h1/fontSize}",
+    "lineHeight": "{Typography/Base/lineHeight/tight}",
+    "letterSpacing": "{Typography/Base/letterSpacing/normal}",
+    "textAlignHorizontal": "LEFT",
+    "textAlignVertical": "TOP",
+    "textLayout": {
+      "textAutoResize": "WIDTH_AND_HEIGHT"
+    }
+  },
+  "variants": [
+    {
+      "variant": "h1",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 1",
+        "fontSize": "{Typography/Base/headings/h1/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H1 heading (2.5rem / 40px) - Use for page titles and main headings. Default body text color ensures maximum readability.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h1",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 1 Primary",
+        "fontSize": "{Typography/Base/headings/h1/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H1 heading with .text-primary-emphasis - Primary brand color emphasis (blue-700). Use for brand-aligned headings and key messages.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h1",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 1 Secondary",
+        "fontSize": "{Typography/Base/headings/h1/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H1 heading with .text-secondary - Secondary text color (gray-600). Use for supporting headings or sections with less prominence.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h1",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 1 Light",
+        "fontSize": "{Typography/Base/headings/h1/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "H1 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h2",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 2",
+        "fontSize": "{Typography/Base/headings/h2/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H2 heading (2rem / 32px) - Use for major section titles within a page. Creates clear visual hierarchy below H1.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h2",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 2 Primary",
+        "fontSize": "{Typography/Base/headings/h2/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H2 heading with .text-primary-emphasis - Primary brand color emphasis for section titles that need brand alignment.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h2",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 2 Secondary",
+        "fontSize": "{Typography/Base/headings/h2/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H2 heading with .text-secondary-emphasis - Secondary color for supporting section titles with reduced visual weight.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h2",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 2 Light",
+        "fontSize": "{Typography/Base/headings/h2/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Heading 2 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h3",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 3",
+        "fontSize": "{Typography/Base/headings/h3/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H3 heading (1.75rem / 28px) - Use for subsection titles within major sections. Maintains clear hierarchy below H2.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h3",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 3 Primary",
+        "fontSize": "{Typography/Base/headings/h3/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H3 heading with .text-primary-emphasis - Primary brand emphasis for important subsections.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h3",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 3 Secondary",
+        "fontSize": "{Typography/Base/headings/h3/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H3 heading with .text-secondary-emphasis - Secondary color for supporting subsections.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h3",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 3 Light",
+        "fontSize": "{Typography/Base/headings/h3/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Heading 3 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h4",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 4",
+        "fontSize": "{Typography/Base/headings/h4/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H4 heading (1.5rem / 24px) - Use for card titles, minor section headings, or list group headers.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h4",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 4 Primary",
+        "fontSize": "{Typography/Base/headings/h4/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H4 heading with .text-primary-emphasis - Primary brand emphasis for card headers or component titles.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h4",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 4 Secondary",
+        "fontSize": "{Typography/Base/headings/h4/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H4 heading with .text-secondary-emphasis - Secondary color for supporting card or component titles.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h4",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 4 Light",
+        "fontSize": "{Typography/Base/headings/h4/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Heading 4 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h5",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 5",
+        "fontSize": "{Typography/Base/headings/h5/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H5 heading (1.25rem / 20px) - Use for small section headers, sidebar titles, or nested content headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h5",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 5 Primary",
+        "fontSize": "{Typography/Base/headings/h5/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H5 heading with .text-primary-emphasis - Primary brand emphasis for small headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h5",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 5 Secondary",
+        "fontSize": "{Typography/Base/headings/h5/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H5 heading with .text-secondary-emphasis - Secondary emphasis for supporting small headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h5",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 5 Light",
+        "fontSize": "{Typography/Base/headings/h5/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Heading 5 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h6",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Heading 6",
+        "fontSize": "{Typography/Base/headings/h6/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "H6 heading (1rem / 16px) - Smallest heading, use for labels, form section titles, or deeply nested content.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#headings"
+    },
+    {
+      "variant": "h6",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 6 Primary",
+        "fontSize": "{Typography/Base/headings/h6/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "H6 heading with .text-primary-emphasis - Primary brand emphasis for smallest headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h6",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Heading 6 Secondary",
+        "fontSize": "{Typography/Base/headings/h6/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "H6 heading with .text-secondary-emphasis - Secondary emphasis for supporting smallest headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "h6",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Heading 6 Light",
+        "fontSize": "{Typography/Base/headings/h6/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/tight}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Heading 6 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-1",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 1",
+        "fontSize": "{Typography/Base/display/display1/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-lg}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 1 heading (5rem / 80px) - Largest display heading for hero sections, landing pages, or major announcements. Light weight (300) provides elegant impact.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-1",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 1 Primary",
+        "fontSize": "{Typography/Base/display/display1/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-lg}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 1 with .text-primary-emphasis - Primary brand color for hero headings that need strong brand presence.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-1",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 1 Secondary",
+        "fontSize": "{Typography/Base/display/display1/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-lg}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 1 with .text-secondary-emphasis - Secondary color for hero headings with subtle emphasis.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-1",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 1 Light",
+        "fontSize": "{Typography/Base/display/display1/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-lg}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 1 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-2",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 2",
+        "fontSize": "{Typography/Base/display/display2/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 2 heading (4.5rem / 72px) - Large display text for hero sections. Slightly smaller than Display 1 but still makes a bold statement.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-2",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 2 Primary",
+        "fontSize": "{Typography/Base/display/display2/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 2 with .text-primary-emphasis - Primary brand color for large display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-2",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 2 Secondary",
+        "fontSize": "{Typography/Base/display/display2/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 2 with .text-secondary-emphasis - Secondary color for large display headings with subtle emphasis.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-2",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 2 Light",
+        "fontSize": "{Typography/Base/display/display2/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 2 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-3",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 3",
+        "fontSize": "{Typography/Base/display/display3/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 3 heading (4rem / 64px) - Medium-large display text for feature sections or secondary hero areas.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-3",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 3 Primary",
+        "fontSize": "{Typography/Base/display/display3/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 3 with .text-primary-emphasis - Primary brand color for medium-large display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-3",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 3 Secondary",
+        "fontSize": "{Typography/Base/display/display3/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 3 with .text-secondary-emphasis - Secondary color for medium-large display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-3",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 3 Light",
+        "fontSize": "{Typography/Base/display/display3/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 3 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-4",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 4",
+        "fontSize": "{Typography/Base/display/display4/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 4 heading (3.5rem / 56px) - Medium display text for feature headings or section introductions.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-4",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 4 Primary",
+        "fontSize": "{Typography/Base/display/display4/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 4 with .text-primary-emphasis - Primary brand color for medium display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-4",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 4 Secondary",
+        "fontSize": "{Typography/Base/display/display4/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 4 with .text-secondary-emphasis - Secondary color for medium display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-4",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 4 Light",
+        "fontSize": "{Typography/Base/display/display4/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-md}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 4 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-5",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 5",
+        "fontSize": "{Typography/Base/display/display5/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 5 heading (3rem / 48px) - Medium-small display text for feature sections or prominent content headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-5",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 5 Primary",
+        "fontSize": "{Typography/Base/display/display5/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 5 with .text-primary-emphasis - Primary brand color for medium-small display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-5",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 5 Secondary",
+        "fontSize": "{Typography/Base/display/display5/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 5 with .text-secondary-emphasis - Secondary color for medium-small display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-5",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 5 Light",
+        "fontSize": "{Typography/Base/display/display5/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 5 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-6",
+      "state": "default",
+      "size": "default",
+      "styles": {
+        "label": "Display 6",
+        "fontSize": "{Typography/Base/display/display6/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/emphasis-color}"
+      },
+      "description": "Display 6 heading (2.5rem / 40px) - Smallest display heading, same size as H1 but with lighter weight (300). Use for elegant, less prominent display text.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#display-headings"
+    },
+    {
+      "variant": "display-6",
+      "state": "primary",
+      "size": "default",
+      "styles": {
+        "label": "Display 6 Primary",
+        "fontSize": "{Typography/Base/display/display6/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Display 6 with .text-primary-emphasis - Primary brand color for smallest display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-6",
+      "state": "secondary",
+      "size": "default",
+      "styles": {
+        "label": "Display 6 Secondary",
+        "fontSize": "{Typography/Base/display/display6/fontSize}",
+        "fontWeight": "{Typography/Base/display/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Display 6 with .text-secondary-emphasis - Secondary color for smallest display headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "display-6",
+      "state": "light",
+      "size": "default",
+      "styles": {
+        "label": "Display 6 Light",
+        "fontSize": "{Typography/Base/display/display6/fontSize}",
+        "fontWeight": "{Typography/Base/headings/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/display-sm}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Display 6 heading with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, less important supporting headings.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    }
+  ]
+}

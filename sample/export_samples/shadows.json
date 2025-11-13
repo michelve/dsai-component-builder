@@ -1,0 +1,185 @@
+{
+  "Shadows": {
+    "modes": {
+      "Base": {
+        "shadows": {
+          "default": {
+            "color": {
+              "$value": "#000000",
+              "$type": "color",
+              "$description": "Shadow color for default elevation",
+              "$scopes": [
+                "EFFECT_COLOR"
+              ]
+            },
+            "offsetX": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow horizontal offset"
+            },
+            "offsetY": {
+              "$value": 8,
+              "$type": "number",
+              "$description": "Shadow vertical offset (0.5rem = 8px)"
+            },
+            "blur": {
+              "$value": 16,
+              "$type": "number",
+              "$description": "Shadow blur radius (1rem = 16px)"
+            },
+            "spread": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow spread radius"
+            },
+            "composite": {
+              "$value": "0 0.5rem 1rem rgba(0, 0, 0, 0.15)",
+              "$type": "string",
+              "$description": "Complete box shadow value for Bootstrap SCSS export",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/utilities/shadows/"
+                },
+                "platform": {
+                  "cssClass": "shadow",
+                  "scssVariableName": "$box-shadow"
+                }
+              }
+            }
+          },
+          "sm": {
+            "color": {
+              "$value": "#000000",
+              "$type": "color",
+              "$description": "Shadow color for small elevation",
+              "$scopes": [
+                "EFFECT_COLOR"
+              ]
+            },
+            "offsetX": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow horizontal offset"
+            },
+            "offsetY": {
+              "$value": 2,
+              "$type": "number",
+              "$description": "Shadow vertical offset (0.125rem = 2px)"
+            },
+            "blur": {
+              "$value": 4,
+              "$type": "number",
+              "$description": "Shadow blur radius (0.25rem = 4px)"
+            },
+            "spread": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow spread radius"
+            },
+            "composite": {
+              "$value": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
+              "$type": "string",
+              "$description": "Complete box shadow value for Bootstrap SCSS export",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/utilities/shadows/"
+                },
+                "platform": {
+                  "cssClass": "shadow-sm",
+                  "scssVariableName": "$box-shadow-sm"
+                }
+              }
+            }
+          },
+          "lg": {
+            "color": {
+              "$value": "#000000",
+              "$type": "color",
+              "$description": "Shadow color for large elevation",
+              "$scopes": [
+                "EFFECT_COLOR"
+              ]
+            },
+            "offsetX": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow horizontal offset"
+            },
+            "offsetY": {
+              "$value": 16,
+              "$type": "number",
+              "$description": "Shadow vertical offset (1rem = 16px)"
+            },
+            "blur": {
+              "$value": 48,
+              "$type": "number",
+              "$description": "Shadow blur radius (3rem = 48px)"
+            },
+            "spread": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow spread radius"
+            },
+            "composite": {
+              "$value": "0 1rem 3rem rgba(0, 0, 0, 0.175)",
+              "$type": "string",
+              "$description": "Complete box shadow value for Bootstrap SCSS export",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/utilities/shadows/"
+                },
+                "platform": {
+                  "cssClass": "shadow-lg",
+                  "scssVariableName": "$box-shadow-lg"
+                }
+              }
+            }
+          },
+          "inset": {
+            "color": {
+              "$value": "#000000",
+              "$type": "color",
+              "$description": "Shadow color for inset effect",
+              "$scopes": [
+                "EFFECT_COLOR"
+              ]
+            },
+            "offsetX": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow horizontal offset"
+            },
+            "offsetY": {
+              "$value": 1,
+              "$type": "number",
+              "$description": "Shadow vertical offset (1px)"
+            },
+            "blur": {
+              "$value": 2,
+              "$type": "number",
+              "$description": "Shadow blur radius (2px)"
+            },
+            "spread": {
+              "$value": 0,
+              "$type": "number",
+              "$description": "Shadow spread radius"
+            },
+            "composite": {
+              "$value": "inset 0 1px 2px rgba(0, 0, 0, 0.075)",
+              "$type": "string",
+              "$description": "Complete box shadow value for Bootstrap SCSS export",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/utilities/shadows/"
+                },
+                "platform": {
+                  "scssVariableName": "$box-shadow-inset"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

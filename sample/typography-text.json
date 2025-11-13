@@ -1,0 +1,307 @@
+{
+  "componentSet": {
+    "name": "Typography / Text",
+    "pageName": "Typography",
+    "key": "typography-text-001",
+    "type": "COMPONENT_SET",
+    "description": "Body text and utility typography components with Bootstrap semantic text colors. Includes all Bootstrap 5.3 text utility color variants (.text-primary, .text-success, etc.) for conveying meaning through color. Features body text, lead paragraphs, small text, links, and emphasis variants with proper WCAG-compliant colors for light mode.",
+    "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+  },
+  "defaultStyles": {
+    "label": "This is body text in the default color for readable content.",
+    "text": "{Foundation/Light/semantic/body-color}",
+    "fontName": "{Typography/Base/fontFamily/base}",
+    "fontWeight": "{Typography/Base/fontWeight/normal}",
+    "fontSize": "{Typography/Base/fontSize/base}",
+    "lineHeight": "{Typography/Base/lineHeight/base}",
+    "letterSpacing": "{Typography/Base/letterSpacing/normal}",
+    "textAlignHorizontal": "LEFT",
+    "textAlignVertical": "TOP",
+    "textLayout": {
+      "textAutoResize": "WIDTH_AND_HEIGHT"
+    }
+  },
+  "variants": [
+    {
+      "variant": "body",
+      "state": "default",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in the default color for readable content.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Default body text (1rem / 16px) with .text-body - Standard paragraph text color (gray-900). Use for all main content, articles, and readable text. Line height of 1.5 meets WCAG AA standards.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/"
+    },
+    {
+      "variant": "body",
+      "state": "primary",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in primary emphasis color for brand-aligned content.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Body text with .text-primary-emphasis - Primary brand color (blue-700, shade 60%). Use for text that needs brand emphasis or primary CTAs. Higher contrast than standard primary for better readability.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "secondary",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in secondary muted color for supporting information.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Body text with .text-secondary - Muted secondary color (gray-600). Use for captions, labels, helper text, or less prominent supporting information. Meets WCAG AA for body text.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "light",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in tertiary light color for subtle supporting text.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/tertiary-color}"
+      },
+      "description": "Body text with .text-tertiary - Tertiary text color (gray-500). Use for even lighter text, placeholder-like content, or the least important supporting information.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "success",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in success color for positive feedback and confirmations.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/success-text-emphasis}"
+      },
+      "description": "Body text with .text-success-emphasis - Success color emphasis (green-700). Use for success messages, positive feedback, confirmations, or completed states. Conveys positive outcomes and achievements.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "danger",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in danger color for errors and critical warnings.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/danger-text-emphasis}"
+      },
+      "description": "Body text with .text-danger-emphasis - Danger color emphasis (red-700). Use for error messages, form validation errors, critical alerts, or destructive action warnings. Ensures users recognize problems.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "warning",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in warning color for caution messages and alerts.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/warning-text-emphasis}"
+      },
+      "description": "Body text with .text-warning-emphasis - Warning color emphasis (yellow-700). Use for cautions, important notices, pending states, or messages requiring user attention. Higher contrast than standard warning.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "info",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in info color for informational content and tips.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/info-text-emphasis}"
+      },
+      "description": "Body text with .text-info-emphasis - Info color emphasis (cyan-700). Use for informational content, tips, help text, tooltips, or neutral notifications. Communicates helpful information without urgency.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "light",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in light emphasis color for subtle contrast.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/light-text-emphasis}"
+      },
+      "description": "Body text with .text-light-emphasis - Light emphasis color (gray-700). Use for subtle text on light backgrounds, providing moderate contrast while maintaining readability.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "body",
+      "state": "dark",
+      "size": "base",
+      "styles": {
+        "label": "This is body text in dark emphasis color for maximum contrast.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/dark-text-emphasis}"
+      },
+      "description": "Body text with .text-dark-emphasis - Dark emphasis color (gray-900). Use for maximum contrast text, ensuring highest readability. WCAG AAA compliant on light backgrounds.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "lead",
+      "state": "default",
+      "size": "large",
+      "styles": {
+        "label": "This is a lead paragraph that stands out from regular text. It uses larger size and lighter weight for visual hierarchy and improved readability.",
+        "fontSize": "{Typography/Base/lead/fontSize}",
+        "fontWeight": "{Typography/Base/lead/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/relaxed}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Lead paragraph with .lead (1.25rem / 20px) - Make a paragraph stand out with larger font size and lighter weight (300). Use for introductory text, article summaries, or emphasized content. Enhanced line height (1.75) for readability.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#lead"
+    },
+    {
+      "variant": "lead",
+      "state": "primary",
+      "size": "large",
+      "styles": {
+        "label": "This is a lead paragraph in primary emphasis color. Perfect for introductory content with brand emphasis.",
+        "fontSize": "{Typography/Base/lead/fontSize}",
+        "fontWeight": "{Typography/Base/lead/fontWeight}",
+        "lineHeight": "{Typography/Base/lineHeight/relaxed}",
+        "text": "{Foundation/Light/semantic/primary-text-emphasis}"
+      },
+      "description": "Lead paragraph with .text-primary-emphasis - Combines lead paragraph styling with primary brand color. Perfect for hero section subheadings or brand-aligned introductory text.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#lead"
+    },
+    {
+      "variant": "small",
+      "state": "default",
+      "size": "small",
+      "styles": {
+        "label": "Small text for secondary information, captions, or helper text.",
+        "fontSize": "{Typography/Base/small/fontSize}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/sm}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Small text with <small> or .small (0.875rem / 14px) - Use for fine print, captions, legal text, timestamps, or secondary supporting information. Line height 1.25 optimized for compact display.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#inline-text-elements"
+    },
+    {
+      "variant": "small",
+      "state": "muted",
+      "size": "small",
+      "styles": {
+        "label": "Small muted text for less important information or captions.",
+        "fontSize": "{Typography/Base/small/fontSize}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/sm}",
+        "text": "{Foundation/Light/semantic/secondary-color}"
+      },
+      "description": "Small text with .text-muted - Combines small size with muted secondary color (gray-600). Use for metadata, timestamps, copyright notices, or information requiring minimal visual weight.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/colors/#colors"
+    },
+    {
+      "variant": "code",
+      "state": "default",
+      "size": "base",
+      "styles": {
+        "label": "<code>inline code snippet</code>",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontName": "{Typography/Base/fontFamily/monospace}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/colors/brand/pink/600}"
+      },
+      "description": "Inline code with <code> - Monospace font (Roboto Mono) with pink accent color. Use for inline code snippets, variable names, function names, or technical terms within paragraphs.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/content/typography/#inline-text-elements"
+    },
+    {
+      "variant": "link",
+      "state": "default",
+      "size": "base",
+      "styles": {
+        "label": "This is a text link for navigation or references.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/link-color}"
+      },
+      "description": "Default link color with <a> or .link-* (blue-600) - Standard hyperlink color for all interactive text and navigation. Provides clear visual indication of clickable content.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/helpers/colored-links/"
+    },
+    {
+      "variant": "link",
+      "state": "hover",
+      "size": "base",
+      "styles": {
+        "label": "This is a text link in hover state.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/normal}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/link-hover-color}"
+      },
+      "description": "Link hover state (blue-700) - Darker shade for :hover and :focus states. Provides visual feedback for interactive links, improving usability and accessibility.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/helpers/colored-links/"
+    },
+    {
+      "variant": "emphasis",
+      "state": "bold",
+      "size": "base",
+      "styles": {
+        "label": "Bold emphasis text for strong importance.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/bold}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Bold text with <strong>, <b>, or .fw-bold (700 weight) - Use for strong emphasis, important keywords, or content requiring immediate attention. Conveys importance through weight.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/text/#font-weight-and-italics"
+    },
+    {
+      "variant": "emphasis",
+      "state": "semibold",
+      "size": "base",
+      "styles": {
+        "label": "Semibold text for medium emphasis.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/semibold}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Semibold text with .fw-semibold (600 weight) - Medium emphasis between normal and bold. Use for subheadings within body text, labels, or moderate emphasis without full bold weight.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/text/#font-weight-and-italics"
+    },
+    {
+      "variant": "emphasis",
+      "state": "light",
+      "size": "base",
+      "styles": {
+        "label": "Light weight text for subtle de-emphasis.",
+        "fontSize": "{Typography/Base/fontSize/base}",
+        "fontWeight": "{Typography/Base/fontWeight/light}",
+        "lineHeight": "{Typography/Base/lineHeight/base}",
+        "text": "{Foundation/Light/semantic/body-color}"
+      },
+      "description": "Light text with .fw-light (300 weight) - Lighter weight for subtle de-emphasis or elegant typography. Use in lead paragraphs, display text, or content requiring refined appearance.",
+      "documentationLink": "https://getbootstrap.com/docs/5.3/utilities/text/#font-weight-and-italics"
+    }
+  ]
+}

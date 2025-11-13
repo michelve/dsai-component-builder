@@ -1,0 +1,113 @@
+{
+  "Spacing": {
+    "modes": {
+      "Base": {
+        "spacing": {
+          "0": {
+            "$value": 0,
+            "$type": "number",
+            "$description": "Spacing scale 0 - No spacing. Bootstrap's $spacer * 0 (0px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer * 0",
+                "cssClass": "m-0, p-0, g-0",
+                "remValue": "0rem"
+              }
+            }
+          },
+          "1": {
+            "$value": 4,
+            "$type": "number",
+            "$description": "Spacing scale 1 - Extra small spacing. Bootstrap's $spacer * 0.25 (4px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer * .25",
+                "cssClass": "m-1, p-1, g-1",
+                "remValue": "0.25rem"
+              }
+            }
+          },
+          "2": {
+            "$value": 8,
+            "$type": "number",
+            "$description": "Spacing scale 2 - Small spacing. Bootstrap's $spacer * 0.5 (8px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer * .5",
+                "cssClass": "m-2, p-2, g-2",
+                "remValue": "0.5rem"
+              }
+            }
+          },
+          "3": {
+            "$value": 16,
+            "$type": "number",
+            "$description": "Spacing scale 3 - Base spacing. Bootstrap's $spacer * 1 (16px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer",
+                "cssClass": "m-3, p-3, g-3",
+                "remValue": "1rem"
+              }
+            }
+          },
+          "4": {
+            "$value": 24,
+            "$type": "number",
+            "$description": "Spacing scale 4 - Medium spacing. Bootstrap's $spacer * 1.5 (24px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer * 1.5",
+                "cssClass": "m-4, p-4, g-4",
+                "remValue": "1.5rem"
+              }
+            }
+          },
+          "5": {
+            "$value": 48,
+            "$type": "number",
+            "$description": "Spacing scale 5 - Large spacing. Bootstrap's $spacer * 3 (48px).",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "scssVariableName": "$spacer * 3",
+                "cssClass": "m-5, p-5, g-5",
+                "remValue": "3rem"
+              }
+            }
+          },
+          "auto": {
+            "$value": "auto",
+            "$type": "string",
+            "$description": "Auto spacing - Used for centering with auto margins.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/utilities/spacing/"
+              },
+              "platform": {
+                "cssClass": "m-auto, mx-auto, my-auto"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

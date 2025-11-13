@@ -41,6 +41,39 @@ const VARIANT_CREATION_DELAY_MS = 500; // Delay between variant creation
 const PAGE_SWITCH_DELAY_MS = 500; // Delay after switching pages
 
 /**
+ * Style application error tracking
+ */
+interface StyleError {
+  property: string;
+  error: string;
+  variant?: string;
+}
+
+const styleErrors: StyleError[] = [];
+
+/**
+ * Helper function to track style application errors
+ * @param property - The style property that failed
+ * @param error - The error that occurred
+ * @param variant - Optional variant identifier
+ */
+function trackStyleError(property: string, error: unknown, variant?: string): void {
+  const errorMessage = error instanceof Error ? error.message : String(error);
+  styleErrors.push({ property, error: errorMessage, variant });
+  console.warn(`⚠️ Failed to apply ${property}${variant ? ` for ${variant}` : ''}:`, errorMessage);
+}
+
+/**
+ * Get and clear all tracked style errors
+ * @returns Array of style errors
+ */
+function getAndClearStyleErrors(): StyleError[] {
+  const errors = [...styleErrors];
+  styleErrors.length = 0;
+  return errors;
+}
+
+/**
  * Finds an existing page by name or creates a new one
  * 
  * This function ensures idempotent page creation - multiple runs will not create
@@ -309,15 +342,30 @@ export async function loadJSONAndCreateComponents(
       // Non-critical, continue
     }
 
+    // Check for style application errors and notify user
+    const errors = getAndClearStyleErrors();
+    if (errors.length > 0) {
+      const errorSummary = errors.slice(0, 3).map(e => e.property).join(', ');
+      const moreCount = errors.length > 3 ? ` +${errors.length - 3} more` : '';
+      figma.notify(`⚠️ Component created but some styles failed: ${errorSummary}${moreCount}. Check console for details.`, { 
+        timeout: 5000 
+      });
+      console.warn(`Style application errors (${errors.length} total):`, errors);
+    }
+
     return {
       success: true,
       componentsCreated: variants.length,
-      message: `Created component set "${componentName}" with ${variants.length} variants`
+      message: `Created component set "${componentName}" with ${variants.length} variants${errors.length > 0 ? ` (${errors.length} style warnings)` : ''}`
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error creating components:', error);
     figma.notify(`Error: ${errorMessage}`, { error: true });
+    
+    // Clear any tracked errors on failure
+    getAndClearStyleErrors();
+    
     return {
       success: false,
       error: errorMessage
@@ -651,7 +699,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
           right: styles.padding.right || '{Spacing/Base/spacing/3}'
         });
       } catch (error) {
-        console.warn('Failed to apply padding:', error);
+        trackStyleError('padding', error, component.name);
       }
     }
 
@@ -660,7 +708,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       try {
         await applyGapToken(component, styles.gap);
       } catch (error) {
-        console.warn('Failed to apply gap:', error);
+        trackStyleError('gap', error, component.name);
       }
     }
 
@@ -669,36 +717,18 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
     // Fills: Background color with variable binding support
     if (styles.fills) {
       try {
-        await applyFillToken(component, styles.fills, 0);
+        await applyFillToken(component, styles.fills, styles.fillsOpacity);
       } catch (error) {
-        console.warn('Failed to apply fills:', error);
-      }
-    }
-
-    // Fill opacity: Transparency for background (paint-level)
-    if (styles.fillsOpacity) {
-      try {
-        await applyNodeOpacity(component, styles.fillsOpacity, 'fills', 0);
-      } catch (error) {
-        console.warn('Failed to apply fill opacity:', error);
+        trackStyleError('fills', error, component.name);
       }
     }
 
     // Strokes: Border color with variable binding support
     if (styles.strokes) {
       try {
-        await applyStrokeToken(component, styles.strokes, 0);
+        await applyStrokeToken(component, styles.strokes, styles.strokesOpacity);
       } catch (error) {
-        console.warn('Failed to apply strokes:', error);
-      }
-    }
-
-    // Stroke opacity: Transparency for borders (paint-level)
-    if (styles.strokesOpacity) {
-      try {
-        await applyNodeOpacity(component, styles.strokesOpacity, 'strokes', 0);
-      } catch (error) {
-        console.warn('Failed to apply stroke opacity:', error);
+        trackStyleError('strokes', error, component.name);
       }
     }
 
@@ -707,7 +737,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       try {
         await applyNodeOpacity(component, styles.opacity);
       } catch (error) {
-        console.warn('Failed to apply node opacity:', error);
+        trackStyleError('opacity', error, component.name);
       }
     }
 
@@ -718,7 +748,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       try {
         await applyStrokeWeightToken(component, styles.strokeWeight);
       } catch (error) {
-        console.warn('Failed to apply stroke weight:', error);
+        trackStyleError('strokeWeight', error, component.name);
       }
     }
 
@@ -727,7 +757,7 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
       try {
         await applyRadiusToken(component, styles.radius);
       } catch (error) {
-        console.warn('Failed to apply radius:', error);
+        trackStyleError('radius', error, component.name);
       }
     }
   } catch (error) {
@@ -806,14 +836,8 @@ async function createStyledTextNode(styles: Style, size: string): Promise<TextNo
           textNode.resize(layoutConfig.width, textNode.height);
           console.log(`📐 Text width for auto-height: ${layoutConfig.width}`);
         }
-      } else if (autoResizeMode === "WIDTH" && layoutConfig.height) {
-        // WIDTH mode: optionally set height if provided (width auto-grows)
-        if (typeof layoutConfig.height === "number" && layoutConfig.height > 0) {
-          textNode.resize(textNode.width, layoutConfig.height);
-          console.log(`📐 Text height for auto-width: ${layoutConfig.height}`);
-        }
       }
-      // WIDTH_AND_HEIGHT or TRUNCATE: no dimensions needed, text auto-sizes
+      // WIDTH_AND_HEIGHT, TRUNCATE: no dimensions needed, text auto-sizes
     } catch (error) {
       console.warn('Failed to apply text layout:', error);
     }

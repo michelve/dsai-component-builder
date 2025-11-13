@@ -35,3 +35,7 @@ tokens/spacing.json
 typography-bootstrap.json
 checkbox-sample.json
 component-sample copy.json
+
+
+#Ignore cursor AI rules
+.cursor/rules/codacy.mdc

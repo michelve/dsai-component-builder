@@ -1,0 +1,351 @@
+{
+  "Layout": {
+    "modes": {
+      "Base": {
+        "breakpoints": {
+          "xs": {
+            "$value": 0,
+            "$type": "number",
+            "$description": "Extra small breakpoint for portrait phones (min-width: 0). Bootstrap's default mobile-first starting point.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.xs",
+                "mediaQuery": "No media query (default)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "sm": {
+            "$value": 576,
+            "$type": "number",
+            "$description": "Small breakpoint for landscape phones (≥576px). First responsive breakpoint in Bootstrap's mobile-first approach.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.sm",
+                "mediaQuery": "@media (min-width: 576px)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "md": {
+            "$value": 768,
+            "$type": "number",
+            "$description": "Medium breakpoint for tablets (≥768px). Common tablet viewport size for responsive layouts.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.md",
+                "mediaQuery": "@media (min-width: 768px)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "lg": {
+            "$value": 992,
+            "$type": "number",
+            "$description": "Large breakpoint for desktops (≥992px). Standard desktop viewport size for responsive web design.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.lg",
+                "mediaQuery": "@media (min-width: 992px)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "xl": {
+            "$value": 1200,
+            "$type": "number",
+            "$description": "Extra large breakpoint for large desktops (≥1200px). Wide desktop viewport for expansive layouts.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.xl",
+                "mediaQuery": "@media (min-width: 1200px)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "xxl": {
+            "$value": 1400,
+            "$type": "number",
+            "$description": "Extra extra large breakpoint for larger desktops (≥1400px). Widest default viewport for ultra-wide displays.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
+              },
+              "platform": {
+                "scssVariableName": "$grid-breakpoints.xxl",
+                "mediaQuery": "@media (min-width: 1400px)",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          }
+        },
+        "container": {
+          "max-width": {
+            "sm": {
+              "$value": 540,
+              "$type": "number",
+              "$description": "Maximum container width at small breakpoint (540px). Container width for landscape phones and small tablets.",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work"
+                },
+                "platform": {
+                  "scssVariableName": "$container-max-widths.sm",
+                  "cssClass": ".container",
+                  "lightMode": "true",
+                  "darkMode": "true"
+                }
+              }
+            },
+            "md": {
+              "$value": 720,
+              "$type": "number",
+              "$description": "Maximum container width at medium breakpoint (720px). Container width optimized for tablets.",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work"
+                },
+                "platform": {
+                  "scssVariableName": "$container-max-widths.md",
+                  "cssClass": ".container",
+                  "lightMode": "true",
+                  "darkMode": "true"
+                }
+              }
+            },
+            "lg": {
+              "$value": 960,
+              "$type": "number",
+              "$description": "Maximum container width at large breakpoint (960px). Standard desktop container width.",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work"
+                },
+                "platform": {
+                  "scssVariableName": "$container-max-widths.lg",
+                  "cssClass": ".container",
+                  "lightMode": "true",
+                  "darkMode": "true"
+                }
+              }
+            },
+            "xl": {
+              "$value": 1140,
+              "$type": "number",
+              "$description": "Maximum container width at extra large breakpoint (1140px). Wide desktop container width.",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work"
+                },
+                "platform": {
+                  "scssVariableName": "$container-max-widths.xl",
+                  "cssClass": ".container",
+                  "lightMode": "true",
+                  "darkMode": "true"
+                }
+              }
+            },
+            "xxl": {
+              "$value": 1320,
+              "$type": "number",
+              "$description": "Maximum container width at extra extra large breakpoint (1320px). Widest container for ultra-wide displays.",
+              "$extensions": {
+                "docs": {
+                  "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#how-they-work"
+                },
+                "platform": {
+                  "scssVariableName": "$container-max-widths.xxl",
+                  "cssClass": ".container",
+                  "lightMode": "true",
+                  "darkMode": "true"
+                }
+              }
+            }
+          },
+          "padding-x": {
+            "$value": 12,
+            "$type": "number",
+            "$description": "Horizontal padding for containers (12px left and right). Applied by the make-container mixin for content spacing.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/containers/#sass-mixins"
+              },
+              "platform": {
+                "scssVariableName": "$container-padding-x",
+                "cssClass": ".container",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          }
+        },
+        "grid": {
+          "columns": {
+            "$value": 12,
+            "$type": "number",
+            "$description": "Number of columns in Bootstrap's grid system (12). Provides flexible layout options with divisible column counts.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/grid/#sass-variables"
+              },
+              "platform": {
+                "scssVariableName": "$grid-columns",
+                "cssClass": ".row > .col-*",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "gutter-width": {
+            "$value": 24,
+            "$type": "number",
+            "$description": "Default gutter width between grid columns (1.5rem = 24px). Horizontal padding creating space between columns.",
+            "$codeSyntax": {
+              "WEB": "--bs-gutter-x"
+            },
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/grid/#sass-variables"
+              },
+              "platform": {
+                "scssVariableName": "$grid-gutter-width",
+                "cssClass": ".row",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "row-columns": {
+            "$value": 6,
+            "$type": "number",
+            "$description": "Maximum number of columns for .row-cols-* classes (6). Sets the limit for auto-layout row columns.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/grid/#row-columns"
+              },
+              "platform": {
+                "scssVariableName": "$grid-row-columns",
+                "cssClass": ".row-cols-*",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          }
+        },
+        "gutters": {
+          "0": {
+            "$value": 0,
+            "$type": "number",
+            "$description": "No gutter spacing (0). Removes all spacing between columns with .g-0 class.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-0, .gx-0, .gy-0",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "1": {
+            "$value": 4,
+            "$type": "number",
+            "$description": "Extra small gutter spacing (0.25rem = 4px). Minimal spacing for tightly packed layouts.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-1, .gx-1, .gy-1",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "2": {
+            "$value": 8,
+            "$type": "number",
+            "$description": "Small gutter spacing (0.5rem = 8px). Compact spacing between columns.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-2, .gx-2, .gy-2",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "3": {
+            "$value": 16,
+            "$type": "number",
+            "$description": "Medium gutter spacing (1rem = 16px). Standard spacing for moderate column separation.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-3, .gx-3, .gy-3",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "4": {
+            "$value": 24,
+            "$type": "number",
+            "$description": "Default gutter spacing (1.5rem = 24px). Bootstrap's standard gutter width matching $grid-gutter-width.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-4, .gx-4, .gy-4",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          },
+          "5": {
+            "$value": 48,
+            "$type": "number",
+            "$description": "Large gutter spacing (3rem = 48px). Wide spacing for prominent column separation.",
+            "$extensions": {
+              "docs": {
+                "reference": "https://getbootstrap.com/docs/5.3/layout/gutters/"
+              },
+              "platform": {
+                "cssClass": ".g-5, .gx-5, .gy-5",
+                "lightMode": "true",
+                "darkMode": "true"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
