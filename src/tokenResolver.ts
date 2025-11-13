@@ -1217,6 +1217,307 @@ export function applyTextAutoResize(
   console.log(`📏 Text auto-resize: ${mode}`);
 }
 
+// ============================================
+// ADDITIONAL SCOPE SUPPORT (TEXT_CONTENT, WIDTH_HEIGHT, EFFECTS, FONT_STYLE)
+// ============================================
 
+/**
+ * Apply text content token (TEXT_CONTENT scope)
+ * Allows dynamic text controlled by variables
+ */
+export async function applyTextContentToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Text content token: ${tokenRef}`);
+  
+  // For string tokens, we need to resolve as a string variable
+  const tokenName = extractTokenName(tokenRef);
+  const variable = await findVariableByName(tokenName);
+  
+  if (variable) {
+    try {
+      // Load the current font before changing text
+      await figma.loadFontAsync(node.fontName as FontName);
+      
+      // Bind the variable to the characters property
+      node.setBoundVariable('characters', variable);
+      console.log(`🔗 Bound text content variable: ${variable.name}`);
+    } catch (error) {
+      console.warn(`⚠️ Could not bind text content variable:`, error);
+    }
+  } else {
+    console.warn(`⚠️ Text content variable not found: ${tokenName}`);
+  }
+}
+
+/**
+ * Apply width token (WIDTH_HEIGHT scope)
+ * Allows node width to be controlled by variables
+ */
+export async function applyWidthToken(
+  node: SceneNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Width token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 100);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable && 'resize' in node) {
+      try {
+        node.setBoundVariable('width', variable);
+        console.log(`🔗 Bound width variable: ${variable.name}`);
+      } catch (error) {
+        console.warn(`⚠️ Could not bind width variable:`, error);
+      }
+    }
+  } else {
+    if ('resize' in node) {
+      const width = mapping.fallbackValue as number || 100;
+      node.resize(width, node.height);
+      console.log(`⚠️ Using fallback width: ${width}`);
+    }
+  }
+}
+
+/**
+ * Apply height token (WIDTH_HEIGHT scope)
+ * Allows node height to be controlled by variables
+ */
+export async function applyHeightToken(
+  node: SceneNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Height token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 100);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable && 'resize' in node) {
+      try {
+        node.setBoundVariable('height', variable);
+        console.log(`🔗 Bound height variable: ${variable.name}`);
+      } catch (error) {
+        console.warn(`⚠️ Could not bind height variable:`, error);
+      }
+    }
+  } else {
+    if ('resize' in node) {
+      const height = mapping.fallbackValue as number || 100;
+      node.resize(node.width, height);
+      console.log(`⚠️ Using fallback height: ${height}`);
+    }
+  }
+}
+
+/**
+ * Apply paragraph indent token (PARAGRAPH_INDENT scope)
+ * Controls first line indent for paragraphs
+ */
+export async function applyParagraphIndentToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Paragraph indent token: ${tokenRef}`);
+  const mapping = await resolveDimensionToken(tokenRef, 0);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    if (variable) {
+      try {
+        node.setBoundVariable('paragraphIndent', variable);
+        console.log(`🔗 Bound paragraphIndent variable: ${variable.name}`);
+      } catch (error) {
+        console.warn(`⚠️ Could not bind paragraphIndent variable:`, error);
+      }
+    }
+  } else {
+    node.paragraphIndent = mapping.fallbackValue as number || 0;
+    console.log(`⚠️ Using fallback paragraphIndent: ${mapping.fallbackValue}`);
+  }
+}
+
+/**
+ * Apply font style token (FONT_STYLE scope)
+ * Allows font style (Regular, Italic, Bold, etc.) to be controlled by variables
+ */
+export async function applyFontStyleToken(
+  node: TextNode,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Font style token: ${tokenRef}`);
+  
+  // Font style is a string variable
+  const tokenName = extractTokenName(tokenRef);
+  const variable = await findVariableByName(tokenName);
+  
+  if (variable) {
+    try {
+      // Get current font family
+      const currentFont = node.fontName as FontName;
+      const fontFamily = currentFont !== figma.mixed ? currentFont.family : 'Inter';
+      
+      // Get the variable's value to determine the style
+      const modeId = Object.keys(variable.valuesByMode)[0];
+      const styleValue = variable.valuesByMode[modeId];
+      const fontStyle = typeof styleValue === 'string' ? styleValue : 'Regular';
+      
+      // Load the font with the new style
+      await figma.loadFontAsync({ family: fontFamily, style: fontStyle });
+      
+      // Bind the variable
+      node.setBoundVariable('fontStyle', variable);
+      console.log(`🔗 Bound fontStyle variable: ${variable.name}`);
+    } catch (error) {
+      console.warn(`⚠️ Could not bind fontStyle variable:`, error);
+    }
+  } else {
+    console.warn(`⚠️ Font style variable not found: ${tokenName}`);
+  }
+}
+
+/**
+ * Apply effect color token (EFFECT_COLOR scope)
+ * Binds a color variable to an effect (shadow, blur, etc.)
+ * 
+ * Note: This requires the effect to already exist on the node
+ */
+export async function applyEffectColorToken(
+  node: SceneNode & BlendMixin,
+  effectIndex: number,
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Effect color token: ${tokenRef} (effect index: ${effectIndex})`);
+  
+  if (!('effects' in node) || !node.effects || node.effects.length <= effectIndex) {
+    console.warn(`⚠️ Node has no effect at index ${effectIndex}`);
+    return;
+  }
+  
+  const mapping = await resolveColorToken(tokenRef);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    
+    if (variable) {
+      try {
+        const effect = node.effects[effectIndex];
+        
+        // Use setBoundVariableForEffect for color binding
+        if ('color' in effect) {
+          const updatedEffect = figma.variables.setBoundVariableForEffect(
+            effect,
+            'color',
+            variable
+          );
+          
+          // Replace the effect
+          const effects = [...node.effects];
+          effects[effectIndex] = updatedEffect;
+          node.effects = effects;
+          
+          console.log(`🔗 Bound effect color variable: ${variable.name}`);
+        }
+      } catch (error) {
+        console.warn(`⚠️ Could not bind effect color variable:`, error);
+      }
+    }
+  } else if (mapping.fallbackValue) {
+    // Fallback: apply color directly
+    const color = mapping.fallbackValue as ResolvedColor;
+    const effects = [...node.effects];
+    const effect = effects[effectIndex];
+    
+    if ('color' in effect) {
+      (effect as any).color = color;
+      node.effects = effects;
+      console.log(`⚠️ Using fallback effect color`);
+    }
+  }
+}
+
+/**
+ * Apply effect intensity token (EFFECT_FLOAT scope)
+ * Binds a number variable to an effect's intensity (radius, spread, etc.)
+ * 
+ * Note: This requires the effect to already exist on the node
+ */
+export async function applyEffectIntensityToken(
+  node: SceneNode & BlendMixin,
+  effectIndex: number,
+  property: 'radius' | 'spread' | 'offsetX' | 'offsetY',
+  tokenRef: TokenReference
+): Promise<void> {
+  console.log(`🔍 Effect ${property} token: ${tokenRef} (effect index: ${effectIndex})`);
+  
+  if (!('effects' in node) || !node.effects || node.effects.length <= effectIndex) {
+    console.warn(`⚠️ Node has no effect at index ${effectIndex}`);
+    return;
+  }
+  
+  const mapping = await resolveDimensionToken(tokenRef, 0);
+  
+  if (mapping.found && mapping.variableId) {
+    const variable = await figma.variables.getVariableByIdAsync(mapping.variableId);
+    
+    if (variable) {
+      try {
+        const effect = node.effects[effectIndex];
+        
+        // Use setBoundVariableForEffect for intensity binding
+        if (property in effect) {
+          const updatedEffect = figma.variables.setBoundVariableForEffect(
+            effect,
+            property,
+            variable
+          );
+          
+          // Replace the effect
+          const effects = [...node.effects];
+          effects[effectIndex] = updatedEffect;
+          node.effects = effects;
+          
+          console.log(`🔗 Bound effect ${property} variable: ${variable.name}`);
+        }
+      } catch (error) {
+        console.warn(`⚠️ Could not bind effect ${property} variable:`, error);
+      }
+    }
+  } else {
+    // Fallback: apply value directly
+    const value = mapping.fallbackValue as number || 0;
+    const effects = [...node.effects];
+    const effect = effects[effectIndex];
+    
+    if (property in effect) {
+      (effect as any)[property] = value;
+      node.effects = effects;
+      console.log(`⚠️ Using fallback effect ${property}: ${value}`);
+    }
+  }
+}
+
+/**
+ * Apply specific fill type tokens (FRAME_FILL, SHAPE_FILL scope)
+ * These are more specific versions of ALL_FILLS
+ * 
+ * Note: Currently, we use ALL_FILLS for all fill types, but this function
+ * exists for future granular control if needed
+ */
+export async function applySpecificFillToken(
+  node: SceneNode & MinimalFillsMixin,
+  fillType: 'FRAME_FILL' | 'SHAPE_FILL',
+  tokenRef: TokenReference,
+  opacityRef?: TokenReference
+): Promise<void> {
+  console.log(`🔍 ${fillType} token: ${tokenRef}`);
+  
+  // For now, delegate to the existing applyFillToken
+  // In the future, we could add type-specific logic here
+  await applyFillToken(node, tokenRef, opacityRef);
+  
+  console.log(`✅ Applied ${fillType} (using ALL_FILLS implementation)`);
+}
 
 

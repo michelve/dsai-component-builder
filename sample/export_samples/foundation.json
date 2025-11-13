@@ -22,7 +22,10 @@
                     "scssVariableName": "$blue-100",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#AECCF3",
@@ -38,7 +41,10 @@
                   "platform": {
                     "scssVariableName": "$blue-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#86B3ED",
@@ -54,7 +60,10 @@
                   "platform": {
                     "scssVariableName": "$blue-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#5D99E7",
@@ -70,7 +79,10 @@
                   "platform": {
                     "scssVariableName": "$blue-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0A58CA",
@@ -87,7 +99,10 @@
                     "scssVariableName": "$blue",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#084298",
@@ -104,7 +119,10 @@
                     "scssVariableName": "$blue-600",
                     "useCase": "hover"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#063166",
@@ -121,7 +139,10 @@
                     "scssVariableName": "$blue-700",
                     "useCase": "active"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#042144",
@@ -137,7 +158,10 @@
                   "platform": {
                     "scssVariableName": "$blue-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#021022",
@@ -153,7 +177,10 @@
                   "platform": {
                     "scssVariableName": "$blue-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#010811",
@@ -169,7 +196,10 @@
                   "platform": {
                     "scssVariableName": "$blue-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#EBF3FC",
@@ -188,7 +218,10 @@
                     "scssVariableName": "$blue-50",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "indigo": {
@@ -206,7 +239,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c29ffa",
@@ -222,7 +258,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a370f7",
@@ -238,7 +277,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8540f5",
@@ -254,7 +296,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6610f2",
@@ -271,7 +316,10 @@
                     "scssVariableName": "$indigo",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#520dc2",
@@ -287,7 +335,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#3d0a91",
@@ -303,7 +354,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#290661",
@@ -319,7 +373,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#140330",
@@ -335,7 +392,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#F0EBFF",
@@ -351,7 +411,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#0A0416",
@@ -367,7 +430,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "purple": {
@@ -385,7 +451,10 @@
                   "platform": {
                     "scssVariableName": "$purple-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#B39FEA",
@@ -401,7 +470,10 @@
                   "platform": {
                     "scssVariableName": "$purple-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#957FE3",
@@ -417,7 +489,10 @@
                   "platform": {
                     "scssVariableName": "$purple-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#775FDC",
@@ -433,7 +508,10 @@
                   "platform": {
                     "scssVariableName": "$purple-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#432874",
@@ -450,7 +528,10 @@
                     "scssVariableName": "$purple",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#2C1A4D",
@@ -466,7 +547,10 @@
                   "platform": {
                     "scssVariableName": "$purple-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#1F1335",
@@ -482,7 +566,10 @@
                   "platform": {
                     "scssVariableName": "$purple-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#160D27",
@@ -498,7 +585,10 @@
                   "platform": {
                     "scssVariableName": "$purple-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#0A0613",
@@ -514,7 +604,10 @@
                   "platform": {
                     "scssVariableName": "$purple-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#0A0613",
@@ -530,7 +623,10 @@
                   "platform": {
                     "scssVariableName": "$purple-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#E8DFF8",
@@ -546,7 +642,10 @@
                   "platform": {
                     "scssVariableName": "$purple-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "pink": {
@@ -564,7 +663,10 @@
                   "platform": {
                     "scssVariableName": "$pink-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#efadce",
@@ -580,7 +682,10 @@
                   "platform": {
                     "scssVariableName": "$pink-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#e685b5",
@@ -596,7 +701,10 @@
                   "platform": {
                     "scssVariableName": "$pink-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#de5c9d",
@@ -612,7 +720,10 @@
                   "platform": {
                     "scssVariableName": "$pink-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#d63384",
@@ -629,7 +740,10 @@
                     "scssVariableName": "$pink",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ab296a",
@@ -645,7 +759,10 @@
                   "platform": {
                     "scssVariableName": "$pink-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#801f4f",
@@ -661,7 +778,10 @@
                   "platform": {
                     "scssVariableName": "$pink-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#561435",
@@ -677,7 +797,10 @@
                   "platform": {
                     "scssVariableName": "$pink-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2b0a1a",
@@ -693,7 +816,10 @@
                   "platform": {
                     "scssVariableName": "$pink-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#FCE4EC",
@@ -709,7 +835,10 @@
                   "platform": {
                     "scssVariableName": "$pink-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#2B0A1A",
@@ -725,7 +854,10 @@
                   "platform": {
                     "scssVariableName": "$pink-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "red": {
@@ -743,7 +875,10 @@
                   "platform": {
                     "scssVariableName": "$red-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#E1ADBA",
@@ -759,7 +894,10 @@
                   "platform": {
                     "scssVariableName": "$red-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#D792A3",
@@ -775,7 +913,10 @@
                   "platform": {
                     "scssVariableName": "$red-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#CD7691",
@@ -791,7 +932,10 @@
                   "platform": {
                     "scssVariableName": "$red-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#842029",
@@ -808,7 +952,10 @@
                     "scssVariableName": "$red",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#6B1A22",
@@ -824,7 +971,10 @@
                   "platform": {
                     "scssVariableName": "$red-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#58151C",
@@ -840,7 +990,10 @@
                   "platform": {
                     "scssVariableName": "$red-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#3D0F14",
@@ -856,7 +1009,10 @@
                   "platform": {
                     "scssVariableName": "$red-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2C0B0E",
@@ -872,7 +1028,10 @@
                   "platform": {
                     "scssVariableName": "$red-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#2C0B0E",
@@ -888,7 +1047,10 @@
                   "platform": {
                     "scssVariableName": "$red-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#F5E4E8",
@@ -904,7 +1066,10 @@
                   "platform": {
                     "scssVariableName": "$red-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "orange": {
@@ -922,7 +1087,10 @@
                   "platform": {
                     "scssVariableName": "$orange-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#fecba1",
@@ -938,7 +1106,10 @@
                   "platform": {
                     "scssVariableName": "$orange-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#feb272",
@@ -954,7 +1125,10 @@
                   "platform": {
                     "scssVariableName": "$orange-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#fd9843",
@@ -970,7 +1144,10 @@
                   "platform": {
                     "scssVariableName": "$orange-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#fd7e14",
@@ -987,7 +1164,10 @@
                     "scssVariableName": "$orange",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ca6510",
@@ -1003,7 +1183,10 @@
                   "platform": {
                     "scssVariableName": "$orange-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#984c0c",
@@ -1019,7 +1202,10 @@
                   "platform": {
                     "scssVariableName": "$orange-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#653208",
@@ -1035,7 +1221,10 @@
                   "platform": {
                     "scssVariableName": "$orange-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#331904",
@@ -1051,7 +1240,10 @@
                   "platform": {
                     "scssVariableName": "$orange-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#FFF4E5",
@@ -1067,7 +1259,10 @@
                   "platform": {
                     "scssVariableName": "$orange-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#331904",
@@ -1083,7 +1278,10 @@
                   "platform": {
                     "scssVariableName": "$orange-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "yellow": {
@@ -1101,7 +1299,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#FCD34D",
@@ -1117,7 +1318,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#FBBF24",
@@ -1133,7 +1337,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#F59E0B",
@@ -1149,7 +1356,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#F59E0B",
@@ -1166,7 +1376,10 @@
                     "scssVariableName": "$yellow",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#D97706",
@@ -1182,7 +1395,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#92400E",
@@ -1198,7 +1414,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#78350F",
@@ -1214,7 +1433,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#451A03",
@@ -1230,7 +1452,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#451A03",
@@ -1246,7 +1471,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#FFFAEB",
@@ -1262,7 +1490,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "green": {
@@ -1280,7 +1511,10 @@
                   "platform": {
                     "scssVariableName": "$green-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#8DD2BD",
@@ -1296,7 +1530,10 @@
                   "platform": {
                     "scssVariableName": "$green-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#67C3A7",
@@ -1312,7 +1549,10 @@
                   "platform": {
                     "scssVariableName": "$green-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#41B491",
@@ -1328,7 +1568,10 @@
                   "platform": {
                     "scssVariableName": "$green-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0F5132",
@@ -1345,7 +1588,10 @@
                     "scssVariableName": "$green",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0C4229",
@@ -1361,7 +1607,10 @@
                   "platform": {
                     "scssVariableName": "$green-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#0A3622",
@@ -1377,7 +1626,10 @@
                   "platform": {
                     "scssVariableName": "$green-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#062419",
@@ -1393,7 +1645,10 @@
                   "platform": {
                     "scssVariableName": "$green-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#041B0F",
@@ -1409,7 +1664,10 @@
                   "platform": {
                     "scssVariableName": "$green-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#041B0F",
@@ -1425,7 +1683,10 @@
                   "platform": {
                     "scssVariableName": "$green-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#D9F0E9",
@@ -1441,7 +1702,10 @@
                   "platform": {
                     "scssVariableName": "$green-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "teal": {
@@ -1459,7 +1723,10 @@
                   "platform": {
                     "scssVariableName": "$teal-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a6e9d5",
@@ -1475,7 +1742,10 @@
                   "platform": {
                     "scssVariableName": "$teal-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#79dfc1",
@@ -1491,7 +1761,10 @@
                   "platform": {
                     "scssVariableName": "$teal-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#4dd4ac",
@@ -1507,7 +1780,10 @@
                   "platform": {
                     "scssVariableName": "$teal-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#20c997",
@@ -1524,7 +1800,10 @@
                     "scssVariableName": "$teal",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#1aa179",
@@ -1540,7 +1819,10 @@
                   "platform": {
                     "scssVariableName": "$teal-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#13795b",
@@ -1556,7 +1838,10 @@
                   "platform": {
                     "scssVariableName": "$teal-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0d503c",
@@ -1572,7 +1857,10 @@
                   "platform": {
                     "scssVariableName": "$teal-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#06281e",
@@ -1588,7 +1876,10 @@
                   "platform": {
                     "scssVariableName": "$teal-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#E0F2F1",
@@ -1604,7 +1895,10 @@
                   "platform": {
                     "scssVariableName": "$teal-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#06281E",
@@ -1620,7 +1914,10 @@
                   "platform": {
                     "scssVariableName": "$teal-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "cyan": {
@@ -1638,7 +1935,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#80DEEA",
@@ -1654,7 +1954,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#4DD0E1",
@@ -1670,7 +1973,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#26C6DA",
@@ -1686,7 +1992,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#087990",
@@ -1703,7 +2012,10 @@
                     "scssVariableName": "$cyan",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#066570",
@@ -1719,7 +2031,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#055160",
@@ -1735,7 +2050,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#033A40",
@@ -1751,7 +2069,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#012320",
@@ -1767,7 +2088,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#012320",
@@ -1783,7 +2107,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#E0F7FA",
@@ -1799,7 +2126,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "gray": {
@@ -1817,7 +2147,10 @@
                   "platform": {
                     "scssVariableName": "$gray-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#E8EAED",
@@ -1833,7 +2166,10 @@
                   "platform": {
                     "scssVariableName": "$gray-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#DFE1E5",
@@ -1849,7 +2185,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#CBCED3",
@@ -1865,7 +2204,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#A8ADB7",
@@ -1881,7 +2223,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#7A7F87",
@@ -1897,7 +2242,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#495057",
@@ -1913,7 +2261,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#343A40",
@@ -1929,7 +2280,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#212529",
@@ -1945,7 +2299,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#0A0D10",
@@ -1961,7 +2318,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#FAFBFC",
@@ -1977,7 +2337,10 @@
                   "platform": {
                     "scssVariableName": "$gray-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -1996,7 +2359,10 @@
                 "platform": {
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "#0A0D10",
@@ -2012,7 +2378,10 @@
                 "platform": {
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "gray": {
               "100": {
@@ -2069,7 +2438,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "{colors.brand.gray.400}",
@@ -2085,7 +2457,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "{colors.brand.gray.500}",
@@ -2101,7 +2476,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "{colors.brand.gray.600}",
@@ -2117,7 +2495,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "{colors.brand.gray.700}",
@@ -2133,7 +2514,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "{colors.brand.gray.800}",
@@ -2149,7 +2533,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "{colors.brand.gray.900}",
@@ -2165,7 +2552,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -2228,7 +2618,10 @@
                 "platform": {
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.blue.500}",
@@ -2244,7 +2637,10 @@
                 "platform": {
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -2260,7 +2656,10 @@
                 "platform": {
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -2276,7 +2675,10 @@
                 "platform": {
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -2292,7 +2694,10 @@
                 "platform": {
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -2308,7 +2713,10 @@
                 "platform": {
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "background": {
@@ -3285,7 +3693,10 @@
                     "scssVariableName": "$blue-100",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9ec5fe",
@@ -3301,7 +3712,10 @@
                   "platform": {
                     "scssVariableName": "$blue-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6ea8fe",
@@ -3317,7 +3731,10 @@
                   "platform": {
                     "scssVariableName": "$blue-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3d8bfd",
@@ -3333,7 +3750,10 @@
                   "platform": {
                     "scssVariableName": "$blue-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0d6efd",
@@ -3350,7 +3770,10 @@
                     "scssVariableName": "$blue",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0a58ca",
@@ -3367,7 +3790,10 @@
                     "scssVariableName": "$blue-600",
                     "useCase": "hover"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#084298",
@@ -3384,7 +3810,10 @@
                     "scssVariableName": "$blue-700",
                     "useCase": "active"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#052c65",
@@ -3400,7 +3829,10 @@
                   "platform": {
                     "scssVariableName": "$blue-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#031633",
@@ -3416,7 +3848,10 @@
                   "platform": {
                     "scssVariableName": "$blue-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#E0EDFB",
@@ -3432,7 +3867,10 @@
                   "platform": {
                     "scssVariableName": "$blue-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#010811",
@@ -3451,7 +3889,10 @@
                     "scssVariableName": "$blue-50",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "indigo": {
@@ -3469,7 +3910,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c29ffa",
@@ -3485,7 +3929,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a370f7",
@@ -3501,7 +3948,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8540f5",
@@ -3517,7 +3967,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6610f2",
@@ -3534,7 +3987,10 @@
                     "scssVariableName": "$indigo",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#520dc2",
@@ -3550,7 +4006,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#3d0a91",
@@ -3566,7 +4025,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#290661",
@@ -3582,7 +4044,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#140330",
@@ -3598,7 +4063,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#EDE8FF",
@@ -3614,7 +4082,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#0A0416",
@@ -3630,7 +4101,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "purple": {
@@ -3648,7 +4122,10 @@
                   "platform": {
                     "scssVariableName": "$purple-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c5b3e6",
@@ -3664,7 +4141,10 @@
                   "platform": {
                     "scssVariableName": "$purple-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a98eda",
@@ -3680,7 +4160,10 @@
                   "platform": {
                     "scssVariableName": "$purple-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8c68cd",
@@ -3696,7 +4179,10 @@
                   "platform": {
                     "scssVariableName": "$purple-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6f42c1",
@@ -3713,7 +4199,10 @@
                     "scssVariableName": "$purple",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#59359a",
@@ -3729,7 +4218,10 @@
                   "platform": {
                     "scssVariableName": "$purple-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#432874",
@@ -3745,7 +4237,10 @@
                   "platform": {
                     "scssVariableName": "$purple-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#2c1a4d",
@@ -3761,7 +4256,10 @@
                   "platform": {
                     "scssVariableName": "$purple-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#160d27",
@@ -3777,7 +4275,10 @@
                   "platform": {
                     "scssVariableName": "$purple-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#F0E8F8",
@@ -3793,7 +4294,10 @@
                   "platform": {
                     "scssVariableName": "$purple-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#0A0613",
@@ -3809,7 +4313,10 @@
                   "platform": {
                     "scssVariableName": "$purple-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "pink": {
@@ -3827,7 +4334,10 @@
                   "platform": {
                     "scssVariableName": "$pink-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#efadce",
@@ -3843,7 +4353,10 @@
                   "platform": {
                     "scssVariableName": "$pink-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#e685b5",
@@ -3859,7 +4372,10 @@
                   "platform": {
                     "scssVariableName": "$pink-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#de5c9d",
@@ -3875,7 +4391,10 @@
                   "platform": {
                     "scssVariableName": "$pink-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#d63384",
@@ -3892,7 +4411,10 @@
                     "scssVariableName": "$pink",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ab296a",
@@ -3908,7 +4430,10 @@
                   "platform": {
                     "scssVariableName": "$pink-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#801f4f",
@@ -3924,7 +4449,10 @@
                   "platform": {
                     "scssVariableName": "$pink-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#561435",
@@ -3940,7 +4468,10 @@
                   "platform": {
                     "scssVariableName": "$pink-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2b0a1a",
@@ -3956,7 +4487,10 @@
                   "platform": {
                     "scssVariableName": "$pink-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#FCE4EC",
@@ -3972,7 +4506,10 @@
                   "platform": {
                     "scssVariableName": "$pink-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#2B0A1A",
@@ -3988,7 +4525,10 @@
                   "platform": {
                     "scssVariableName": "$pink-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "red": {
@@ -4006,7 +4546,10 @@
                   "platform": {
                     "scssVariableName": "$red-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#f1aeb5",
@@ -4022,7 +4565,10 @@
                   "platform": {
                     "scssVariableName": "$red-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ea868f",
@@ -4038,7 +4584,10 @@
                   "platform": {
                     "scssVariableName": "$red-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#e35d6a",
@@ -4054,7 +4603,10 @@
                   "platform": {
                     "scssVariableName": "$red-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#dc3545",
@@ -4071,7 +4623,10 @@
                     "scssVariableName": "$red",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#b02a37",
@@ -4087,7 +4642,10 @@
                   "platform": {
                     "scssVariableName": "$red-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#842029",
@@ -4103,7 +4661,10 @@
                   "platform": {
                     "scssVariableName": "$red-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#58151c",
@@ -4119,7 +4680,10 @@
                   "platform": {
                     "scssVariableName": "$red-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2c0b0e",
@@ -4135,7 +4699,10 @@
                   "platform": {
                     "scssVariableName": "$red-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#FAEBEC",
@@ -4151,7 +4718,10 @@
                   "platform": {
                     "scssVariableName": "$red-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#2C0B0E",
@@ -4167,7 +4737,10 @@
                   "platform": {
                     "scssVariableName": "$red-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "orange": {
@@ -4185,7 +4758,10 @@
                   "platform": {
                     "scssVariableName": "$orange-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#fecba1",
@@ -4201,7 +4777,10 @@
                   "platform": {
                     "scssVariableName": "$orange-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#feb272",
@@ -4217,7 +4796,10 @@
                   "platform": {
                     "scssVariableName": "$orange-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#fd9843",
@@ -4233,7 +4815,10 @@
                   "platform": {
                     "scssVariableName": "$orange-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#fd7e14",
@@ -4250,7 +4835,10 @@
                     "scssVariableName": "$orange",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ca6510",
@@ -4266,7 +4854,10 @@
                   "platform": {
                     "scssVariableName": "$orange-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#984c0c",
@@ -4282,7 +4873,10 @@
                   "platform": {
                     "scssVariableName": "$orange-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#653208",
@@ -4298,7 +4892,10 @@
                   "platform": {
                     "scssVariableName": "$orange-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#331904",
@@ -4314,7 +4911,10 @@
                   "platform": {
                     "scssVariableName": "$orange-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#FFF4E5",
@@ -4330,7 +4930,10 @@
                   "platform": {
                     "scssVariableName": "$orange-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#331904",
@@ -4346,7 +4949,10 @@
                   "platform": {
                     "scssVariableName": "$orange-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "yellow": {
@@ -4364,7 +4970,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#ffe69c",
@@ -4380,7 +4989,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ffda6a",
@@ -4396,7 +5008,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ffcd39",
@@ -4412,7 +5027,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#ffc107",
@@ -4429,7 +5047,10 @@
                     "scssVariableName": "$yellow",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#cc9a06",
@@ -4445,7 +5066,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#997404",
@@ -4461,7 +5085,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#664d03",
@@ -4477,7 +5104,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#332701",
@@ -4493,7 +5123,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#FFFAEB",
@@ -4509,7 +5142,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#451A03",
@@ -4525,7 +5161,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "green": {
@@ -4543,7 +5182,10 @@
                   "platform": {
                     "scssVariableName": "$green-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a3cfbb",
@@ -4559,7 +5201,10 @@
                   "platform": {
                     "scssVariableName": "$green-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#75b798",
@@ -4575,7 +5220,10 @@
                   "platform": {
                     "scssVariableName": "$green-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#479f76",
@@ -4591,7 +5239,10 @@
                   "platform": {
                     "scssVariableName": "$green-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#198754",
@@ -4608,7 +5259,10 @@
                     "scssVariableName": "$green",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#146c43",
@@ -4624,7 +5278,10 @@
                   "platform": {
                     "scssVariableName": "$green-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#0f5132",
@@ -4640,7 +5297,10 @@
                   "platform": {
                     "scssVariableName": "$green-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0a3622",
@@ -4656,7 +5316,10 @@
                   "platform": {
                     "scssVariableName": "$green-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#051b11",
@@ -4672,7 +5335,10 @@
                   "platform": {
                     "scssVariableName": "$green-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#E0F2E9",
@@ -4688,7 +5354,10 @@
                   "platform": {
                     "scssVariableName": "$green-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#041B0F",
@@ -4704,7 +5373,10 @@
                   "platform": {
                     "scssVariableName": "$green-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "teal": {
@@ -4722,7 +5394,10 @@
                   "platform": {
                     "scssVariableName": "$teal-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a6e9d5",
@@ -4738,7 +5413,10 @@
                   "platform": {
                     "scssVariableName": "$teal-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#79dfc1",
@@ -4754,7 +5432,10 @@
                   "platform": {
                     "scssVariableName": "$teal-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#4dd4ac",
@@ -4770,7 +5451,10 @@
                   "platform": {
                     "scssVariableName": "$teal-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#20c997",
@@ -4787,7 +5471,10 @@
                     "scssVariableName": "$teal",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#1aa179",
@@ -4803,7 +5490,10 @@
                   "platform": {
                     "scssVariableName": "$teal-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#13795b",
@@ -4819,7 +5509,10 @@
                   "platform": {
                     "scssVariableName": "$teal-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0d503c",
@@ -4835,7 +5528,10 @@
                   "platform": {
                     "scssVariableName": "$teal-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#06281e",
@@ -4851,7 +5547,10 @@
                   "platform": {
                     "scssVariableName": "$teal-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#E0F2F1",
@@ -4867,7 +5566,10 @@
                   "platform": {
                     "scssVariableName": "$teal-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#06281E",
@@ -4883,7 +5585,10 @@
                   "platform": {
                     "scssVariableName": "$teal-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "cyan": {
@@ -4901,7 +5606,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9eeaf9",
@@ -4917,7 +5625,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6edff6",
@@ -4933,7 +5644,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3dd5f3",
@@ -4949,7 +5663,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0dcaf0",
@@ -4966,7 +5683,10 @@
                     "scssVariableName": "$cyan",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0aa2c0",
@@ -4982,7 +5702,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#087990",
@@ -4998,7 +5721,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#055160",
@@ -5014,7 +5740,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#032830",
@@ -5030,7 +5759,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#E0F7FA",
@@ -5046,7 +5778,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#012320",
@@ -5062,7 +5797,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "gray": {
@@ -5080,7 +5818,10 @@
                   "platform": {
                     "scssVariableName": "$gray-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#e9ecef",
@@ -5096,7 +5837,10 @@
                   "platform": {
                     "scssVariableName": "$gray-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#dee2e6",
@@ -5112,7 +5856,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ced4da",
@@ -5128,7 +5875,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#adb5bd",
@@ -5144,7 +5894,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#6c757d",
@@ -5160,7 +5913,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#495057",
@@ -5176,7 +5932,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#343a40",
@@ -5192,7 +5951,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#212529",
@@ -5208,7 +5970,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "950": {
                 "$value": "#FAFBFC",
@@ -5224,7 +5989,10 @@
                   "platform": {
                     "scssVariableName": "$gray-950"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "50": {
                 "$value": "#0A0D10",
@@ -5240,7 +6008,10 @@
                   "platform": {
                     "scssVariableName": "$gray-50"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -5259,7 +6030,10 @@
                 "platform": {
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "#FAFBFC",
@@ -5275,7 +6049,10 @@
                 "platform": {
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "gray": {
               "100": {
@@ -5332,7 +6109,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "{colors.brand.gray.400}",
@@ -5348,7 +6128,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "{colors.brand.gray.500}",
@@ -5364,7 +6147,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "{colors.brand.gray.600}",
@@ -5380,7 +6166,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "{colors.brand.gray.700}",
@@ -5396,7 +6185,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "{colors.brand.gray.800}",
@@ -5412,7 +6204,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "{colors.brand.gray.900}",
@@ -5428,7 +6223,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -5491,7 +6289,10 @@
                 "platform": {
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.blue.500}",
@@ -5507,7 +6308,10 @@
                 "platform": {
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -5523,7 +6327,10 @@
                 "platform": {
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -5539,7 +6346,10 @@
                 "platform": {
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -5555,7 +6365,10 @@
                 "platform": {
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -5571,7 +6384,10 @@
                 "platform": {
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "background": {

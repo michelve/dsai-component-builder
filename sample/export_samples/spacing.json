@@ -16,7 +16,10 @@
                 "cssClass": "m-0, p-0, g-0",
                 "remValue": "0rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "1": {
             "$value": 4,
@@ -31,7 +34,10 @@
                 "cssClass": "m-1, p-1, g-1",
                 "remValue": "0.25rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "2": {
             "$value": 8,
@@ -46,7 +52,10 @@
                 "cssClass": "m-2, p-2, g-2",
                 "remValue": "0.5rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "3": {
             "$value": 16,
@@ -61,7 +70,10 @@
                 "cssClass": "m-3, p-3, g-3",
                 "remValue": "1rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "4": {
             "$value": 24,
@@ -76,7 +88,10 @@
                 "cssClass": "m-4, p-4, g-4",
                 "remValue": "1.5rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "5": {
             "$value": 48,
@@ -91,7 +106,10 @@
                 "cssClass": "m-5, p-5, g-5",
                 "remValue": "3rem"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           },
           "auto": {
             "$value": "auto",
@@ -104,7 +122,10 @@
               "platform": {
                 "cssClass": "m-auto, mx-auto, my-auto"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           }
         }
       }

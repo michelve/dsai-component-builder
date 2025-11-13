@@ -18,7 +18,10 @@
                 "scssVariableName": "$border-radius (0 override)",
                 "cssClass": "rounded-0"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "sm": {
             "$value": 4,
@@ -35,7 +38,10 @@
                 "scssVariableName": "$border-radius-sm",
                 "cssClass": "rounded-1"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "default": {
             "$value": 6,
@@ -52,7 +58,10 @@
                 "scssVariableName": "$border-radius",
                 "cssClass": "rounded, rounded-2"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "lg": {
             "$value": 8,
@@ -69,7 +78,10 @@
                 "scssVariableName": "$border-radius-lg",
                 "cssClass": "rounded-3"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "xl": {
             "$value": 16,
@@ -86,7 +98,10 @@
                 "scssVariableName": "$border-radius-xl",
                 "cssClass": "rounded-4"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "xxl": {
             "$value": 32,
@@ -103,7 +118,10 @@
                 "scssVariableName": "$border-radius-xxl",
                 "cssClass": "rounded-5"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "circle": {
             "$value": 50,
@@ -121,7 +139,10 @@
                 "cssClass": "rounded-circle",
                 "unit": "%"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           },
           "pill": {
             "$value": 800,
@@ -138,7 +159,10 @@
                 "scssVariableName": "$border-radius-pill",
                 "cssClass": "rounded-pill"
               }
-            }
+            },
+            "$scopes": [
+              "CORNER_RADIUS"
+            ]
           }
         }
       }

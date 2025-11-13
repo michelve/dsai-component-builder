@@ -22,7 +22,10 @@
                     "scssVariableName": "$blue-100",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9ec5fe",
@@ -38,7 +41,10 @@
                   "platform": {
                     "scssVariableName": "$blue-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6ea8fe",
@@ -54,7 +60,10 @@
                   "platform": {
                     "scssVariableName": "$blue-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3d8bfd",
@@ -70,7 +79,10 @@
                   "platform": {
                     "scssVariableName": "$blue-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0d6efd",
@@ -87,7 +99,10 @@
                     "scssVariableName": "$blue",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0a58ca",
@@ -104,7 +119,10 @@
                     "scssVariableName": "$blue-600",
                     "useCase": "hover"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#084298",
@@ -121,7 +139,10 @@
                     "scssVariableName": "$blue-700",
                     "useCase": "active"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#052c65",
@@ -137,7 +158,10 @@
                   "platform": {
                     "scssVariableName": "$blue-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#031633",
@@ -153,7 +177,10 @@
                   "platform": {
                     "scssVariableName": "$blue-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "indigo": {
@@ -171,7 +198,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c29ffa",
@@ -187,7 +217,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a370f7",
@@ -203,7 +236,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8540f5",
@@ -219,7 +255,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6610f2",
@@ -236,7 +275,10 @@
                     "scssVariableName": "$indigo",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#520dc2",
@@ -252,7 +294,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#3d0a91",
@@ -268,7 +313,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#290661",
@@ -284,7 +332,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#140330",
@@ -300,7 +351,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "purple": {
@@ -318,7 +372,10 @@
                   "platform": {
                     "scssVariableName": "$purple-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c5b3e6",
@@ -334,7 +391,10 @@
                   "platform": {
                     "scssVariableName": "$purple-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a98eda",
@@ -350,7 +410,10 @@
                   "platform": {
                     "scssVariableName": "$purple-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8c68cd",
@@ -366,7 +429,10 @@
                   "platform": {
                     "scssVariableName": "$purple-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6f42c1",
@@ -383,7 +449,10 @@
                     "scssVariableName": "$purple",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#59359a",
@@ -399,7 +468,10 @@
                   "platform": {
                     "scssVariableName": "$purple-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#432874",
@@ -415,7 +487,10 @@
                   "platform": {
                     "scssVariableName": "$purple-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#2c1a4d",
@@ -431,7 +506,10 @@
                   "platform": {
                     "scssVariableName": "$purple-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#160d27",
@@ -447,7 +525,10 @@
                   "platform": {
                     "scssVariableName": "$purple-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "pink": {
@@ -465,7 +546,10 @@
                   "platform": {
                     "scssVariableName": "$pink-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#efadce",
@@ -481,7 +565,10 @@
                   "platform": {
                     "scssVariableName": "$pink-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#e685b5",
@@ -497,7 +584,10 @@
                   "platform": {
                     "scssVariableName": "$pink-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#de5c9d",
@@ -513,7 +603,10 @@
                   "platform": {
                     "scssVariableName": "$pink-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#d63384",
@@ -530,7 +623,10 @@
                     "scssVariableName": "$pink",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ab296a",
@@ -546,7 +642,10 @@
                   "platform": {
                     "scssVariableName": "$pink-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#801f4f",
@@ -562,7 +661,10 @@
                   "platform": {
                     "scssVariableName": "$pink-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#561435",
@@ -578,7 +680,10 @@
                   "platform": {
                     "scssVariableName": "$pink-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2b0a1a",
@@ -594,7 +699,10 @@
                   "platform": {
                     "scssVariableName": "$pink-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "red": {
@@ -612,7 +720,10 @@
                   "platform": {
                     "scssVariableName": "$red-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#f1aeb5",
@@ -628,7 +739,10 @@
                   "platform": {
                     "scssVariableName": "$red-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ea868f",
@@ -644,7 +758,10 @@
                   "platform": {
                     "scssVariableName": "$red-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#e35d6a",
@@ -660,7 +777,10 @@
                   "platform": {
                     "scssVariableName": "$red-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#dc3545",
@@ -677,7 +797,10 @@
                     "scssVariableName": "$red",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#b02a37",
@@ -693,7 +816,10 @@
                   "platform": {
                     "scssVariableName": "$red-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#842029",
@@ -709,7 +835,10 @@
                   "platform": {
                     "scssVariableName": "$red-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#58151c",
@@ -725,7 +854,10 @@
                   "platform": {
                     "scssVariableName": "$red-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2c0b0e",
@@ -741,7 +873,10 @@
                   "platform": {
                     "scssVariableName": "$red-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "orange": {
@@ -759,7 +894,10 @@
                   "platform": {
                     "scssVariableName": "$orange-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#fecba1",
@@ -775,7 +913,10 @@
                   "platform": {
                     "scssVariableName": "$orange-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#feb272",
@@ -791,7 +932,10 @@
                   "platform": {
                     "scssVariableName": "$orange-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#fd9843",
@@ -807,7 +951,10 @@
                   "platform": {
                     "scssVariableName": "$orange-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#fd7e14",
@@ -824,7 +971,10 @@
                     "scssVariableName": "$orange",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ca6510",
@@ -840,7 +990,10 @@
                   "platform": {
                     "scssVariableName": "$orange-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#984c0c",
@@ -856,7 +1009,10 @@
                   "platform": {
                     "scssVariableName": "$orange-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#653208",
@@ -872,7 +1028,10 @@
                   "platform": {
                     "scssVariableName": "$orange-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#331904",
@@ -888,7 +1047,10 @@
                   "platform": {
                     "scssVariableName": "$orange-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "yellow": {
@@ -906,7 +1068,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#ffe69c",
@@ -922,7 +1087,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ffda6a",
@@ -938,7 +1106,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ffcd39",
@@ -954,7 +1125,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#ffc107",
@@ -971,7 +1145,10 @@
                     "scssVariableName": "$yellow",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#cc9a06",
@@ -987,7 +1164,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#997404",
@@ -1003,7 +1183,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#664d03",
@@ -1019,7 +1202,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#332701",
@@ -1035,7 +1221,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "green": {
@@ -1053,7 +1242,10 @@
                   "platform": {
                     "scssVariableName": "$green-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a3cfbb",
@@ -1069,7 +1261,10 @@
                   "platform": {
                     "scssVariableName": "$green-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#75b798",
@@ -1085,7 +1280,10 @@
                   "platform": {
                     "scssVariableName": "$green-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#479f76",
@@ -1101,7 +1299,10 @@
                   "platform": {
                     "scssVariableName": "$green-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#198754",
@@ -1118,7 +1319,10 @@
                     "scssVariableName": "$green",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#146c43",
@@ -1134,7 +1338,10 @@
                   "platform": {
                     "scssVariableName": "$green-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#0f5132",
@@ -1150,7 +1357,10 @@
                   "platform": {
                     "scssVariableName": "$green-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0a3622",
@@ -1166,7 +1376,10 @@
                   "platform": {
                     "scssVariableName": "$green-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#051b11",
@@ -1182,7 +1395,10 @@
                   "platform": {
                     "scssVariableName": "$green-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "teal": {
@@ -1200,7 +1416,10 @@
                   "platform": {
                     "scssVariableName": "$teal-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a6e9d5",
@@ -1216,7 +1435,10 @@
                   "platform": {
                     "scssVariableName": "$teal-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#79dfc1",
@@ -1232,7 +1454,10 @@
                   "platform": {
                     "scssVariableName": "$teal-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#4dd4ac",
@@ -1248,7 +1473,10 @@
                   "platform": {
                     "scssVariableName": "$teal-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#20c997",
@@ -1265,7 +1493,10 @@
                     "scssVariableName": "$teal",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#1aa179",
@@ -1281,7 +1512,10 @@
                   "platform": {
                     "scssVariableName": "$teal-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#13795b",
@@ -1297,7 +1531,10 @@
                   "platform": {
                     "scssVariableName": "$teal-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0d503c",
@@ -1313,7 +1550,10 @@
                   "platform": {
                     "scssVariableName": "$teal-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#06281e",
@@ -1329,7 +1569,10 @@
                   "platform": {
                     "scssVariableName": "$teal-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "cyan": {
@@ -1347,7 +1590,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9eeaf9",
@@ -1363,7 +1609,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6edff6",
@@ -1379,7 +1628,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3dd5f3",
@@ -1395,7 +1647,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0dcaf0",
@@ -1412,7 +1667,10 @@
                     "scssVariableName": "$cyan",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0aa2c0",
@@ -1428,7 +1686,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#087990",
@@ -1444,7 +1705,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#055160",
@@ -1460,7 +1724,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#032830",
@@ -1476,7 +1743,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "gray": {
@@ -1494,7 +1764,10 @@
                   "platform": {
                     "scssVariableName": "$gray-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#e9ecef",
@@ -1510,7 +1783,10 @@
                   "platform": {
                     "scssVariableName": "$gray-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#dee2e6",
@@ -1526,7 +1802,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ced4da",
@@ -1542,7 +1821,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#adb5bd",
@@ -1558,7 +1840,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#6c757d",
@@ -1574,7 +1859,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#495057",
@@ -1590,7 +1878,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#343a40",
@@ -1606,7 +1897,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#212529",
@@ -1622,7 +1916,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -1641,7 +1938,10 @@
                 "platform": {
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "#000000",
@@ -1657,7 +1957,10 @@
                 "platform": {
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "gray": {
               "100": {
@@ -1714,7 +2017,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "{colors.brand.gray.400}",
@@ -1730,7 +2036,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "{colors.brand.gray.500}",
@@ -1746,7 +2055,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "{colors.brand.gray.600}",
@@ -1762,7 +2074,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "{colors.brand.gray.700}",
@@ -1778,7 +2093,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "{colors.brand.gray.800}",
@@ -1794,7 +2112,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "{colors.brand.gray.900}",
@@ -1810,7 +2131,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -1873,7 +2197,10 @@
                 "platform": {
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.blue.500}",
@@ -1889,7 +2216,10 @@
                 "platform": {
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -1905,7 +2235,10 @@
                 "platform": {
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -1921,7 +2254,10 @@
                 "platform": {
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -1937,7 +2273,10 @@
                 "platform": {
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -1953,7 +2292,10 @@
                 "platform": {
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "background": {
@@ -1971,7 +2313,10 @@
                   "cssClass": ".bg-primary",
                   "scssVariableName": "$primary"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "secondary": {
               "$value": "{colors.brand.gray.600}",
@@ -1985,7 +2330,10 @@
                   "cssClass": ".bg-secondary",
                   "scssVariableName": "$secondary"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "success": {
               "$value": "{colors.brand.green.500}",
@@ -1999,7 +2347,10 @@
                   "cssClass": ".bg-success",
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -2013,7 +2364,10 @@
                   "cssClass": ".bg-danger",
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -2027,7 +2381,10 @@
                   "cssClass": ".bg-warning",
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.cyan.500}",
@@ -2041,7 +2398,10 @@
                   "cssClass": ".bg-info",
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -2055,7 +2415,10 @@
                   "cssClass": ".bg-light",
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -2069,7 +2432,10 @@
                   "cssClass": ".bg-dark",
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "body": {
               "$value": "{colors.neutral.white}",
@@ -2083,7 +2449,10 @@
                   "cssClass": ".bg-body",
                   "scssVariableName": "$body-bg"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "white": {
               "$value": "{colors.neutral.white}",
@@ -2097,7 +2466,10 @@
                   "cssClass": ".bg-white",
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "{colors.neutral.black}",
@@ -2111,7 +2483,10 @@
                   "cssClass": ".bg-black",
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "transparent": {
               "$value": "#000000",
@@ -2124,7 +2499,10 @@
                 "platform": {
                   "cssClass": ".bg-transparent"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "opacity": {
@@ -2141,7 +2519,10 @@
                 "platform": {
                   "cssClass": ".opacity-0"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "5": {
               "$value": 5,
@@ -2154,7 +2535,10 @@
                 "platform": {
                   "cssClass": ".opacity-5"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "10": {
               "$value": 10,
@@ -2167,7 +2551,10 @@
                 "platform": {
                   "cssClass": ".opacity-10"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "15": {
               "$value": 15,
@@ -2180,7 +2567,10 @@
                 "platform": {
                   "cssClass": ".opacity-15"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "20": {
               "$value": 20,
@@ -2193,7 +2583,10 @@
                 "platform": {
                   "cssClass": ".opacity-20"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "25": {
               "$value": 25,
@@ -2206,7 +2599,10 @@
                 "platform": {
                   "cssClass": ".opacity-25"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "30": {
               "$value": 30,
@@ -2219,7 +2615,10 @@
                 "platform": {
                   "cssClass": ".opacity-30"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "35": {
               "$value": 35,
@@ -2232,7 +2631,10 @@
                 "platform": {
                   "cssClass": ".opacity-35"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "40": {
               "$value": 40,
@@ -2245,7 +2647,10 @@
                 "platform": {
                   "cssClass": ".opacity-40"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "45": {
               "$value": 45,
@@ -2258,7 +2663,10 @@
                 "platform": {
                   "cssClass": ".opacity-45"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "50": {
               "$value": 50,
@@ -2271,7 +2679,10 @@
                 "platform": {
                   "cssClass": ".opacity-50"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "55": {
               "$value": 55,
@@ -2284,7 +2695,10 @@
                 "platform": {
                   "cssClass": ".opacity-55"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "60": {
               "$value": 60,
@@ -2297,7 +2711,10 @@
                 "platform": {
                   "cssClass": ".opacity-60"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "65": {
               "$value": 65,
@@ -2310,7 +2727,10 @@
                 "platform": {
                   "cssClass": ".opacity-65"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "70": {
               "$value": 70,
@@ -2323,7 +2743,10 @@
                 "platform": {
                   "cssClass": ".opacity-70"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "75": {
               "$value": 75,
@@ -2336,7 +2759,10 @@
                 "platform": {
                   "cssClass": ".opacity-75"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "80": {
               "$value": 80,
@@ -2349,7 +2775,10 @@
                 "platform": {
                   "cssClass": ".opacity-80"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "85": {
               "$value": 85,
@@ -2362,7 +2791,10 @@
                 "platform": {
                   "cssClass": ".opacity-85"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "90": {
               "$value": 90,
@@ -2375,7 +2807,10 @@
                 "platform": {
                   "cssClass": ".opacity-90"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "95": {
               "$value": 95,
@@ -2388,7 +2823,10 @@
                 "platform": {
                   "cssClass": ".opacity-95"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "100": {
               "$value": 100,
@@ -2401,7 +2839,10 @@
                 "platform": {
                   "cssClass": ".opacity-100"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             }
           }
         },
@@ -2720,7 +3161,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "2": {
               "$value": 2,
@@ -2733,7 +3177,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "3": {
               "$value": 3,
@@ -2746,7 +3193,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "4": {
               "$value": 4,
@@ -2759,7 +3209,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "5": {
               "$value": 5,
@@ -2772,7 +3225,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "default": {
               "$value": "{borders.width.1}",
@@ -2781,13 +3237,16 @@
                 "docs": {
                   "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#width",
                   "section": "Utilities",
-                  "subsection": "Borders – Border Width"
+                  "subsection": "Borders \u2013 Border Width"
                 },
                 "platform": {
                   "scssVariableName": "$border-width",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             }
           }
         }
@@ -2813,7 +3272,10 @@
                     "scssVariableName": "$blue-100",
                     "bootstrapVersion": "5.3"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9ec5fe",
@@ -2829,7 +3291,10 @@
                   "platform": {
                     "scssVariableName": "$blue-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6ea8fe",
@@ -2845,7 +3310,10 @@
                   "platform": {
                     "scssVariableName": "$blue-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3d8bfd",
@@ -2861,7 +3329,10 @@
                   "platform": {
                     "scssVariableName": "$blue-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0d6efd",
@@ -2878,7 +3349,10 @@
                     "scssVariableName": "$blue",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0a58ca",
@@ -2895,7 +3369,10 @@
                     "scssVariableName": "$blue-600",
                     "useCase": "hover"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#084298",
@@ -2912,7 +3389,10 @@
                     "scssVariableName": "$blue-700",
                     "useCase": "active"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#052c65",
@@ -2928,7 +3408,10 @@
                   "platform": {
                     "scssVariableName": "$blue-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#031633",
@@ -2944,7 +3427,10 @@
                   "platform": {
                     "scssVariableName": "$blue-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "indigo": {
@@ -2962,7 +3448,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c29ffa",
@@ -2978,7 +3467,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a370f7",
@@ -2994,7 +3486,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8540f5",
@@ -3010,7 +3505,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6610f2",
@@ -3027,7 +3525,10 @@
                     "scssVariableName": "$indigo",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#520dc2",
@@ -3043,7 +3544,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#3d0a91",
@@ -3059,7 +3563,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#290661",
@@ -3075,7 +3582,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#140330",
@@ -3091,7 +3601,10 @@
                   "platform": {
                     "scssVariableName": "$indigo-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "purple": {
@@ -3109,7 +3622,10 @@
                   "platform": {
                     "scssVariableName": "$purple-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#c5b3e6",
@@ -3125,7 +3641,10 @@
                   "platform": {
                     "scssVariableName": "$purple-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#a98eda",
@@ -3141,7 +3660,10 @@
                   "platform": {
                     "scssVariableName": "$purple-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#8c68cd",
@@ -3157,7 +3679,10 @@
                   "platform": {
                     "scssVariableName": "$purple-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#6f42c1",
@@ -3174,7 +3699,10 @@
                     "scssVariableName": "$purple",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#59359a",
@@ -3190,7 +3718,10 @@
                   "platform": {
                     "scssVariableName": "$purple-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#432874",
@@ -3206,7 +3737,10 @@
                   "platform": {
                     "scssVariableName": "$purple-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#2c1a4d",
@@ -3222,7 +3756,10 @@
                   "platform": {
                     "scssVariableName": "$purple-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#160d27",
@@ -3238,7 +3775,10 @@
                   "platform": {
                     "scssVariableName": "$purple-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "pink": {
@@ -3256,7 +3796,10 @@
                   "platform": {
                     "scssVariableName": "$pink-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#efadce",
@@ -3272,7 +3815,10 @@
                   "platform": {
                     "scssVariableName": "$pink-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#e685b5",
@@ -3288,7 +3834,10 @@
                   "platform": {
                     "scssVariableName": "$pink-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#de5c9d",
@@ -3304,7 +3853,10 @@
                   "platform": {
                     "scssVariableName": "$pink-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#d63384",
@@ -3321,7 +3873,10 @@
                     "scssVariableName": "$pink",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ab296a",
@@ -3337,7 +3892,10 @@
                   "platform": {
                     "scssVariableName": "$pink-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#801f4f",
@@ -3353,7 +3911,10 @@
                   "platform": {
                     "scssVariableName": "$pink-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#561435",
@@ -3369,7 +3930,10 @@
                   "platform": {
                     "scssVariableName": "$pink-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2b0a1a",
@@ -3385,7 +3949,10 @@
                   "platform": {
                     "scssVariableName": "$pink-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "red": {
@@ -3403,7 +3970,10 @@
                   "platform": {
                     "scssVariableName": "$red-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#f1aeb5",
@@ -3419,7 +3989,10 @@
                   "platform": {
                     "scssVariableName": "$red-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ea868f",
@@ -3435,7 +4008,10 @@
                   "platform": {
                     "scssVariableName": "$red-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#e35d6a",
@@ -3451,7 +4027,10 @@
                   "platform": {
                     "scssVariableName": "$red-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#dc3545",
@@ -3468,7 +4047,10 @@
                     "scssVariableName": "$red",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#b02a37",
@@ -3484,7 +4066,10 @@
                   "platform": {
                     "scssVariableName": "$red-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#842029",
@@ -3500,7 +4085,10 @@
                   "platform": {
                     "scssVariableName": "$red-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#58151c",
@@ -3516,7 +4104,10 @@
                   "platform": {
                     "scssVariableName": "$red-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#2c0b0e",
@@ -3532,7 +4123,10 @@
                   "platform": {
                     "scssVariableName": "$red-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "orange": {
@@ -3550,7 +4144,10 @@
                   "platform": {
                     "scssVariableName": "$orange-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#fecba1",
@@ -3566,7 +4163,10 @@
                   "platform": {
                     "scssVariableName": "$orange-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#feb272",
@@ -3582,7 +4182,10 @@
                   "platform": {
                     "scssVariableName": "$orange-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#fd9843",
@@ -3598,7 +4201,10 @@
                   "platform": {
                     "scssVariableName": "$orange-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#fd7e14",
@@ -3615,7 +4221,10 @@
                     "scssVariableName": "$orange",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#ca6510",
@@ -3631,7 +4240,10 @@
                   "platform": {
                     "scssVariableName": "$orange-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#984c0c",
@@ -3647,7 +4259,10 @@
                   "platform": {
                     "scssVariableName": "$orange-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#653208",
@@ -3663,7 +4278,10 @@
                   "platform": {
                     "scssVariableName": "$orange-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#331904",
@@ -3679,7 +4297,10 @@
                   "platform": {
                     "scssVariableName": "$orange-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "yellow": {
@@ -3697,7 +4318,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#ffe69c",
@@ -3713,7 +4337,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#ffda6a",
@@ -3729,7 +4356,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ffcd39",
@@ -3745,7 +4375,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#ffc107",
@@ -3762,7 +4395,10 @@
                     "scssVariableName": "$yellow",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#cc9a06",
@@ -3778,7 +4414,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#997404",
@@ -3794,7 +4433,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#664d03",
@@ -3810,7 +4452,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#332701",
@@ -3826,7 +4471,10 @@
                   "platform": {
                     "scssVariableName": "$yellow-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "green": {
@@ -3844,7 +4492,10 @@
                   "platform": {
                     "scssVariableName": "$green-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a3cfbb",
@@ -3860,7 +4511,10 @@
                   "platform": {
                     "scssVariableName": "$green-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#75b798",
@@ -3876,7 +4530,10 @@
                   "platform": {
                     "scssVariableName": "$green-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#479f76",
@@ -3892,7 +4549,10 @@
                   "platform": {
                     "scssVariableName": "$green-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#198754",
@@ -3909,7 +4569,10 @@
                     "scssVariableName": "$green",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#146c43",
@@ -3925,7 +4588,10 @@
                   "platform": {
                     "scssVariableName": "$green-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#0f5132",
@@ -3941,7 +4607,10 @@
                   "platform": {
                     "scssVariableName": "$green-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0a3622",
@@ -3957,7 +4626,10 @@
                   "platform": {
                     "scssVariableName": "$green-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#051b11",
@@ -3973,7 +4645,10 @@
                   "platform": {
                     "scssVariableName": "$green-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "teal": {
@@ -3991,7 +4666,10 @@
                   "platform": {
                     "scssVariableName": "$teal-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#a6e9d5",
@@ -4007,7 +4685,10 @@
                   "platform": {
                     "scssVariableName": "$teal-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#79dfc1",
@@ -4023,7 +4704,10 @@
                   "platform": {
                     "scssVariableName": "$teal-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#4dd4ac",
@@ -4039,7 +4723,10 @@
                   "platform": {
                     "scssVariableName": "$teal-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#20c997",
@@ -4056,7 +4743,10 @@
                     "scssVariableName": "$teal",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#1aa179",
@@ -4072,7 +4762,10 @@
                   "platform": {
                     "scssVariableName": "$teal-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#13795b",
@@ -4088,7 +4781,10 @@
                   "platform": {
                     "scssVariableName": "$teal-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#0d503c",
@@ -4104,7 +4800,10 @@
                   "platform": {
                     "scssVariableName": "$teal-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#06281e",
@@ -4120,7 +4819,10 @@
                   "platform": {
                     "scssVariableName": "$teal-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "cyan": {
@@ -4138,7 +4840,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#9eeaf9",
@@ -4154,7 +4859,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#6edff6",
@@ -4170,7 +4878,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#3dd5f3",
@@ -4186,7 +4897,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#0dcaf0",
@@ -4203,7 +4917,10 @@
                     "scssVariableName": "$cyan",
                     "isBaseColor": "true"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#0aa2c0",
@@ -4219,7 +4936,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#087990",
@@ -4235,7 +4955,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#055160",
@@ -4251,7 +4974,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#032830",
@@ -4267,7 +4993,10 @@
                   "platform": {
                     "scssVariableName": "$cyan-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             },
             "gray": {
@@ -4285,7 +5014,10 @@
                   "platform": {
                     "scssVariableName": "$gray-100"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "200": {
                 "$value": "#e9ecef",
@@ -4301,7 +5033,10 @@
                   "platform": {
                     "scssVariableName": "$gray-200"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "300": {
                 "$value": "#dee2e6",
@@ -4317,7 +5052,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "#ced4da",
@@ -4333,7 +5071,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "#adb5bd",
@@ -4349,7 +5090,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "#6c757d",
@@ -4365,7 +5109,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "#495057",
@@ -4381,7 +5128,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "#343a40",
@@ -4397,7 +5147,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "#212529",
@@ -4413,7 +5166,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -4432,7 +5188,10 @@
                 "platform": {
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "#ffffff",
@@ -4448,7 +5207,10 @@
                 "platform": {
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "gray": {
               "100": {
@@ -4505,7 +5267,10 @@
                   "platform": {
                     "scssVariableName": "$gray-300"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "400": {
                 "$value": "{colors.brand.gray.400}",
@@ -4521,7 +5286,10 @@
                   "platform": {
                     "scssVariableName": "$gray-400"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "500": {
                 "$value": "{colors.brand.gray.500}",
@@ -4537,7 +5305,10 @@
                   "platform": {
                     "scssVariableName": "$gray-500"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "600": {
                 "$value": "{colors.brand.gray.600}",
@@ -4553,7 +5324,10 @@
                   "platform": {
                     "scssVariableName": "$gray-600"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "700": {
                 "$value": "{colors.brand.gray.700}",
@@ -4569,7 +5343,10 @@
                   "platform": {
                     "scssVariableName": "$gray-700"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "800": {
                 "$value": "{colors.brand.gray.800}",
@@ -4585,7 +5362,10 @@
                   "platform": {
                     "scssVariableName": "$gray-800"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               },
               "900": {
                 "$value": "{colors.brand.gray.900}",
@@ -4601,7 +5381,10 @@
                   "platform": {
                     "scssVariableName": "$gray-900"
                   }
-                }
+                },
+                "$scopes": [
+                  "ALL_FILLS"
+                ]
               }
             }
           },
@@ -4664,7 +5447,10 @@
                 "platform": {
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.blue.500}",
@@ -4680,7 +5466,10 @@
                 "platform": {
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -4696,7 +5485,10 @@
                 "platform": {
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -4712,7 +5504,10 @@
                 "platform": {
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -4728,7 +5523,10 @@
                 "platform": {
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -4744,7 +5542,10 @@
                 "platform": {
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "background": {
@@ -4762,7 +5563,10 @@
                   "cssClass": ".bg-primary",
                   "scssVariableName": "$primary"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "secondary": {
               "$value": "{colors.brand.gray.600}",
@@ -4776,7 +5580,10 @@
                   "cssClass": ".bg-secondary",
                   "scssVariableName": "$secondary"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "success": {
               "$value": "{colors.brand.green.500}",
@@ -4790,7 +5597,10 @@
                   "cssClass": ".bg-success",
                   "scssVariableName": "$success"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "danger": {
               "$value": "{colors.brand.red.500}",
@@ -4804,7 +5614,10 @@
                   "cssClass": ".bg-danger",
                   "scssVariableName": "$danger"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "warning": {
               "$value": "{colors.brand.yellow.500}",
@@ -4818,7 +5631,10 @@
                   "cssClass": ".bg-warning",
                   "scssVariableName": "$warning"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "info": {
               "$value": "{colors.brand.cyan.500}",
@@ -4832,7 +5648,10 @@
                   "cssClass": ".bg-info",
                   "scssVariableName": "$info"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "light": {
               "$value": "{colors.brand.gray.100}",
@@ -4846,7 +5665,10 @@
                   "cssClass": ".bg-light",
                   "scssVariableName": "$light"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "dark": {
               "$value": "{colors.brand.gray.900}",
@@ -4860,7 +5682,10 @@
                   "cssClass": ".bg-dark",
                   "scssVariableName": "$dark"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "body": {
               "$value": "{colors.neutral.black}",
@@ -4874,7 +5699,10 @@
                   "cssClass": ".bg-body",
                   "scssVariableName": "$body-bg"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "white": {
               "$value": "{colors.neutral.white}",
@@ -4888,7 +5716,10 @@
                   "cssClass": ".bg-white",
                   "scssVariableName": "$white"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "black": {
               "$value": "{colors.neutral.black}",
@@ -4902,7 +5733,10 @@
                   "cssClass": ".bg-black",
                   "scssVariableName": "$black"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             },
             "transparent": {
               "$value": "#000000",
@@ -4915,7 +5749,10 @@
                 "platform": {
                   "cssClass": ".bg-transparent"
                 }
-              }
+              },
+              "$scopes": [
+                "ALL_FILLS"
+              ]
             }
           },
           "opacity": {
@@ -4932,7 +5769,10 @@
                 "platform": {
                   "cssClass": ".opacity-0"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "5": {
               "$value": 5,
@@ -4945,7 +5785,10 @@
                 "platform": {
                   "cssClass": ".opacity-5"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "10": {
               "$value": 10,
@@ -4958,7 +5801,10 @@
                 "platform": {
                   "cssClass": ".opacity-10"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "15": {
               "$value": 15,
@@ -4971,7 +5817,10 @@
                 "platform": {
                   "cssClass": ".opacity-15"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "20": {
               "$value": 20,
@@ -4984,7 +5833,10 @@
                 "platform": {
                   "cssClass": ".opacity-20"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "25": {
               "$value": 25,
@@ -4997,7 +5849,10 @@
                 "platform": {
                   "cssClass": ".opacity-25"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "30": {
               "$value": 30,
@@ -5010,7 +5865,10 @@
                 "platform": {
                   "cssClass": ".opacity-30"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "35": {
               "$value": 35,
@@ -5023,7 +5881,10 @@
                 "platform": {
                   "cssClass": ".opacity-35"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "40": {
               "$value": 40,
@@ -5036,7 +5897,10 @@
                 "platform": {
                   "cssClass": ".opacity-40"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "45": {
               "$value": 45,
@@ -5049,7 +5913,10 @@
                 "platform": {
                   "cssClass": ".opacity-45"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "50": {
               "$value": 50,
@@ -5062,7 +5929,10 @@
                 "platform": {
                   "cssClass": ".opacity-50"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "55": {
               "$value": 55,
@@ -5075,7 +5945,10 @@
                 "platform": {
                   "cssClass": ".opacity-55"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "60": {
               "$value": 60,
@@ -5088,7 +5961,10 @@
                 "platform": {
                   "cssClass": ".opacity-60"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "65": {
               "$value": 65,
@@ -5101,7 +5977,10 @@
                 "platform": {
                   "cssClass": ".opacity-65"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "70": {
               "$value": 70,
@@ -5114,7 +5993,10 @@
                 "platform": {
                   "cssClass": ".opacity-70"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "75": {
               "$value": 75,
@@ -5127,7 +6009,10 @@
                 "platform": {
                   "cssClass": ".opacity-75"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "80": {
               "$value": 80,
@@ -5140,7 +6025,10 @@
                 "platform": {
                   "cssClass": ".opacity-80"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "85": {
               "$value": 85,
@@ -5153,7 +6041,10 @@
                 "platform": {
                   "cssClass": ".opacity-85"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "90": {
               "$value": 90,
@@ -5166,7 +6057,10 @@
                 "platform": {
                   "cssClass": ".opacity-90"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "95": {
               "$value": 95,
@@ -5179,7 +6073,10 @@
                 "platform": {
                   "cssClass": ".opacity-95"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             },
             "100": {
               "$value": 100,
@@ -5192,7 +6089,10 @@
                 "platform": {
                   "cssClass": ".opacity-100"
                 }
-              }
+              },
+              "$scopes": [
+                "OPACITY"
+              ]
             }
           }
         },
@@ -5511,7 +6411,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "2": {
               "$value": 2,
@@ -5524,7 +6427,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "3": {
               "$value": 3,
@@ -5537,7 +6443,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "4": {
               "$value": 4,
@@ -5550,7 +6459,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "5": {
               "$value": 5,
@@ -5563,7 +6475,10 @@
                   "scssVariableName": "$border-widths",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             },
             "default": {
               "$value": "{borders.width.1}",
@@ -5572,13 +6487,16 @@
                 "docs": {
                   "reference": "https://getbootstrap.com/docs/5.3/utilities/borders/#width",
                   "section": "Utilities",
-                  "subsection": "Borders – Border Width"
+                  "subsection": "Borders \u2013 Border Width"
                 },
                 "platform": {
                   "scssVariableName": "$border-width",
                   "bootstrapVersion": "5.3"
                 }
-              }
+              },
+              "$scopes": [
+                "STROKE_FLOAT"
+              ]
             }
           }
         }
@@ -5608,7 +6526,7 @@
           "sm": {
             "$value": 576,
             "$type": "number",
-            "$description": "Small breakpoint for landscape phones (≥576px). First responsive breakpoint in Bootstrap's mobile-first approach.",
+            "$description": "Small breakpoint for landscape phones (\u2265576px). First responsive breakpoint in Bootstrap's mobile-first approach.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -5624,7 +6542,7 @@
           "md": {
             "$value": 768,
             "$type": "number",
-            "$description": "Medium breakpoint for tablets (≥768px). Common tablet viewport size for responsive layouts.",
+            "$description": "Medium breakpoint for tablets (\u2265768px). Common tablet viewport size for responsive layouts.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -5640,7 +6558,7 @@
           "lg": {
             "$value": 992,
             "$type": "number",
-            "$description": "Large breakpoint for desktops (≥992px). Standard desktop viewport size for responsive web design.",
+            "$description": "Large breakpoint for desktops (\u2265992px). Standard desktop viewport size for responsive web design.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -5656,7 +6574,7 @@
           "xl": {
             "$value": 1200,
             "$type": "number",
-            "$description": "Extra large breakpoint for large desktops (≥1200px). Wide desktop viewport for expansive layouts.",
+            "$description": "Extra large breakpoint for large desktops (\u22651200px). Wide desktop viewport for expansive layouts.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -5672,7 +6590,7 @@
           "xxl": {
             "$value": 1400,
             "$type": "number",
-            "$description": "Extra extra large breakpoint for larger desktops (≥1400px). Widest default viewport for ultra-wide displays.",
+            "$description": "Extra extra large breakpoint for larger desktops (\u22651400px). Widest default viewport for ultra-wide displays.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"

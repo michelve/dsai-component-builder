@@ -17,12 +17,15 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "sm": {
             "$value": 576,
             "$type": "number",
-            "$description": "Small breakpoint for landscape phones (≥576px). First responsive breakpoint in Bootstrap's mobile-first approach.",
+            "$description": "Small breakpoint for landscape phones (\u2265576px). First responsive breakpoint in Bootstrap's mobile-first approach.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -33,12 +36,15 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "md": {
             "$value": 768,
             "$type": "number",
-            "$description": "Medium breakpoint for tablets (≥768px). Common tablet viewport size for responsive layouts.",
+            "$description": "Medium breakpoint for tablets (\u2265768px). Common tablet viewport size for responsive layouts.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -49,12 +55,15 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "lg": {
             "$value": 992,
             "$type": "number",
-            "$description": "Large breakpoint for desktops (≥992px). Standard desktop viewport size for responsive web design.",
+            "$description": "Large breakpoint for desktops (\u2265992px). Standard desktop viewport size for responsive web design.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -65,12 +74,15 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "xl": {
             "$value": 1200,
             "$type": "number",
-            "$description": "Extra large breakpoint for large desktops (≥1200px). Wide desktop viewport for expansive layouts.",
+            "$description": "Extra large breakpoint for large desktops (\u22651200px). Wide desktop viewport for expansive layouts.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -81,12 +93,15 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "xxl": {
             "$value": 1400,
             "$type": "number",
-            "$description": "Extra extra large breakpoint for larger desktops (≥1400px). Widest default viewport for ultra-wide displays.",
+            "$description": "Extra extra large breakpoint for larger desktops (\u22651400px). Widest default viewport for ultra-wide displays.",
             "$extensions": {
               "docs": {
                 "reference": "https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints"
@@ -97,7 +112,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           }
         },
         "container": {
@@ -116,7 +134,10 @@
                   "lightMode": "true",
                   "darkMode": "true"
                 }
-              }
+              },
+              "$scopes": [
+                "WIDTH_HEIGHT"
+              ]
             },
             "md": {
               "$value": 720,
@@ -132,7 +153,10 @@
                   "lightMode": "true",
                   "darkMode": "true"
                 }
-              }
+              },
+              "$scopes": [
+                "WIDTH_HEIGHT"
+              ]
             },
             "lg": {
               "$value": 960,
@@ -148,7 +172,10 @@
                   "lightMode": "true",
                   "darkMode": "true"
                 }
-              }
+              },
+              "$scopes": [
+                "WIDTH_HEIGHT"
+              ]
             },
             "xl": {
               "$value": 1140,
@@ -164,7 +191,10 @@
                   "lightMode": "true",
                   "darkMode": "true"
                 }
-              }
+              },
+              "$scopes": [
+                "WIDTH_HEIGHT"
+              ]
             },
             "xxl": {
               "$value": 1320,
@@ -180,7 +210,10 @@
                   "lightMode": "true",
                   "darkMode": "true"
                 }
-              }
+              },
+              "$scopes": [
+                "WIDTH_HEIGHT"
+              ]
             }
           },
           "padding-x": {
@@ -197,7 +230,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "GAP"
+            ]
           }
         },
         "grid": {
@@ -215,7 +251,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "gutter-width": {
             "$value": 24,
@@ -234,7 +273,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "row-columns": {
             "$value": 6,
@@ -250,7 +292,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           }
         },
         "gutters": {
@@ -267,7 +312,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "1": {
             "$value": 4,
@@ -282,7 +330,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "2": {
             "$value": 8,
@@ -297,7 +348,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "3": {
             "$value": 16,
@@ -312,7 +366,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "4": {
             "$value": 24,
@@ -327,7 +384,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           },
           "5": {
             "$value": 48,
@@ -342,7 +402,10 @@
                 "lightMode": "true",
                 "darkMode": "true"
               }
-            }
+            },
+            "$scopes": [
+              "WIDTH_HEIGHT"
+            ]
           }
         }
       }
