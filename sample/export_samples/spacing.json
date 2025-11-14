@@ -124,7 +124,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "TEXT_CONTENT"
             ]
           }
         }

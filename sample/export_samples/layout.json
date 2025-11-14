@@ -275,7 +275,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "row-columns": {
@@ -314,7 +314,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "1": {
@@ -332,7 +332,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "2": {
@@ -350,7 +350,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "3": {
@@ -368,7 +368,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "4": {
@@ -386,7 +386,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           },
           "5": {
@@ -404,7 +404,7 @@
               }
             },
             "$scopes": [
-              "WIDTH_HEIGHT"
+              "GAP"
             ]
           }
         }
