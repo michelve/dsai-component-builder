@@ -92,12 +92,80 @@ export interface Typography {
 }
 
 /**
+ * Icon slot position within a component
+ * - 'leading': Icon appears before the label/content
+ * - 'trailing': Icon appears after the label/content
+ */
+export type IconSlotPosition = 'leading' | 'trailing';
+
+/**
+ * Method for resolving icon components
+ * - 'name': Search for component by name (recommended for local components)
+ * - 'key': Import by component key (for published library components)
+ * - 'nodeId': Reference by node ID (for same-document components)
+ */
+export type IconResolveMethod = 'name' | 'key' | 'nodeId';
+
+/**
+ * Configuration for an icon slot within a component
+ * 
+ * Icon slots are placeholder positions where icon instances can be inserted.
+ * Using BOOLEAN properties to control visibility and INSTANCE_SWAP for icon selection
+ * prevents variant explosion (no need for separate "with icon left", "with icon right" variants).
+ * 
+ * @example
+ * ```typescript
+ * const leadingIcon: IconSlot = {
+ *   position: 'leading',
+ *   name: 'leadingIcon',
+ *   defaultIcon: 'Icon/Plus',
+ *   resolveMethod: 'name',
+ *   visible: false,
+ *   size: 16
+ * };
+ * ```
+ */
+export interface IconSlot {
+  position: IconSlotPosition; // Where the icon appears relative to content
+  name: string; // Unique identifier for this slot (used for property naming)
+  defaultIcon?: string; // Default icon name/key/nodeId based on resolveMethod
+  resolveMethod: IconResolveMethod; // How to find the icon component
+  visible?: boolean; // Initial visibility (default: false)
+  size?: number; // Icon size in pixels (default: matches font size)
+}
+
+/**
+ * Configuration for all icon slots in a component
+ * 
+ * Defines the icon slot structure for a component. Each slot creates:
+ * - A BOOLEAN property for show/hide (e.g., "Show Leading Icon")
+ * - An INSTANCE_SWAP property for icon selection (e.g., "Leading Icon")
+ * 
+ * @example
+ * ```typescript
+ * const iconSlots: IconSlotsConfig = {
+ *   slots: [
+ *     { position: 'leading', name: 'leadingIcon', defaultIcon: 'Icon/Plus', resolveMethod: 'name' },
+ *     { position: 'trailing', name: 'trailingIcon', defaultIcon: 'Icon/ChevronRight', resolveMethod: 'name' }
+ *   ],
+ *   gap: '{Spacing/Base/spacing/2}' // Gap between icon and content
+ * };
+ * ```
+ */
+export interface IconSlotsConfig {
+  slots: IconSlot[]; // Array of icon slot definitions
+  gap?: string; // Gap token between icons and content (inherits from component gap if not set)
+}
+
+/**
  * Complete style configuration for component appearance
  * All color/dimension properties support token references
  */
 export interface Style extends Typography {
   label?: string; // Text content for the component
+  labelVisible?: boolean; // Whether the label is visible (default: true)
   fills?: string; // Background color token reference
+  iconSlots?: IconSlotsConfig; // Icon slot configuration for component instances
   fillsOpacity?: string; // Paint-level fill opacity (for individual layers)
   strokes?: string; // Border color token reference
   strokesOpacity?: string; // Paint-level stroke opacity

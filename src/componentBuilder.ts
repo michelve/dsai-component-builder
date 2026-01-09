@@ -1,4 +1,4 @@
-import type { ComponentConfig, Variant, Style, ComponentProperties, FigmaComponentPropertyDef } from './types';
+import type { ComponentConfig, Variant, Style, ComponentProperties, FigmaComponentPropertyDef, IconSlot, IconSlotsConfig } from './types';
 import {
   applyFillToken,
   applyStrokeToken,
@@ -39,6 +39,277 @@ function delay(ms: number): Promise<void> {
 // Configuration constants
 const VARIANT_CREATION_DELAY_MS = 500; // Delay between variant creation
 const PAGE_SWITCH_DELAY_MS = 500; // Delay after switching pages
+
+// ============================================================================
+// ICON SLOT MANAGEMENT
+// ============================================================================
+
+/**
+ * Finds a component by name across all pages in the document
+ * 
+ * This function searches for a ComponentNode matching the given name.
+ * It searches the current page first for performance, then other pages if needed.
+ * 
+ * @param componentName - The exact name of the component to find
+ * @returns The ComponentNode if found, null otherwise
+ * 
+ * @example
+ * ```typescript
+ * const plusIcon = await findComponentByName('Icon/Plus');
+ * if (plusIcon) {
+ *   const instance = plusIcon.createInstance();
+ * }
+ * ```
+ */
+async function findComponentByName(componentName: string): Promise<ComponentNode | null> {
+  // Search current page first (most common case, doesn't require loadAllPagesAsync)
+  const currentPageMatch = figma.currentPage.findOne(
+    (node): node is ComponentNode => 
+      node.type === 'COMPONENT' && node.name === componentName
+  );
+  
+  if (currentPageMatch) {
+    console.log(`Found component "${componentName}" on current page`);
+    return currentPageMatch;
+  }
+  
+  // Load all pages before searching them
+  await figma.loadAllPagesAsync();
+  
+  // Search all other pages
+  for (const page of figma.root.children) {
+    if (page.id === figma.currentPage.id) continue; // Skip current page (already searched)
+    
+    const match = page.findOne(
+      (node): node is ComponentNode => 
+        node.type === 'COMPONENT' && node.name === componentName
+    );
+    
+    if (match) {
+      console.log(`Found component "${componentName}" on page "${page.name}"`);
+      return match;
+    }
+  }
+  
+  console.warn(`Component "${componentName}" not found in document`);
+  return null;
+}
+
+/**
+ * Resolves an icon component based on the resolve method specified
+ * 
+ * Supports three resolution methods:
+ * - 'name': Searches for component by exact name in all pages
+ * - 'key': Imports a published component from an enabled library by key
+ * - 'nodeId': Gets a component by its node ID in the current document
+ * 
+ * @param iconRef - The icon reference (name, key, or nodeId)
+ * @param resolveMethod - How to resolve the icon reference
+ * @returns The ComponentNode if found, null otherwise
+ * 
+ * @example
+ * ```typescript
+ * // By name
+ * const icon = await resolveIconComponent('Icon/Plus', 'name');
+ * 
+ * // By library key
+ * const icon = await resolveIconComponent('abc123def456...', 'key');
+ * 
+ * // By node ID
+ * const icon = await resolveIconComponent('123:456', 'nodeId');
+ * ```
+ */
+async function resolveIconComponent(
+  iconRef: string,
+  resolveMethod: IconSlot['resolveMethod']
+): Promise<ComponentNode | null> {
+  try {
+    switch (resolveMethod) {
+      case 'name':
+        return await findComponentByName(iconRef);
+        
+      case 'key':
+        // Import from published library by component key
+        try {
+          const imported = await figma.importComponentByKeyAsync(iconRef);
+          console.log(`Imported component by key: ${iconRef}`);
+          return imported;
+        } catch (error) {
+          console.warn(`Failed to import component by key "${iconRef}":`, error);
+          return null;
+        }
+        
+      case 'nodeId':
+        // Get by node ID in current document
+        try {
+          const node = await figma.getNodeByIdAsync(iconRef);
+          if (node && node.type === 'COMPONENT') {
+            console.log(`Found component by nodeId: ${iconRef}`);
+            return node;
+          }
+          console.warn(`Node "${iconRef}" is not a component`);
+          return null;
+        } catch (error) {
+          console.warn(`Failed to get node by ID "${iconRef}":`, error);
+          return null;
+        }
+        
+      default:
+        console.warn(`Unknown resolve method: ${resolveMethod}`);
+        return null;
+    }
+  } catch (error) {
+    console.error(`Error resolving icon component:`, error);
+    return null;
+  }
+}
+
+/**
+ * Creates an icon slot frame containing an icon instance
+ * 
+ * The icon slot is a frame that:
+ * - Contains an icon component instance
+ * - Has visibility controlled by a BOOLEAN component property
+ * - Has its icon swappable via INSTANCE_SWAP component property
+ * 
+ * @param slot - The icon slot configuration
+ * @returns The icon slot frame with instance, or null if icon couldn't be resolved
+ * 
+ * @example
+ * ```typescript
+ * const slotFrame = await createIconSlotFrame({
+ *   position: 'leading',
+ *   name: 'leadingIcon',
+ *   defaultIcon: 'Icon/Plus',
+ *   resolveMethod: 'name',
+ *   visible: false,
+ *   size: 16
+ * });
+ * ```
+ */
+async function createIconSlotFrame(slot: IconSlot, textColor?: string): Promise<FrameNode> {
+  const size = slot.size ?? 16;
+  
+  // Create a wrapper frame for the icon slot
+  // This frame will have its visibility linked to a BOOLEAN property
+  const slotFrame = figma.createFrame();
+  slotFrame.name = slot.name;
+  slotFrame.layoutMode = 'HORIZONTAL';
+  slotFrame.primaryAxisSizingMode = 'AUTO';
+  slotFrame.counterAxisSizingMode = 'AUTO';
+  slotFrame.fills = []; // Transparent background
+  slotFrame.clipsContent = false;
+  
+  // Try to resolve the icon component
+  let iconNode: SceneNode | null = null;
+  
+  if (slot.defaultIcon) {
+    const iconComponent = await resolveIconComponent(slot.defaultIcon, slot.resolveMethod);
+    
+    if (iconComponent) {
+      // Create the icon instance
+      const iconInstance = iconComponent.createInstance();
+      iconInstance.resize(size, size);
+      iconNode = iconInstance;
+      console.log(`Created icon slot "${slot.name}" with icon "${slot.defaultIcon}"`);
+    } else {
+      console.warn(`Could not resolve icon "${slot.defaultIcon}" for slot "${slot.name}", using placeholder`);
+    }
+  }
+  
+  // If no icon found, create a placeholder frame
+  if (!iconNode) {
+    const placeholder = figma.createFrame();
+    placeholder.name = 'Icon Placeholder';
+    placeholder.resize(size, size);
+    placeholder.cornerRadius = 2;
+    iconNode = placeholder;
+    console.log(`Created icon slot "${slot.name}" with placeholder`);
+  }
+  
+  // Apply text color to icon/placeholder if provided
+  if (textColor && iconNode) {
+    await applyIconColor(iconNode, textColor);
+  }
+  
+  // Add the icon/placeholder to the slot frame
+  slotFrame.appendChild(iconNode);
+  
+  // Set initial visibility (default to true so icons are visible)
+  slotFrame.visible = slot.visible ?? true;
+  
+  return slotFrame;
+}
+
+/**
+ * Applies color to an icon node (placeholder frame or icon instance)
+ * Uses the same color as the text for visual consistency
+ * 
+ * @param node - The icon node to colorize
+ * @param colorToken - The color token string (e.g., "{Foundation/Light/semantic/white}")
+ */
+async function applyIconColor(node: SceneNode, colorToken: string): Promise<void> {
+  try {
+    // For placeholder frames, apply fill directly
+    if (node.type === 'FRAME') {
+      await applyFillToken(node, colorToken);
+    }
+    // For instances, try to apply fill to vector children
+    else if (node.type === 'INSTANCE') {
+      // Find all fillable children in the instance
+      const fillableTypes = ['VECTOR', 'RECTANGLE', 'ELLIPSE', 'POLYGON', 'STAR', 'LINE', 'FRAME'];
+      const children = (node as InstanceNode).findAll(
+        (child) => fillableTypes.includes(child.type)
+      );
+      for (const child of children) {
+        if ('fills' in child) {
+          await applyFillToken(child as GeometryMixin & BaseNode, colorToken);
+        }
+      }
+    }
+  } catch (error) {
+    console.warn(`Could not apply color to icon: ${error}`);
+  }
+}
+
+/**
+ * Creates icon slots for a component based on configuration
+ * 
+ * This function creates icon slot frames for each slot in the configuration
+ * and returns them organized by position for insertion into the component.
+ * 
+ * @param config - The icon slots configuration
+ * @returns Object containing leading and trailing icon slot frames
+ * 
+ * @example
+ * ```typescript
+ * const { leadingSlots, trailingSlots } = await createIconSlots({
+ *   slots: [
+ *     { position: 'leading', name: 'leadingIcon', defaultIcon: 'Icon/Plus', resolveMethod: 'name' },
+ *     { position: 'trailing', name: 'trailingIcon', defaultIcon: 'Icon/Arrow', resolveMethod: 'name' }
+ *   ]
+ * });
+ * ```
+ */
+async function createIconSlots(config: IconSlotsConfig, textColor?: string): Promise<{
+  leadingSlots: FrameNode[];
+  trailingSlots: FrameNode[];
+}> {
+  const leadingSlots: FrameNode[] = [];
+  const trailingSlots: FrameNode[] = [];
+  
+  for (const slot of config.slots) {
+    const slotFrame = await createIconSlotFrame(slot, textColor);
+    
+    if (slot.position === 'leading') {
+      leadingSlots.push(slotFrame);
+    } else {
+      trailingSlots.push(slotFrame);
+    }
+  }
+  
+  return { leadingSlots, trailingSlots };
+}
 
 /**
  * Style application error tracking
@@ -514,39 +785,207 @@ function applyComponentProperties(
  * These properties appear in Figma's Properties panel and can be edited by designers.
  * Supported types: TEXT, BOOLEAN, VARIANT, INSTANCE_SWAP
  * 
+ * For icon slots, this function automatically creates:
+ * - BOOLEAN properties for show/hide (e.g., "Show Leading Icon")
+ * - INSTANCE_SWAP properties for icon selection (e.g., "Leading Icon")
+ * 
  * @param componentSet - The component set to add properties to
  * @param propertyDefs - Array of property definitions
+ * @param iconSlots - Optional icon slots configuration to create icon-related properties
  */
 function createFigmaComponentProperties(
   componentSet: ComponentSetNode,
-  propertyDefs: FigmaComponentPropertyDef[]
+  propertyDefs: FigmaComponentPropertyDef[],
+  iconSlots?: IconSlotsConfig
 ): void {
+  // Create standard properties from definitions
   for (const propDef of propertyDefs) {
     try {
-      switch (propDef.type) {
-        case 'TEXT':
-          componentSet.addComponentProperty(propDef.name, 'TEXT', String(propDef.defaultValue));
-          break;
-        case 'BOOLEAN':
-          componentSet.addComponentProperty(propDef.name, 'BOOLEAN', Boolean(propDef.defaultValue));
-          break;
-        case 'VARIANT':
-          // For VARIANT type, we'd need to reference existing variant properties
-          // This is typically handled automatically by Figma for variant/state/size
-          console.log(`VARIANT property type for "${propDef.name}" - handled by Figma variants`);
-          break;
-        case 'INSTANCE_SWAP':
-          // INSTANCE_SWAP requires a preferredValues array of component keys
-          // Skip if no preferred values provided
-          console.log(`INSTANCE_SWAP property "${propDef.name}" requires component references`);
-          break;
-        default:
-          console.warn(`Unknown property type for "${propDef.name}"`);
-      }
+      createSingleProperty(componentSet, propDef);
     } catch (error) {
       console.error(`Failed to create component property "${propDef.name}":`, error);
     }
   }
+  
+  // Create icon slot properties
+  if (iconSlots?.slots) {
+    for (const slot of iconSlots.slots) {
+      createIconSlotProperties(componentSet, slot);
+    }
+  }
+}
+
+/**
+ * Creates a single component property on the component set
+ * 
+ * @param componentSet - The component set to add the property to
+ * @param propDef - The property definition
+ */
+function createSingleProperty(
+  componentSet: ComponentSetNode,
+  propDef: FigmaComponentPropertyDef
+): void {
+  switch (propDef.type) {
+    case 'TEXT':
+      componentSet.addComponentProperty(propDef.name, 'TEXT', String(propDef.defaultValue));
+      break;
+    case 'BOOLEAN':
+      componentSet.addComponentProperty(propDef.name, 'BOOLEAN', Boolean(propDef.defaultValue));
+      break;
+    case 'VARIANT':
+      // VARIANT type is typically handled automatically by Figma for variant/state/size
+      console.log(`VARIANT property type for "${propDef.name}" - handled by Figma variants`);
+      break;
+    case 'INSTANCE_SWAP':
+      // INSTANCE_SWAP requires preferred values - skip if none provided
+      if (!propDef.preferredValues || propDef.preferredValues.length === 0) {
+        console.log(`INSTANCE_SWAP property "${propDef.name}" - no preferred values, skipping`);
+        return;
+      }
+      // Note: We'll handle INSTANCE_SWAP in linkIconSlotProperties after components exist
+      console.log(`INSTANCE_SWAP property "${propDef.name}" will be linked after slot creation`);
+      break;
+    default:
+      console.warn(`Unknown property type for "${propDef.name}"`);
+  }
+}
+
+/**
+ * Creates BOOLEAN and INSTANCE_SWAP properties for an icon slot
+ * 
+ * Creates two properties per slot:
+ * 1. "Show {SlotName}" - BOOLEAN to toggle visibility
+ * 2. "{SlotName}" - INSTANCE_SWAP to select icon (created after linking)
+ * 
+ * @param componentSet - The component set to add properties to
+ * @param slot - The icon slot configuration
+ */
+function createIconSlotProperties(
+  componentSet: ComponentSetNode,
+  slot: IconSlot
+): void {
+  const displayName = formatSlotDisplayName(slot.name);
+  
+  // Create BOOLEAN property for visibility toggle
+  const showPropertyName = `Show ${displayName}`;
+  try {
+    componentSet.addComponentProperty(showPropertyName, 'BOOLEAN', slot.visible ?? false);
+    console.log(`Created BOOLEAN property: "${showPropertyName}"`);
+  } catch (error) {
+    console.error(`Failed to create show property for slot "${slot.name}":`, error);
+  }
+}
+
+/**
+ * Formats a slot name for display in Figma's Properties panel
+ * 
+ * Converts camelCase or snake_case to Title Case with spaces
+ * 
+ * @param slotName - The internal slot name
+ * @returns Formatted display name
+ * 
+ * @example
+ * formatSlotDisplayName('leadingIcon') // returns 'Leading Icon'
+ * formatSlotDisplayName('trailing_icon') // returns 'Trailing Icon'
+ */
+function formatSlotDisplayName(slotName: string): string {
+  return slotName
+    // Insert space before capitals (camelCase)
+    .replace(/([A-Z])/g, ' $1')
+    // Replace underscores with spaces (snake_case)
+    .replace(/_/g, ' ')
+    // Capitalize first letter of each word
+    .replace(/\b\w/g, char => char.toUpperCase())
+    .trim();
+}
+
+/**
+ * Links icon slot visibility to BOOLEAN component properties
+ * 
+ * This function connects the visibility of icon slot frames in each variant
+ * to the corresponding BOOLEAN component property. When the user toggles
+ * "Show Leading Icon" in Figma, the icon slot visibility updates.
+ * 
+ * @param componentSet - The component set containing variants
+ * @param iconSlots - The icon slots configuration
+ */
+function linkIconSlotProperties(
+  componentSet: ComponentSetNode,
+  iconSlots: IconSlotsConfig
+): void {
+  if (!iconSlots?.slots || iconSlots.slots.length === 0) {
+    return;
+  }
+  
+  // Get all component property definitions
+  const componentProperties = componentSet.componentPropertyDefinitions;
+  
+  // For each variant in the component set
+  for (const child of componentSet.children) {
+    if (child.type !== 'COMPONENT') continue;
+    
+    const component = child as ComponentNode;
+    
+    // For each icon slot
+    for (const slot of iconSlots.slots) {
+      const displayName = formatSlotDisplayName(slot.name);
+      const showPropertyName = `Show ${displayName}`;
+      
+      // Find the property key in componentPropertyDefinitions
+      const propKey = findPropertyKey(componentProperties, showPropertyName);
+      if (!propKey) {
+        console.warn(`Property "${showPropertyName}" not found in component set`);
+        continue;
+      }
+      
+      // Find the slot frame in this variant
+      const slotFrame = component.findOne(
+        (node): node is FrameNode => 
+          node.type === 'FRAME' && node.name === slot.name
+      );
+      
+      if (!slotFrame) {
+        console.warn(`Slot frame "${slot.name}" not found in variant "${component.name}"`);
+        continue;
+      }
+      
+      // Link the slot frame's visibility to the BOOLEAN property
+      try {
+        slotFrame.componentPropertyReferences = {
+          ...slotFrame.componentPropertyReferences,
+          visible: propKey
+        };
+        console.log(`Linked visibility of "${slot.name}" to property "${showPropertyName}"`);
+      } catch (error) {
+        console.error(`Failed to link visibility for slot "${slot.name}":`, error);
+      }
+    }
+  }
+}
+
+/**
+ * Finds the property key for a given property name in component property definitions
+ * 
+ * @param definitions - The component property definitions object
+ * @param propertyName - The property name to find
+ * @returns The property key if found, undefined otherwise
+ */
+function findPropertyKey(
+  definitions: ComponentPropertyDefinitions,
+  propertyName: string
+): string | undefined {
+  for (const key in definitions) {
+    // Property keys in Figma include a unique suffix, e.g., "Show Leading Icon#123:456"
+    // The name is stored in the definition
+    if (key.startsWith(propertyName) || definitions[key].type === 'BOOLEAN') {
+      // Check if this is our property by matching the beginning of the key
+      const keyNamePart = key.split('#')[0];
+      if (keyNamePart === propertyName) {
+        return key;
+      }
+    }
+  }
+  return undefined;
 }
 
 /**
@@ -633,9 +1072,18 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
         componentSet.setPluginData('defaultProperties', JSON.stringify(defaultProperties));
       }
       
-      // Create visible Figma Component Properties
+      // Create visible Figma Component Properties (including icon slot properties)
+      const iconSlotsConfig = defaultStyles.iconSlots;
       if (figmaProperties && figmaProperties.length > 0) {
-        createFigmaComponentProperties(componentSet, figmaProperties);
+        createFigmaComponentProperties(componentSet, figmaProperties, iconSlotsConfig);
+      } else if (iconSlotsConfig?.slots && iconSlotsConfig.slots.length > 0) {
+        // Create icon slot properties even if no other figmaProperties
+        createFigmaComponentProperties(componentSet, [], iconSlotsConfig);
+      }
+      
+      // Link icon slot visibility to BOOLEAN properties
+      if (iconSlotsConfig?.slots && iconSlotsConfig.slots.length > 0) {
+        linkIconSlotProperties(componentSet, iconSlotsConfig);
       }
     } catch (error) {
       throw new Error(`Failed to combine components into variant set: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -713,12 +1161,52 @@ async function createComponentVariant(
       applyComponentProperties(component, properties);
     }
     
-    // Create and style the text node
+    // Create icon slots if configured
+    let leadingSlots: FrameNode[] = [];
+    let trailingSlots: FrameNode[] = [];
+    
+    console.log('🔍 Icon slots config:', styles.iconSlots ? JSON.stringify(styles.iconSlots, null, 2) : 'none');
+    
+    if (styles.iconSlots?.slots && styles.iconSlots.slots.length > 0) {
+      console.log(`🎯 Creating ${styles.iconSlots.slots.length} icon slot(s)...`);
+      try {
+        // Pass text color so icons match the label color
+        const iconSlotResult = await createIconSlots(styles.iconSlots, styles.text);
+        leadingSlots = iconSlotResult.leadingSlots;
+        trailingSlots = iconSlotResult.trailingSlots;
+        console.log(`✅ Created ${leadingSlots.length} leading slot(s) and ${trailingSlots.length} trailing slot(s)`);
+      } catch (error) {
+        console.warn('❌ Failed to create icon slots:', error);
+        // Continue without icon slots - non-blocking error
+      }
+    } else {
+      console.log('⚠️ No icon slots configured in styles');
+    }
+    
+    // Add leading icon slots to component
+    console.log(`📎 Appending ${leadingSlots.length} leading slot(s) to component`);
+    for (const slot of leadingSlots) {
+      component.appendChild(slot);
+      console.log(`  → Added leading slot: ${slot.name}, visible: ${slot.visible}`);
+    }
+    
+    // Create and style the text node (with visibility control)
     try {
       const textNode = await createStyledTextNode(styles, variantConfig.size);
+      // Apply label visibility (default to true if not specified)
+      textNode.visible = styles.labelVisible ?? true;
+      textNode.name = 'Label';
       component.appendChild(textNode);
+      console.log(`📝 Added label: "${styles.label}", visible: ${textNode.visible}`);
     } catch (error) {
       throw new Error(`Failed to create text node: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+    
+    // Add trailing icon slots to component
+    console.log(`📎 Appending ${trailingSlots.length} trailing slot(s) to component`);
+    for (const slot of trailingSlots) {
+      component.appendChild(slot);
+      console.log(`  → Added trailing slot: ${slot.name}, visible: ${slot.visible}`);
     }
 
     // Set resize constraints
@@ -764,6 +1252,7 @@ async function createComponentVariant(
 function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
   return {
     label: variantConfig.styles?.label || defaultStyles.label,
+    labelVisible: variantConfig.styles?.labelVisible ?? defaultStyles.labelVisible ?? true,
     fills: variantConfig.styles?.fills || defaultStyles.fills,
     fillsOpacity: variantConfig.styles?.fillsOpacity || defaultStyles.fillsOpacity,
     strokes: variantConfig.styles?.strokes || defaultStyles.strokes,
@@ -775,6 +1264,8 @@ function mergeStyles(variantConfig: Variant, defaultStyles: Style): Style {
     padding: { ...defaultStyles.padding, ...variantConfig.styles?.padding },
     gap: variantConfig.styles?.gap || defaultStyles.gap,
     opacity: variantConfig.styles?.opacity || defaultStyles.opacity,
+    // Icon slots - inherit from default styles (variant can override)
+    iconSlots: variantConfig.styles?.iconSlots || defaultStyles.iconSlots,
     // Typography styles
     fontName: variantConfig.styles?.fontName || defaultStyles.fontName,
     fontWeight: variantConfig.styles?.fontWeight || defaultStyles.fontWeight,
