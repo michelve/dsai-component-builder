@@ -47,29 +47,35 @@ async function findVariableByName(tokenName: string): Promise<Variable | null> {
     
     console.log(`🔎 Searching for: full="${tokenName}", last="${lastPart}", lastTwo="${lastTwoParts}"`);
     
+    // Try matching strategies in order of specificity (most specific first)
+    // Pass 1: Exact match on full path
     for (const variable of localVariables) {
-      // Try multiple matching strategies:
-      // 1. Exact match on full path
       if (variable.name === tokenName) {
         console.log(`✅ Found exact match: "${variable.name}" (ID: ${variable.id})`);
         return variable;
       }
-      
-      // 2. Match on last segment only (most common in Figma)
-      if (variable.name === lastPart) {
-        console.log(`✅ Found by last segment: "${variable.name}" (ID: ${variable.id})`);
-        return variable;
-      }
-      
-      // 3. Match if variable name ends with our token path
+    }
+    
+    // Pass 2: Match if variable name ends with our full token path
+    for (const variable of localVariables) {
       if (variable.name.endsWith(tokenName)) {
         console.log(`✅ Found by suffix: "${variable.name}" (ID: ${variable.id})`);
         return variable;
       }
-      
-      // 4. Match on last two segments
-      if (variable.name.endsWith(lastTwoParts)) {
+    }
+    
+    // Pass 3: Match on last two segments (e.g., "border-radius/sm")
+    for (const variable of localVariables) {
+      if (variable.name === lastTwoParts || variable.name.endsWith(lastTwoParts)) {
         console.log(`✅ Found by last two segments: "${variable.name}" (ID: ${variable.id})`);
+        return variable;
+      }
+    }
+    
+    // Pass 4: Match on last segment only (least specific, fallback)
+    for (const variable of localVariables) {
+      if (variable.name === lastPart) {
+        console.log(`✅ Found by last segment: "${variable.name}" (ID: ${variable.id})`);
         return variable;
       }
     }
@@ -967,23 +973,23 @@ export async function applyFontName(
  * Map font weight number to Inter font style name
  */
 function getFontStyleForWeight(weight: number, family: string = 'Inter'): string {
-  // Inter font weight mappings
+  // Inter font weight mappings (uses spaces in style names)
   if (family === 'Inter') {
     if (weight <= 100) return 'Thin';
-    if (weight <= 200) return 'ExtraLight';
+    if (weight <= 200) return 'Extra Light';
     if (weight <= 300) return 'Light';
     if (weight <= 400) return 'Regular';
     if (weight <= 500) return 'Medium';
-    if (weight <= 600) return 'SemiBold';
+    if (weight <= 600) return 'Semi Bold';
     if (weight <= 700) return 'Bold';
-    if (weight <= 800) return 'ExtraBold';
+    if (weight <= 800) return 'Extra Bold';
     return 'Black';
   }
-  // Default fallback for other fonts
+  // Default fallback for other fonts (uses spaces in style names)
   if (weight <= 300) return 'Light';
   if (weight <= 400) return 'Regular';
   if (weight <= 500) return 'Medium';
-  if (weight <= 600) return 'SemiBold';
+  if (weight <= 600) return 'Semi Bold';
   if (weight <= 700) return 'Bold';
   return 'Black';
 }
@@ -1009,22 +1015,39 @@ export async function applyFontWeightToken(
       const currentFont = node.fontName;
       const fontFamily = currentFont !== figma.mixed ? currentFont.family : 'Inter';
       
-      // Get the font weight value from the variable to determine the style
-      const weightValue = typeof mapping.fallbackValue === 'number' ? mapping.fallbackValue : 400;
+      // CRITICAL: Get the ACTUAL font weight value from the variable, not the fallback
+      let weightValue = 400;
+      try {
+        const modeId = Object.keys(variable.valuesByMode)[0];
+        if (modeId) {
+          const varValue = variable.valuesByMode[modeId];
+          if (typeof varValue === 'number') {
+            weightValue = varValue;
+          }
+        }
+      } catch (error) {
+        console.warn('Could not read variable value, using default 400:', error);
+      }
+      
       const fontStyle = getFontStyleForWeight(weightValue, fontFamily);
       
-      console.log(`🔗 Binding fontWeight variable: ${variable.name} (value: ${weightValue} -> style: ${fontStyle})`);
+      console.log(`🔗 Binding fontWeight variable: ${variable.name} (actual value: ${weightValue} -> style: ${fontStyle})`);
       
-      // CRITICAL: Load the font with the new weight BEFORE binding the variable
+      // CRITICAL: Load the font with the CORRECT weight BEFORE binding the variable
       // This prevents "Cannot write to node with unloaded font" errors
       try {
         const fontToLoad = { family: fontFamily, style: fontStyle };
         await figma.loadFontAsync(fontToLoad);
         console.log(`✅ Pre-loaded font for weight binding: ${fontToLoad.family} ${fontToLoad.style}`);
+        
+        // Also set the fontName to ensure the style is applied immediately
+        node.fontName = fontToLoad;
+        console.log(`✅ Applied font style: ${fontToLoad.family} ${fontToLoad.style}`);
       } catch (error) {
         console.warn(`⚠️ Could not pre-load font ${fontFamily} ${fontStyle}, trying Regular fallback:`, error);
         try {
           await figma.loadFontAsync({ family: fontFamily, style: 'Regular' });
+          node.fontName = { family: fontFamily, style: 'Regular' };
         } catch (fallbackError) {
           console.warn(`⚠️ Could not load Regular fallback either:`, fallbackError);
         }
@@ -1069,17 +1092,40 @@ export async function applyFontSizeToken(
  */
 export async function applyLineHeightToken(
   node: TextNode,
-  tokenRef: TokenReference | 'AUTO'
+  tokenRef: TokenReference | 'AUTO' | string
 ): Promise<void> {
   console.log(`🔍 Line height token: ${tokenRef}`);
   
   // Handle AUTO case
   if (tokenRef === 'AUTO') {
     node.lineHeight = { unit: 'AUTO' };
-    console.log(`⚠️ Using AUTO line height`);
+    console.log(`✅ Applied AUTO line height`);
     return;
   }
   
+  // Handle literal percentage values like "120%"
+  if (typeof tokenRef === 'string' && tokenRef.endsWith('%') && !tokenRef.startsWith('{')) {
+    const percentValue = parseFloat(tokenRef.replace('%', ''));
+    if (!isNaN(percentValue)) {
+      const lineHeightValue: LineHeight = { value: percentValue, unit: 'PERCENT' };
+      node.lineHeight = lineHeightValue;
+      console.log(`✅ Applied literal lineHeight: ${percentValue}% - node.lineHeight is now:`, JSON.stringify(node.lineHeight));
+      return;
+    }
+  }
+  
+  // Handle literal pixel values like "24" or "24px"
+  if (typeof tokenRef === 'string' && !tokenRef.startsWith('{') && !tokenRef.endsWith('%')) {
+    const pixelValue = parseFloat(tokenRef.replace('px', ''));
+    if (!isNaN(pixelValue)) {
+      const lineHeightValue: LineHeight = { value: pixelValue, unit: 'PIXELS' };
+      node.lineHeight = lineHeightValue;
+      console.log(`✅ Applied literal lineHeight: ${pixelValue}px - node.lineHeight is now:`, JSON.stringify(node.lineHeight));
+      return;
+    }
+  }
+  
+  // Handle token reference
   const mapping = await resolveDimensionToken(tokenRef, 140);
   
   if (mapping.found && mapping.variableId) {
@@ -1098,12 +1144,35 @@ export async function applyLineHeightToken(
 
 /**
  * Apply letter spacing token to a text node (bindable)
+ * Supports token references, literal percentages, or pixel values
  */
 export async function applyLetterSpacingToken(
   node: TextNode,
-  tokenRef: TokenReference
+  tokenRef: TokenReference | string
 ): Promise<void> {
   console.log(`🔍 Letter spacing token: ${tokenRef}`);
+  
+  // Handle literal percentage values like "5%" or "-2%"
+  if (typeof tokenRef === 'string' && tokenRef.endsWith('%') && !tokenRef.startsWith('{')) {
+    const percentValue = parseFloat(tokenRef.replace('%', ''));
+    if (!isNaN(percentValue)) {
+      node.letterSpacing = { value: percentValue, unit: 'PERCENT' };
+      console.log(`✅ Applied literal letterSpacing: ${percentValue}%`);
+      return;
+    }
+  }
+  
+  // Handle literal pixel values like "0.5" or "-0.3px"
+  if (typeof tokenRef === 'string' && !tokenRef.startsWith('{') && !tokenRef.endsWith('%')) {
+    const pixelValue = parseFloat(tokenRef.replace('px', ''));
+    if (!isNaN(pixelValue)) {
+      node.letterSpacing = { value: pixelValue, unit: 'PIXELS' };
+      console.log(`✅ Applied literal letterSpacing: ${pixelValue}px`);
+      return;
+    }
+  }
+  
+  // Handle token reference
   const mapping = await resolveDimensionToken(tokenRef, 0);
   
   if (mapping.found && mapping.variableId) {

@@ -111,6 +111,29 @@ export interface Style extends Typography {
 }
 
 /**
+ * Component properties for behavior and accessibility
+ * These are stored as plugin data and used for Code Connect
+ */
+export interface ComponentProperties {
+  type?: 'button' | 'submit' | 'reset' | string; // HTML button type
+  fullWidth?: boolean; // Whether button stretches to full container width
+  loadingText?: string | null; // Text shown during loading state
+  ariaLabel?: string | null; // Accessibility label for screen readers
+  announceText?: string | null; // Text announced to screen readers on state change
+}
+
+/**
+ * Figma Component Property definition for visible properties in the Properties panel
+ */
+export interface FigmaComponentPropertyDef {
+  name: string; // Property name shown in Figma UI
+  type: 'TEXT' | 'BOOLEAN' | 'VARIANT' | 'INSTANCE_SWAP'; // Figma property type
+  defaultValue: string | boolean; // Default value for the property
+  preferredValues?: string[]; // For TEXT type: suggested values in dropdown
+  variantOptions?: string[]; // For VARIANT type: available options
+}
+
+/**
  * Variant configuration with property values and optional style overrides
  */
 export interface Variant {
@@ -118,6 +141,7 @@ export interface Variant {
   state: string; // e.g., "default", "hover", "active", "disabled"
   size: string; // e.g., "small", "medium", "large"
   styles?: Style; // Optional style overrides for this variant
+  properties?: ComponentProperties; // Optional property overrides for this variant
   description?: string; // Plain-text annotation for this specific variant
   documentationLink?: string; // Single documentation URL (will be converted to documentationLinks array)
 }
@@ -127,6 +151,8 @@ export interface Variant {
  */
 export interface ComponentConfig {
   componentSet: ComponentSet;
+  defaultProperties?: ComponentProperties; // Default component properties (stored as plugin data)
+  figmaProperties?: FigmaComponentPropertyDef[]; // Visible Figma Component Properties
   defaultStyles: Style;
   variants: Variant[];
 }

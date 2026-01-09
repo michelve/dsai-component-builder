@@ -68,6 +68,63 @@
       color: var(--figma-color-text-secondary);
     }
 
+    .upload-area.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+      border-color: var(--figma-color-border);
+      background: var(--figma-color-bg-disabled);
+    }
+
+    .upload-area.disabled:hover {
+      border-color: var(--figma-color-border);
+      background: var(--figma-color-bg-disabled);
+    }
+
+    .library-status {
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .library-status.checking {
+      background: var(--figma-color-bg-secondary);
+      color: var(--figma-color-text-secondary);
+    }
+
+    .library-status.found {
+      background: var(--figma-color-bg-success, #0b8a3e);
+      color: #ffffff;
+    }
+
+    .library-status.not-found {
+      background: var(--figma-color-bg-danger-secondary, rgba(255, 59, 48, 0.1));
+      color: var(--figma-color-text-danger, #c92a2a);
+    }
+
+    .library-status-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .library-status-content {
+      flex: 1;
+    }
+
+    .library-status-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .library-status-details {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
     input[type="file"] {
       display: none;
     }
@@ -301,6 +358,15 @@
   <h1>Component Builder</h1>
   <p>Upload a DSAi file containing component specifications and design tokens to generate Figma components.</p>
 
+  <!-- Library Status Banner -->
+  <div class="library-status checking" id="libraryStatus">
+    <span class="library-status-icon">🔍</span>
+    <div class="library-status-content">
+      <div class="library-status-title">Checking for DSAi library...</div>
+      <div class="library-status-details">Please wait</div>
+    </div>
+  </div>
+
   <div class="status" id="status"></div>
 
   <div class="update-mode" id="updateMode">
@@ -363,10 +429,36 @@
     const replaceBtn = document.getElementById('replaceBtn');
     const skipBtn = document.getElementById('skipBtn');
     const duplicateBtn = document.getElementById('duplicateBtn');
+    const libraryStatus = document.getElementById('libraryStatus');
 
     let uploadedJSON = null;
-    let duplicateAction = null;
+    let libraryFound = false; // Track if DSAi library was found
     let existingNodeId = null; // Store the node ID of the existing component
+
+    /**
+     * Update the library status banner and enable/disable upload area
+     */
+    function updateLibraryStatus(found, message, details) {
+      libraryFound = found;
+      
+      // Update status banner
+      libraryStatus.className = 'library-status ' + (found ? 'found' : 'not-found');
+      libraryStatus.innerHTML = `
+        ${found ? '' : '<span class="library-status-icon">❌</span>'}
+        <div class="library-status-content">
+          <div class="library-status-title">${message}</div>
+          <div class="library-status-details">${details || ''}</div>
+        </div>
+      `;
+      
+      // Enable/disable upload area
+      if (found) {
+        uploadArea.classList.remove('disabled');
+      } else {
+        uploadArea.classList.add('disabled');
+        createBtn.disabled = true;
+      }
+    }
 
     // Function to clear/reset the form after successful creation
     function clearForm() {
@@ -419,7 +511,10 @@
     window.onmessage = (event) => {
       const msg = event.data.pluginMessage;
       
-      if (msg.type === 'duplicate-detected') {
+      if (msg.type === 'library-check') {
+        // Handle library check result
+        updateLibraryStatus(msg.found, msg.message, msg.details);
+      } else if (msg.type === 'duplicate-detected') {
         // Show duplicate modal
         duplicateComponentName.textContent = msg.componentName;
         existingNodeId = msg.existingNodeId; // Store the node ID
@@ -472,13 +567,18 @@
       }, '*');
     });
 
-    // Click to browse
+    // Click to browse (only if library found)
     uploadArea.addEventListener('click', () => {
+      if (!libraryFound) {
+        showStatus('❌ Cannot upload: DSAi library not found in this file.', 'error');
+        return;
+      }
       fileInput.click();
     });
 
     // File selected via input
     fileInput.addEventListener('change', (e) => {
+      if (!libraryFound) return;
       if (e.target.files.length > 0) {
         handleFile(e.target.files[0]);
       }
@@ -487,6 +587,7 @@
     // Drag and drop
     uploadArea.addEventListener('dragover', (e) => {
       e.preventDefault();
+      if (!libraryFound) return;
       uploadArea.classList.add('dragover');
     });
 
@@ -497,6 +598,11 @@
     uploadArea.addEventListener('drop', (e) => {
       e.preventDefault();
       uploadArea.classList.remove('dragover');
+      
+      if (!libraryFound) {
+        showStatus('❌ Cannot upload: DSAi library not found in this file.', 'error');
+        return;
+      }
       
       if (e.dataTransfer.files.length > 0) {
         handleFile(e.dataTransfer.files[0]);

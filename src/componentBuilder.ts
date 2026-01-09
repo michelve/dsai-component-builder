@@ -1,4 +1,4 @@
-import type { ComponentConfig, Variant, Style } from './types';
+import type { ComponentConfig, Variant, Style, ComponentProperties, FigmaComponentPropertyDef } from './types';
 import {
   applyFillToken,
   applyStrokeToken,
@@ -171,32 +171,72 @@ function calculateNextComponentPosition(page: PageNode, offset: number = 100): {
  * }
  * ```
  */
+/**
+ * Normalizes a component name for comparison
+ * Trims whitespace and normalizes slashes/spaces for consistent matching
+ */
+function normalizeComponentName(name: string): string {
+  return name
+    .trim()
+    .replace(/\s*\/\s*/g, ' / ')  // Normalize "foo/bar" or "foo  /  bar" to "foo / bar"
+    .replace(/\s+/g, ' ');         // Collapse multiple spaces
+}
+
 function findExistingComponent(
   page: PageNode, 
   componentName: string, 
   componentKey?: string
 ): ComponentNode | ComponentSetNode | FrameNode | null {
+  const normalizedSearchName = normalizeComponentName(componentName);
+  console.log(`🔍 Searching for component: "${componentName}" (normalized: "${normalizedSearchName}")`);
+  console.log(`🔍 Page has ${page.children.length} top-level children`);
+  
   // Search through all children on the page
-  const existingComponent = page.children.find(node => {
+  for (const node of page.children) {
     // Check if it's a component-related node type
     if (node.type !== 'COMPONENT_SET' && node.type !== 'COMPONENT' && node.type !== 'FRAME') {
-      return false;
+      continue;
     }
+    
+    const normalizedNodeName = normalizeComponentName(node.name);
+    console.log(`  📦 Checking: "${node.name}" (type: ${node.type}, normalized: "${normalizedNodeName}")`);
     
     // Match by key first (most reliable if provided)
     if (componentKey && 'key' in node && node.key === componentKey) {
-      return true;
+      console.log(`  ✅ Found by key match: ${componentKey}`);
+      return node as ComponentNode | ComponentSetNode | FrameNode;
     }
     
-    // Fall back to name matching
-    if (node.name === componentName) {
-      return true;
+    // Match by normalized name
+    if (normalizedNodeName === normalizedSearchName) {
+      console.log(`  ✅ Found by name match: "${node.name}"`);
+      return node as ComponentNode | ComponentSetNode | FrameNode;
     }
     
-    return false;
-  });
+    // If it's a frame, also search inside it for component sets with matching name
+    if (node.type === 'FRAME') {
+      const frame = node as FrameNode;
+      for (const child of frame.children) {
+        if (child.type === 'COMPONENT_SET' || child.type === 'COMPONENT') {
+          const normalizedChildName = normalizeComponentName(child.name);
+          console.log(`    📦 Checking nested: "${child.name}" (normalized: "${normalizedChildName}")`);
+          
+          if (componentKey && 'key' in child && child.key === componentKey) {
+            console.log(`    ✅ Found nested component by key match`);
+            return frame; // Return the parent frame for replacement
+          }
+          
+          if (normalizedChildName === normalizedSearchName) {
+            console.log(`    ✅ Found nested component by name match`);
+            return frame; // Return the parent frame for replacement
+          }
+        }
+      }
+    }
+  }
 
-  return (existingComponent as ComponentNode | ComponentSetNode | FrameNode) || null;
+  console.log(`  ❌ No matching component found for "${componentName}"`);
+  return null;
 }
 
 /**
@@ -246,7 +286,8 @@ interface BuildResult {
  */
 export async function loadJSONAndCreateComponents(
   config: ComponentConfig,
-  skipDuplicateCheck: boolean = false
+  skipDuplicateCheck: boolean = false,
+  replacementPosition?: { x: number; y: number }
 ): Promise<BuildResult> {
   try {
     // Validate config structure
@@ -297,7 +338,8 @@ export async function loadJSONAndCreateComponents(
           type: 'duplicate-detected',
           componentName: componentName,
           componentKey: componentKey,
-          existingNodeId: existingComponent.id // Send the node ID so we can delete it later
+          existingNodeId: existingComponent.id, // Send the node ID so we can delete it later
+          existingPosition: { x: existingComponent.x, y: existingComponent.y } // Remember position for replacement
         });
         
         // Return early - wait for user's decision
@@ -323,10 +365,17 @@ export async function loadJSONAndCreateComponents(
       containerFrame = createContainerFrame(componentName);
       containerFrame.appendChild(componentSet);
       
-      // Calculate position to avoid overlapping with existing components
-      const position = calculateNextComponentPosition(targetPage, 100);
-      containerFrame.x = position.x;
-      containerFrame.y = position.y;
+      // Use replacement position if provided, otherwise calculate new position
+      if (replacementPosition) {
+        containerFrame.x = replacementPosition.x;
+        containerFrame.y = replacementPosition.y;
+        console.log(`📍 Placing component at original position: (${replacementPosition.x}, ${replacementPosition.y})`);
+      } else {
+        // Calculate position to avoid overlapping with existing components
+        const position = calculateNextComponentPosition(targetPage, 100);
+        containerFrame.x = position.x;
+        containerFrame.y = position.y;
+      }
       
       targetPage.appendChild(containerFrame);
     } catch (error) {
@@ -401,6 +450,106 @@ function createContainerFrame(name: string): FrameNode {
 }
 
 /**
+ * Merges variant-specific properties with default properties
+ * 
+ * Creates a complete ComponentProperties object by combining default properties
+ * with variant overrides. Variant properties take precedence over defaults.
+ * 
+ * @param variantProperties - Variant-specific property overrides
+ * @param defaultProperties - Default properties for all variants
+ * @returns Complete ComponentProperties object with merged values
+ */
+function mergeProperties(
+  variantProperties?: ComponentProperties,
+  defaultProperties?: ComponentProperties
+): ComponentProperties {
+  if (!defaultProperties && !variantProperties) {
+    return {};
+  }
+  
+  return {
+    ...defaultProperties,
+    ...variantProperties
+  };
+}
+
+/**
+ * Stores component properties as plugin data on a node
+ * 
+ * Properties are stored as JSON in plugin data, making them available
+ * for Code Connect and other integrations. Each property is stored
+ * individually for easy access.
+ * 
+ * @param node - The component node to store properties on
+ * @param properties - The properties to store
+ */
+function applyComponentProperties(
+  node: ComponentNode,
+  properties: ComponentProperties
+): void {
+  // Store the complete properties object
+  node.setPluginData('componentProperties', JSON.stringify(properties));
+  
+  // Store individual properties for easier access
+  if (properties.type !== undefined) {
+    node.setPluginData('prop:type', String(properties.type));
+  }
+  if (properties.fullWidth !== undefined) {
+    node.setPluginData('prop:fullWidth', String(properties.fullWidth));
+  }
+  if (properties.loadingText !== undefined && properties.loadingText !== null) {
+    node.setPluginData('prop:loadingText', properties.loadingText);
+  }
+  if (properties.ariaLabel !== undefined && properties.ariaLabel !== null) {
+    node.setPluginData('prop:ariaLabel', properties.ariaLabel);
+  }
+  if (properties.announceText !== undefined && properties.announceText !== null) {
+    node.setPluginData('prop:announceText', properties.announceText);
+  }
+}
+
+/**
+ * Creates visible Figma Component Properties on a ComponentSetNode
+ * 
+ * These properties appear in Figma's Properties panel and can be edited by designers.
+ * Supported types: TEXT, BOOLEAN, VARIANT, INSTANCE_SWAP
+ * 
+ * @param componentSet - The component set to add properties to
+ * @param propertyDefs - Array of property definitions
+ */
+function createFigmaComponentProperties(
+  componentSet: ComponentSetNode,
+  propertyDefs: FigmaComponentPropertyDef[]
+): void {
+  for (const propDef of propertyDefs) {
+    try {
+      switch (propDef.type) {
+        case 'TEXT':
+          componentSet.addComponentProperty(propDef.name, 'TEXT', String(propDef.defaultValue));
+          break;
+        case 'BOOLEAN':
+          componentSet.addComponentProperty(propDef.name, 'BOOLEAN', Boolean(propDef.defaultValue));
+          break;
+        case 'VARIANT':
+          // For VARIANT type, we'd need to reference existing variant properties
+          // This is typically handled automatically by Figma for variant/state/size
+          console.log(`VARIANT property type for "${propDef.name}" - handled by Figma variants`);
+          break;
+        case 'INSTANCE_SWAP':
+          // INSTANCE_SWAP requires a preferredValues array of component keys
+          // Skip if no preferred values provided
+          console.log(`INSTANCE_SWAP property "${propDef.name}" requires component references`);
+          break;
+        default:
+          console.warn(`Unknown property type for "${propDef.name}"`);
+      }
+    } catch (error) {
+      console.error(`Failed to create component property "${propDef.name}":`, error);
+    }
+  }
+}
+
+/**
  * Creates a component set by generating and combining all variants
  * 
  * This function iterates through all variant configurations, creates individual
@@ -426,7 +575,7 @@ function createContainerFrame(name: string): FrameNode {
  */
 async function createComponentSet(config: ComponentConfig): Promise<ComponentSetNode> {
   try {
-    const { componentSet: componentSetInfo, defaultStyles, variants } = config;
+    const { componentSet: componentSetInfo, defaultStyles, defaultProperties, figmaProperties, variants } = config;
     const componentNodes: ComponentNode[] = [];
     let yPosition = 0;
     const spacing = 24;
@@ -436,7 +585,7 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
       const variant = variants[i];
       try {
         console.log(`Creating variant ${i + 1}/${variants.length}:`, variant.variant, variant.state, variant.size);
-        const component = await createComponentVariant(variant, defaultStyles);
+        const component = await createComponentVariant(variant, defaultStyles, defaultProperties);
         
         // Position components vertically with spacing
         component.x = 0;
@@ -477,6 +626,16 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
         componentSet.documentationLinks = [{
           uri: componentSetInfo.documentationLink
         }];
+      }
+      
+      // Store default properties on the component set for Code Connect
+      if (defaultProperties && Object.keys(defaultProperties).length > 0) {
+        componentSet.setPluginData('defaultProperties', JSON.stringify(defaultProperties));
+      }
+      
+      // Create visible Figma Component Properties
+      if (figmaProperties && figmaProperties.length > 0) {
+        createFigmaComponentProperties(componentSet, figmaProperties);
       }
     } catch (error) {
       throw new Error(`Failed to combine components into variant set: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -524,7 +683,8 @@ async function createComponentSet(config: ComponentConfig): Promise<ComponentSet
  */
 async function createComponentVariant(
   variantConfig: Variant,
-  defaultStyles: Style
+  defaultStyles: Style,
+  defaultProperties?: ComponentProperties
 ): Promise<ComponentNode> {
   try {
     // Validate variant config
@@ -534,6 +694,9 @@ async function createComponentVariant(
 
     // Merge default styles with variant-specific overrides
     const styles = mergeStyles(variantConfig, defaultStyles);
+    
+    // Merge default properties with variant-specific overrides
+    const properties = mergeProperties(variantConfig.properties, defaultProperties);
 
     // Create the component with basic setup
     const component = createBaseComponent(variantConfig);
@@ -543,6 +706,11 @@ async function createComponentVariant(
       await applyComponentStyles(component, styles);
     } catch (error) {
       throw new Error(`Failed to apply component styles: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+    
+    // Apply component properties as plugin data
+    if (Object.keys(properties).length > 0) {
+      applyComponentProperties(component, properties);
     }
     
     // Create and style the text node
@@ -690,7 +858,8 @@ async function applyComponentStyles(component: ComponentNode, styles: Style): Pr
     // === LAYOUT PROPERTIES ===
     
     // Padding: Internal spacing from edges to content
-    if (styles.padding) {
+    // Only apply if at least one padding value is explicitly defined
+    if (styles.padding && (styles.padding.top || styles.padding.bottom || styles.padding.left || styles.padding.right)) {
       try {
         await applyPaddingTokens(component, {
           top: styles.padding.top || '{Spacing/Base/spacing/2}',
@@ -891,15 +1060,19 @@ async function applyTypography(textNode: TextNode, styles: Style, size: string):
     }
 
     // Apply line height
+    console.log(`📏 lineHeight value in styles: "${styles.lineHeight}" (type: ${typeof styles.lineHeight})`);
     if (styles.lineHeight) {
       try {
         await applyLineHeightToken(textNode, styles.lineHeight);
       } catch (error) {
         console.warn('Failed to apply lineHeight:', error);
       }
+    } else {
+      console.warn('⚠️ No lineHeight value in styles object');
     }
 
     // Apply letter spacing
+    console.log(`📏 letterSpacing value in styles: "${styles.letterSpacing}" (type: ${typeof styles.letterSpacing})`);
     if (styles.letterSpacing) {
       try {
         await applyLetterSpacingToken(textNode, styles.letterSpacing);
